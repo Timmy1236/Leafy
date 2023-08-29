@@ -1,0 +1,32 @@
+{
+  "name": "leafy",
+  "version": "1.0.0",
+  "description": "Simple discord bot.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [],
+  "author": "Awi-Corp",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/rest": "^2.0.1",
+    "ascii-table": "0.0.9",
+    "axios": "^1.5.0",
+    "canvas": "^2.11.2",
+    "color-thief-node": "^1.0.4",
+    "discord.js": "^14.13.0",
+    "glob": "^10.3.3",
+    "gradient-string": "^2.0.2",
+    "moment": "^2.29.4",
+    "moment-duration-format": "^2.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Awi-Corp/Leafy.git"
+  }
+}
