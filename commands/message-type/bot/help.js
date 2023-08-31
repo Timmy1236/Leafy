@@ -3,7 +3,7 @@ module.exports = {
   nombre: "help",
   alias: ["comando"],
   descripcion: "Obtén una lista de todos los comandos disponibles.",
-  categoria: "🤖 Bot",
+  categoria: "Bot",
   tieneHelp: 1,
   run: async (Discord, client, message, prefix, args, bot) => {
     await message.channel.sendTyping()

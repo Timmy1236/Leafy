@@ -4,7 +4,7 @@ module.exports = {
   nombre: "serverinfo",
   alias: ["server", "guild", "guildinfo"],
   descripcion: "Información básica del servidor.",
-  categoria: "🔧 Utilidades",
+  categoria: "Discord",
   tieneHelp: 0,
   run: async (Discord, client, message, prefix, args, bot) => {
     message.channel.sendTyping();

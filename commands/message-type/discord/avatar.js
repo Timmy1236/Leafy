@@ -3,7 +3,7 @@ module.exports = {
   nombre: "avatar",
   alias: ["pfp"],
   descripcion: "Muestra el avatar de alguien o el tuyo con su color dominante y en diferentes formatos.",
-  categoria: "🔧 Utilidades",
+  categoria: "Discord",
   tieneHelp: 0,
   run: async (Discord, client, message, prefix, args, bot) => {
     message.channel.sendTyping();

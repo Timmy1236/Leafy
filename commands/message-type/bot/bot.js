@@ -6,7 +6,7 @@ module.exports = {
   nombre: "bot",
   alias: ["botinfo", "Leafy"],
   descripcion: "Obtén información sobre el bot.",
-  categoria: "🤖 Bot",
+  categoria: "Bot",
   tieneHelp: 0,
   run: async (Discord, client, message, prefix, args, bot) => {
     message.channel.sendTyping()

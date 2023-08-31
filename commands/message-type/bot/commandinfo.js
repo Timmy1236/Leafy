@@ -3,7 +3,7 @@ module.exports = {
   nombre: "commandinfo",
   alias: [],
   descripcion: "Obtén información de los comandos individualmente, sobre su función, como usarlo, etc.",
-  categoria: "🤖 Bot",
+  categoria: "Bot",
   tieneHelp: 0,
   run: async (Discord, client, message, prefix, args, bot) => {
     try {

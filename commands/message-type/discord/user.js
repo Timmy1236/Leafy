@@ -6,7 +6,7 @@ module.exports = {
   nombre: "user",
   alias: ["usuario"],
   descripcion: "Obtén el información de un usuario o del tuyo.",
-  categoria: "🔧 Utilidades",
+  categoria: "Discord",
   tieneHelp: 0,
   run: async (Discord, client, message, prefix, args, bot) => {
     message.channel.sendTyping();
