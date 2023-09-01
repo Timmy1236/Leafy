@@ -2,7 +2,6 @@ const config = require('../config.json');
 const gradient = require('gradient-string');
 function AntiCrash() {
   if (config.BOT.ANTI_CRASH == true) {
-    console.log("Anti crash activado!!!!!!!!")
     process.on('unhandledRejection', (reason, promise) => {
       console.log(gradient('orange', 'red')('Bot> Error!'));
       console.error(`\x1b[31m${reason}\x1b[0m`);
