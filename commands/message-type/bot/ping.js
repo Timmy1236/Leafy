@@ -4,7 +4,7 @@ module.exports = {
   descripcion: "Pong!",
   categoria: "Bot",
   tieneHelp: 0,
-  run: async (Discord, client, message, prefix, args, bot) => {
+  run: async (Discord, client, message, args) => {
     message.channel.sendTyping();
     let pingeValues = function (ping, options) {
       let values = {
@@ -31,7 +31,7 @@ module.exports = {
     let ping = await Math.round(client.ws.ping);
 
     const pingEmbed = new Discord.EmbedBuilder()
-      .setColor(bot.embedColor)
+      .setColor(client.color)
       .setDescription(`📶 **Ping**: *${editingLatency}ms* ${pingeValues(editingLatency)}\n📡 **WebSocket**: *${ping}ms* ${pingeValues(ping)}`)
     message.channel.messages.fetch(editingLatency.id).then(message => message.delete());
     return message.reply({ embeds: [pingEmbed] })

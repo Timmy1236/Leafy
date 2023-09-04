@@ -8,7 +8,7 @@ module.exports = {
   descripcion: "Obtén el información de un usuario o del tuyo.",
   categoria: "Discord",
   tieneHelp: 0,
-  run: async (Discord, client, message, prefix, args, bot) => {
+  run: async (Discord, client, message, args) => {
     message.channel.sendTyping();
     // Obtener el usuario
     let user = message.mentions.members.size > 0 ? message.mentions.users.first().id : undefined || args[0] || message.author.id;

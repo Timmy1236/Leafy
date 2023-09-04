@@ -4,7 +4,7 @@ module.exports = {
   descripcion: "Muestra información sobre un rol.",
   categoria: "Discord",
   tieneHelp: 0,
-  run: async (Discord, client, message, prefix, args, bot) => {
+  run: async (Discord, client, message, args) => {
     const rol = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(role => role.name === args.slice(1).join(" "));
 
     if (!rol) return message.reply({ content: `❌ | Debes de mencionar un rol o añadir su id.` });

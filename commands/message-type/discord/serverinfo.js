@@ -6,7 +6,7 @@ module.exports = {
   descripcion: "Información básica del servidor.",
   categoria: "Discord",
   tieneHelp: 0,
-  run: async (Discord, client, message, prefix, args, bot) => {
+  run: async (Discord, client, message, args) => {
     message.channel.sendTyping();
     var server = message.guild;
 

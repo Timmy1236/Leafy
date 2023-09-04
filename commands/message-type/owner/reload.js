@@ -5,8 +5,8 @@ module.exports = {
   descripcion: "Limpia la cache de los comandos, obligando a que se reinicien.",
   categoria: "👑 Owner",
   tieneHelp: 0,
-  run: async (Discord, client, message, prefix, args, bot) => {
-    if (message.author.id !== bot.ownerID) return message.reply({ content: "No puedes usar este comando!" })
+  run: async (Discord, client, message, args) => {
+    if (message.author.id !== client.ownerID) return message.reply({ content: "No puedes usar este comando!" })
     if (!args[0]) return message.reply({ content: "Necesitas pasarme un comando" })
 
     try {

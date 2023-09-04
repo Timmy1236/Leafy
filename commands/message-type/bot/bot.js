@@ -8,7 +8,7 @@ module.exports = {
   descripcion: "Obtén información sobre el bot.",
   categoria: "Bot",
   tieneHelp: 0,
-  run: async (Discord, client, message, prefix, args, bot) => {
+  run: async (Discord, client, message, args) => {
     message.channel.sendTyping()
 
     try {
@@ -20,9 +20,9 @@ module.exports = {
       const channelSize = client.channels.cache.size.toLocaleString();
 
       const botEmbed = new Discord.EmbedBuilder()
-        .setAuthor({ name: bot.botName, iconURL: bot.botAvatar })
+        .setAuthor({ name: client.user.username, iconURL: client.user.avatarURL() })
         .setDescription(package.description)
-        .setColor(bot.embedColor)
+        .setColor(client.color)
         .addFields({ name: `▸ 💻 Info`, value: `>>> **Lenguaje:** JavaScript\n**Discord.js:** v${Discord.version}\n**Node.js:** ${process.version}\n**NPM:** ${npmVersion}`, inline: true })
         .addFields({ name: `▸ 📈 Stats`, value: `>>> **Uptime:** ${activity}\n**Usuarios:** ${userSize}\n**Servers:** ${serverSize}\n**Canales:** ${channelSize}`, inline: true })
       message.reply({ embeds: [botEmbed] })
