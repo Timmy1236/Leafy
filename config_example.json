@@ -5,5 +5,6 @@
     "PREFIX": "Un prefix para poder usar los comandos. [STRING]",
     "EMBED_COLOR": "El color que deseas para ser usado en los embeds. [STRING]",
     "ANTI_CRASH": "true/false (Si ocurre un error, el bot seguirá prendido) [BOOLEAN]"
-  }
+  },
+  "CHANNEL_ALERTS": "Id del canal que se enviaran mensajes especiales a ese canal. [STRING]"
 }
