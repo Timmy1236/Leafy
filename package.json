@@ -4,7 +4,8 @@
   "description": "Simple discord bot.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "slash": "node deploy_slash.js"
   },
   "engines": {
     "node": ">=18.0.0",
@@ -19,8 +20,9 @@
     "axios": "^1.5.0",
     "canvas": "^2.11.2",
     "color-thief-node": "^1.0.4",
+    "discord-api-types": "^0.37.56",
     "discord.js": "^14.13.0",
-    "glob": "^10.3.3",
+    "glob": "^10.3.4",
     "gradient-string": "^2.0.2",
     "moment": "^2.29.4",
     "moment-duration-format": "^2.3.2"
