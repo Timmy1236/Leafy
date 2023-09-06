@@ -13,6 +13,19 @@ module.exports = {
 
     try {
       const activity = moment.duration(client.uptime).format(" D [Dias], H [Horas], m [Minutos], s [Segundos]");
+
+      const uptime = client.uptime;
+      const days = Math.floor(uptime / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((uptime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((uptime % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((uptime % (1000 * 60)) / 1000);
+
+      const activity2 = `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+
+      console.log("activyty " + activity)
+      console.log("activyty2 " + activity2)
+
+
       const npmVersion = execSync('npm -v').toString().trim();
 
       const userSize = client.guilds.cache.map(g => g.memberCount).reduce((a, b) => a + b).toLocaleString();
@@ -24,7 +37,7 @@ module.exports = {
         .setDescription(package.description)
         .setColor(client.color)
         .addFields({ name: `▸ 💻 Info`, value: `>>> **Lenguaje:** JavaScript\n**Discord.js:** v${Discord.version}\n**Node.js:** ${process.version}\n**NPM:** ${npmVersion}`, inline: true })
-        .addFields({ name: `▸ 📈 Stats`, value: `>>> **Uptime:** ${activity}\n**Usuarios:** ${userSize}\n**Servers:** ${serverSize}\n**Canales:** ${channelSize}`, inline: true })
+        .addFields({ name: `▸ 📈 Stats`, value: `>>> **Uptime:** ${activity2}\n**Usuarios:** ${userSize}\n**Servers:** ${serverSize}\n**Canales:** ${channelSize}`, inline: true })
       message.reply({ embeds: [botEmbed] })
 
     } catch (error) {
