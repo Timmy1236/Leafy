@@ -1,7 +1,4 @@
 <p align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
   <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=0:22272e,10:b72f3a,50:ef6410,90:b72f3a,100:22272e&height=200&section=header&text=%F0%9F%8D%81%20Leafy%20%F0%9F%8D%81&fontAlignY=35&descAlignY=50&fontSize=50&fontColor=FFFFFF" />
 </p>
 <p align="center">"Un simple bot para Discord"</p>
@@ -49,11 +46,10 @@ $ npm run start
 
 ## 🔐 Licencia
 Proyecto licenciado con "[MIT license](https://mit-license.org/)"
-## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
+## ✨ Contribuidores 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
@@ -64,10 +60,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
   </tbody>
 </table>
-
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
