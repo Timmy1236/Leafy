@@ -24,8 +24,7 @@
     "discord.js": "^14.13.0",
     "glob": "^10.3.4",
     "gradient-string": "^2.0.2",
-    "moment": "^2.29.4",
-    "moment-duration-format": "^2.3.2"
+    "moment": "^2.29.4"
   },
   "repository": {
     "type": "git",
