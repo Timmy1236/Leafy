@@ -2,7 +2,7 @@ const fs = require("fs");
 const gradient = require("gradient-string");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v10");
-const { TOKEN } = require("./config.json");
+const { TOKEN, CLIENT_ID } = require("./config.json");
 const commands = []
 const path = require('path');
 const foldersPath = path.join(__dirname, 'commands/slash-type/')
@@ -24,7 +24,7 @@ const rest = new REST({ version: "10" }).setToken(TOKEN);
 (async () => {
   try {
     const data = await rest.put(
-      Routes.applicationCommands("1146467716039966730"), // @Timmy1236 TODO: Poder agarrar una variable que guarde la id del cliente en vez de usar una string.
+      Routes.applicationCommands(CLIENT_ID),
       { body: commands },
     );
     console.log(gradient.fruit("Bot> Slash cargados."));

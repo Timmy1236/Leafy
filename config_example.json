@@ -1,6 +1,7 @@
 {
   "TOKEN": "Token del bot. (https://discord.com/developers) [STRING]",
   "OWNER_ID": "Tu id de usuario en Discord. [STRING]",
+  "CLIENT_ID" : "El application id de tu bot. (https://discord.com/developers) [STRING]",
   "BOT": {
     "PREFIX": "Un prefix para poder usar los comandos. [STRING]",
     "EMBED_COLOR": "El color que deseas para ser usado en los embeds. [STRING]",
