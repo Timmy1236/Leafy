@@ -3,9 +3,9 @@ module.exports = {
   nombre: "commandinfo",
   alias: [],
   descripcion: "Obtén información de los comandos individualmente, sobre su función, como usarlo, etc.",
-  categoria: "🤖 Bot",
+  categoria: "Bot",
   tieneHelp: 0,
-  run: async (Discord, client, message, prefix, args, bot) => {
+  run: async (Discord, client, message, args) => {
     try {
       async function findFile(file) {
         const jsfiles = await glob(`**/${file}.js`, { ignore: 'node_modules/**' })
@@ -14,7 +14,7 @@ module.exports = {
 
       if (!args[0]) {
         const commandsNoArgs = require(`../bot/commandinfo.js`);
-        const aliasComandoNoArgs = commandsNoArgs.alias ? commandsNoArgs.alias.join(`, ${prefix}`) : "No tiene";
+        const aliasComandoNoArgs = commandsNoArgs.alias ? commandsNoArgs.alias.join(`, ${client.prefix}`) : "No tiene";
 
         const FaltaDeArgumentos = new Discord.EmbedBuilder()
           .setColor('#facc56')
@@ -56,7 +56,7 @@ module.exports = {
       })
     } catch (e) {
       message.reply({ content: `⚠️ | Acaba de ocurrir un error, inténtalo de nuevo.` })
-      console.error(err.message);
+      console.error(e.message);
     }
   }
 }

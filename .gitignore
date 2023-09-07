@@ -1,6 +1,9 @@
 # Leafy
 config.json
 
+# npm-check (https://github.com/dylang/npm-check?tab=readme-ov-file#rc-file-support)
+.npmcheckrc
+
 # Logs
 logs
 *.log
