@@ -1,4 +1,7 @@
 <p align="center">
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
   <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=0:22272e,10:b72f3a,50:ef6410,90:b72f3a,100:22272e&height=200&section=header&text=%F0%9F%8D%81%20Leafy%20%F0%9F%8D%81&fontAlignY=35&descAlignY=50&fontSize=50&fontColor=FFFFFF" />
 </p>
 <p align="center">"Un simple bot para Discord"</p>
@@ -46,3 +49,24 @@ $ npm run start
 
 ## 🔐 Licencia
 Proyecto licenciado con "[MIT license](https://mit-license.org/)"
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://timmy1236.me/"><img src="https://avatars.githubusercontent.com/u/75323873?v=4?s=100" width="100px;" alt="Timmy"/><br /><sub><b>Timmy</b></sub></a><br /><a href="https://github.com/Awi-Corp/Leafy/commits?author=Timmy1236" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
