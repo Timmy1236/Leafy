@@ -7,5 +7,6 @@
     "EMBED_COLOR": "El color que deseas para ser usado en los embeds. [STRING]",
     "ANTI_CRASH": "true/false (Si ocurre un error, el bot seguirá prendido) [BOOLEAN]"
   },
-  "CHANNEL_ALERTS": "Id del canal que se enviaran mensajes especiales a ese canal. [STRING]"
+  "CHANNEL_ALERTS": "Id del canal que se enviaran mensajes especiales a ese canal. [STRING]",
+  "CHANGELOG_URL": "Una url que te lleve directamente a un archivo de texto que contenga el changelog del bot, puedes usar gist. [STRING]"
 }
