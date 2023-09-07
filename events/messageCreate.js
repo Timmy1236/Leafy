@@ -4,10 +4,6 @@ module.exports = async (client, message) => {
   const Discord = require("discord.js");
   const config = require('../config.json')
 
-  client.color = config.BOT.EMBED_COLOR;
-  client.ownerID = config.OWNER_ID;
-  client.prefix = config.BOT.PREFIX;
-
   const mencion = new Discord.EmbedBuilder()
     .setColor(client.color)
     .setAuthor({ name: `👋 ${message.author.username}` })

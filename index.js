@@ -18,6 +18,11 @@ const client = new Discord.Client({
   allowedMentions: { parse: [] },
 });
 
+client.color = config.BOT.EMBED_COLOR;
+client.ownerID = config.OWNER_ID;
+client.prefix = config.BOT.PREFIX;
+client.changelogUrl = config.CHANGELOG_URL;
+
 // Para cargar los scripts que se encuentren dentro de la carpeta de "handlers"
 require("./src/handlers-loader.js")(client)
 
@@ -26,5 +31,5 @@ AntiCrash();
 
 client.login(config.TOKEN).catch((err) => {
   console.log(gradient('orange', 'red')('Bot> Error!'));
-  console.error(gradient('red')(err));
+  console.error(err);
 });
