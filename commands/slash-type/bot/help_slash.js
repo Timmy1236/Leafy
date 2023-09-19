@@ -1,11 +1,17 @@
+const Discord = require("discord.js");
 module.exports = {
-  nombre: "help",
-  alias: ["comando"],
-  descripcion: "Obtén una lista de todos los comandos disponibles.",
-  categoria: "Bot",
-  tieneHelp: 1,
-  run: async (Discord, client, message, args) => {
-    await message.channel.sendTyping()
+  data: new Discord.SlashCommandBuilder()
+    .setName("help")
+    .setDescription("Obtén los comandos de Leafy Boy!")
+    .addStringOption(option => option
+      .setName('option')
+      .setDescription('Categoría de comandos')
+      .setRequired(false)
+      .addChoices(
+        { name: 'Slash', value: 'slash' },
+      ),
+    ),
+  async run(client, interaction) {
     const Commands = Array.from(client.cmd.keys());
     const slashCommands = Array.from(client.slashcommands.keys());
 
@@ -34,26 +40,25 @@ module.exports = {
     const comandosDiscord = getCommands(client, 'Discord');
 
     const comandosSlash = getSlashCommands(client);
-
-    switch (args[0] ? args[0].toLowerCase() : undefined) {
+    switch (interaction.options.getString("option")) {
       case "slash":
         const helpSlash = new Discord.EmbedBuilder()
-          .setColor(client.color)
+          .setColor("#fca32b")
           .setTitle('📙 | Slash')
           .setThumbnail(client.user.avatarURL())
           .addFields({ name: '▸ 📎 Slash', value: `>>> ${comandosSlash}` })
-        message.reply({ embeds: [helpSlash] })
+        interaction.reply({ embeds: [helpSlash] })
         break;
 
       default:
         const help = new Discord.EmbedBuilder()
-          .setColor(client.color)
+          .setColor("#fca32b")
           .setTitle('📙 | Comandos')
+          .setDescription(`${Commands.length} Comandos en total.`)
           .setThumbnail(client.user.avatarURL())
-          .setDescription(`📓 **Sub-Helps**: ${client.prefix}help slash\n${Commands.length} Comandos en total.`)
           .addFields({ name: `▸ <:Discord:1146184569373073510> Discord`, value: `>>> ${comandosDiscord}` })
           .addFields({ name: `▸ 🤖 Bot`, value: `>>> ${comandosBot}` })
-        message.reply({ embeds: [help] })
+        interaction.reply({ embeds: [help] })
         break;
     }
   }
