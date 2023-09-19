@@ -46,3 +46,27 @@ $ npm run start
 
 ## 🔐 Licencia
 Proyecto licenciado con "[MIT license](https://mit-license.org/)"
+
+## ✨ Contribuidores 
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://timmy1236.me/"><img src="https://avatars.githubusercontent.com/u/75323873?v=4?s=100" width="100px;" alt="Timmy"/><br /><sub><b>Timmy</b></sub></a><br /><a href="https://github.com/Awi-Corp/Leafy/commits?author=Timmy1236" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.demitard.tech"><img src="https://avatars.githubusercontent.com/u/78510889?v=4?s=100" width="100px;" alt="Demitard"/><br /><sub><b>Demitard</b></sub></a><br /><a href="https://github.com/Awi-Corp/Leafy/commits?author=Mendo6472" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
