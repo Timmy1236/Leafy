@@ -1,9 +1,9 @@
-const gradient = require("gradient-string");
-console.log(gradient.fruit("Bot> Iniciando..."));
-
 const Discord = require("discord.js");
+const gradient = require("gradient-string");
 const { AntiCrash } = require("./src/anti-crash.js");
 const config = require("./config.json");
+
+console.log(gradient.fruit("Bot> Iniciando..."));
 
 const client = new Discord.Client({
   intents: [
@@ -18,15 +18,16 @@ const client = new Discord.Client({
   allowedMentions: { parse: [] },
 });
 
+// Guardando variables en el client, para poder usarlo después en los comandos.
 client.color = config.BOT.EMBED_COLOR;
 client.ownerID = config.OWNER_ID;
 client.prefix = config.BOT.PREFIX;
 client.changelogUrl = config.CHANGELOG_URL;
 
-// Para cargar los scripts que se encuentren dentro de la carpeta de "handlers"
+// Un script; Cargara todos los handlers que se encuentren dentro de la carpeta.
 require("./src/handlers-loader.js")(client)
 
-// Un script que imprime en la consola el error que ocurrió, a su vez dejando el bot encendido.
+// Un script; Imprime en la consola el error que ocurrió, a su vez dejando el bot encendido.
 AntiCrash();
 
 client.login(config.TOKEN).catch((err) => {
