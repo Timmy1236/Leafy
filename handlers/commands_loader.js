@@ -8,7 +8,6 @@ table.setHeading("Categoría", "Comando", "Estado");
 
 module.exports = client => {
   try {
-    console.log(gradient.fruit("Bot> Cargando comandos, espere..."))
     client.cmd = new Discord.Collection(); // Creamos una colección para almacenar los comandos.
 
     fs.readdirSync("./commands/message-type").forEach((file) => {
@@ -19,7 +18,7 @@ module.exports = client => {
         client.cmd.set(comandos.nombre, comandos); // Agregamos el comando a la colección de comandos.
 
         let fileName = modu.substring(0, modu.length - 3); // Eliminamos el ".js" de los archivos para que la lista tenga un mejor aspecto.
-        table.addRow(file, fileName, "LISTO!");
+        table.addRow(file, fileName, "LISTO!"); // Añadimos el archivo a la tabla.
       }
     });
     console.log(gradient.mind(table.toString()));

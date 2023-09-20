@@ -23,6 +23,7 @@ client.color = config.BOT.EMBED_COLOR;
 client.ownerID = config.OWNER_ID;
 client.prefix = config.BOT.PREFIX;
 client.changelogUrl = config.CHANGELOG_URL;
+client.clientID = config.CLIENT_ID
 
 // Un script; Cargara todos los handlers que se encuentren dentro de la carpeta.
 require("./src/handlers-loader.js")(client)
