@@ -22,8 +22,8 @@ module.exports = client => {
       let comando = fs.readdirSync(`./commands/slash-type/${folder}/`).filter((f) => f.endsWith(".js"));
 
       for (var commands of comando) {
-        let comandos = require(`../commands/slash-type/${folder}/${commands}`); // Requerimos el archivo para obtener su información.
-        client.slashcommands.set(comandos.nombre, comandos); // Agregamos el comando a la colección de comandos slash.
+        let slash = require(`../commands/slash-type/${folder}/${commands}`); // Requerimos el archivo para obtener su información.
+        client.slashcommands.set(slash.data.name, slash); // Agregamos el comando a la colección de comandos slash.
 
         let fileName = commands.substring(0, commands.length - 3); // Eliminamos el ".js" de los archivos para que la lista tenga un mejor aspecto.
         table.addRow(folder, fileName, "LISTO!"); // Añadimos el archivo a la tabla.
@@ -37,20 +37,20 @@ module.exports = client => {
         commandsArray.push(slash.data.toJSON())
         //console.log("Comando '" + slash.data.name + "' cargado...")
       }
-      const rest = new REST({ version: "10" }).setToken(token);
-      createSlash()
-      async function createSlash() {
-        try {
-          await rest.put(Routes.applicationCommands(clientID), { body: commandsArray })
-          //console.log("Comandos Slash Cargados...")
-        } catch (error) {
-          console.error(error)
-        }
-      }
     });
     console.log(gradient.mind(table.toString()));
   } catch (error) {
     console.log(gradient('orange', 'red')('Bot> Error!'));
     console.error(error);
+  }
+  const rest = new REST({ version: "10" }).setToken(token);
+  createSlash()
+  async function createSlash() {
+    try {
+      await rest.put(Routes.applicationCommands(clientID), { body: commandsArray })
+      //console.log("Comandos Slash Cargados...")
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
