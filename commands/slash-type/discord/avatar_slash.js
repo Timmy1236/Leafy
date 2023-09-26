@@ -19,7 +19,6 @@ module.exports = {
     function rgbToHex(r, g, b) {
       return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
     }
-    asd
     if (interaction.options.getUser('usuario')) {
       const avatar = await interaction.options.getUser('usuario').displayAvatarURL({ dynamic: true, size: 1024 })
       const avatarWEBP = await interaction.options.getUser('usuario').displayAvatarURL({ extension: "webp", size: 512 })
