@@ -1,9 +1,8 @@
 <p align="center">
-  <img width=100% src="https://github.com/Awi-Corp/Leafy/assets/75323873/a21fc604-286e-4af0-b83b-93e32349b40d" />
+  <img width=100% src="https://github.com/Awi-Corp/Leafy/assets/75323873/654e5127-436c-41f4-9215-5f3449805ba0" />
 </p>
 
-<h1 align="center">Leafy</h1>
-<p align="center">"Un simple bot en español para discord."</p>
+<p align="center">"Un simple bot multitarea en español para Discord"</p>
 
 <p align="center">
   <a href="https://discord.com/">
@@ -15,29 +14,47 @@
   </a>
 </p>
 
+---
+
 ## 🗃 Requisitos
-Node.js: [v18.xx.x](https://nodejs.org/en/download)
+Node.js: [v18](https://nodejs.org/en/download)
+
+## 📷 Screenshots
+<p align="center">
+  <img width=30% src="https://github.com/Awi-Corp/Leafy/assets/75323873/2212dbec-0161-4d3d-b747-0516d7fe2992" />
+  <img width=46.3% src="https://github.com/Awi-Corp/Leafy/assets/75323873/0aa103ec-1745-45f1-8a00-5cc246ea6026" />
+
+</p>
+
 
 ## 🚀 Instalarlo
-1. Clona el proyecto y entra a la carpeta.
+1. Clonar el proyecto y entrar a la carpeta.
 ```bash
-$ git clone https://github.com/Awi-Corp/Leafy.git
-$ cd Leafy
+git clone https://github.com/Awi-Corp/Leafy.git
+cd Leafy
 ```
-2. Crea un archivo llamado: "config.json", copiando la plantilla del archivo: "[config_example.json](https://github.com/Awi-Corp/Leafy/blob/main/config_example.json)" y remplazando las variables.
+2. Crea un archivo llamado: "config.json", copiando la plantilla de: "[config_example.json](https://github.com/Awi-Corp/Leafy/blob/main/config_example.json)" y remplazar las variables.
 ```
-"TOKEN" : "Token del bot (https://discord.com/developers)",
-    |
-    V
-"TOKEN" : "ODg5N...
+"TOKEN": "Token del bot (https://discord.com/developers)",
+   |
+   V
+"TOKEN": "ODg5N...
 ```
-3. Instala las dependencias.
+3. Instalar las dependencias.
 ```bash
-$ yarn install
+# yarn
+yarn install
+
+# npm
+npm install
 ```
-4. Ejecuta el bot!
+4. Encender el bot.
 ```bash
-$ yarn run start
+# yarn
+yarn start
+
+# npm
+npm run start
 ```
 
 ## ✨ Contribuidores 
