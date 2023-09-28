@@ -20,7 +20,6 @@ module.exports = {
       .setTitle("❌ | Error")
       .setColor(client.color)
 
-    // Si tenemos el permiso, empezamos agarrar todos los datos posibles.
     const { options } = interaction;
     const user = options.getUser("usuario")
     const reason = options.getString("motivo") || "Ningún motivo dado."
