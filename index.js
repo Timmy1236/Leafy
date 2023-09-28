@@ -1,10 +1,19 @@
 const Discord = require("discord.js");
 const gradient = require("gradient-string");
+const fs = require("fs");
+console.log(gradient.fruit("Bot> Iniciando..."));
+
+// Verificarmos primero si el archivo config.json existe
+if (!fs.existsSync("./config.json")) {
+  console.error(gradient('orange', 'red')("Bot> Error!\nEl archivo config.json no existe. Por favor, sigue los pasos del readme."));
+  process.exit(1); // Detenemos el bot.
+}
+
+// Si existe el archivo config.json, podemos continuar.
 const { AntiCrash } = require("./src/anti-crash.js");
 const config = require("./config.json");
 
-console.log(gradient.fruit("Bot> Iniciando..."));
-
+// Creamos el cliente.
 const client = new Discord.Client({
   intents: [
     Discord.GatewayIntentBits.MessageContent,
