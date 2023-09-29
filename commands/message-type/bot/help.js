@@ -32,7 +32,6 @@ module.exports = {
 
     const comandosBot = getCommands(client, 'Bot');
     const comandosDiscord = getCommands(client, 'Discord');
-
     const comandosSlash = getSlashCommands(client);
 
     switch (args[0] ? args[0].toLowerCase() : undefined) {

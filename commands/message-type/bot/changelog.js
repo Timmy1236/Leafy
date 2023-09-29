@@ -2,11 +2,12 @@ const axios = require('axios');
 module.exports = {
   nombre: "changelog",
   alias: [],
-  descripcion: "Obtén información sobre el ultimo cambio.",
+  descripcion: "Obtén información sobre los últimos cambios.",
   categoria: "Bot",
   tieneHelp: 0,
   run: async (Discord, client, message, args) => {
     message.channel.sendTyping()
+
     async function fetchChangelog() {
       try {
         const response = await axios.get(client.changelogUrl);
