@@ -3,7 +3,7 @@ const gradient = require("gradient-string");
 const fs = require("fs");
 console.log(gradient.fruit("Bot> Iniciando..."));
 
-// Verificarmos primero si el archivo config.json existe
+// Verificamos primero si el archivo config.json existe
 if (!fs.existsSync("./config.json")) {
   console.error(gradient('orange', 'red')("Bot> Error!\nEl archivo config.json no existe. Por favor, sigue los pasos del readme."));
   process.exit(1); // Detenemos el bot.
@@ -26,6 +26,10 @@ const client = new Discord.Client({
   partials: [Discord.Partials.Channel],
   allowedMentions: { parse: [] },
 });
+
+// Guardamos los emojis personalizados en el cliente.
+const emoji = require("./src/emojis.js");
+client.emoji = emoji;
 
 // Guardando variables en el client, para poder usarlo después en los comandos.
 client.color = config.BOT.EMBED_COLOR;
