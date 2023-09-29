@@ -2,8 +2,8 @@ const { glob } = require('glob');
 module.exports = {
   nombre: "reload",
   alias: ["clearcache", "cr", "restart"],
-  descripcion: "Limpia la cache de los comandos, obligando a que se reinicien.",
-  categoria: "👑 Owner",
+  descripcion: "Reinicia los comandos para que se apliquen los últimos cambios.",
+  categoria: "Owner",
   tieneHelp: 0,
   run: async (Discord, client, message, args) => {
     if (message.author.id !== client.ownerID) return message.reply({ content: "No puedes usar este comando!" })

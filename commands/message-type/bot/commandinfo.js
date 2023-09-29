@@ -2,13 +2,13 @@ const { glob } = require('glob');
 module.exports = {
   nombre: "commandinfo",
   alias: [],
-  descripcion: "Obtén información de los comandos individualmente, sobre su función, como usarlo, etc.",
+  descripcion: "Obtén información de los comandos message-type, sobre su función, como usarlo, etc.",
   categoria: "Bot",
   tieneHelp: 0,
   run: async (Discord, client, message, args) => {
     try {
       async function findFile(file) {
-        const jsfiles = await glob(`**/${file}.js`, { ignore: 'node_modules/**' })
+        const jsfiles = await glob(`**/${file}.js`, { ignore: ['node_modules/**', 'commands/slash-type/**'] })
         return jsfiles
       }
 
@@ -17,7 +17,7 @@ module.exports = {
         const aliasComandoNoArgs = commandsNoArgs.alias ? commandsNoArgs.alias.join(`, ${client.prefix}`) : "No tiene";
 
         const FaltaDeArgumentos = new Discord.EmbedBuilder()
-          .setColor('#facc56')
+          .setColor(client.color)
           .setTitle(`Commands: ${commandsNoArgs.nombre}`)
           .addFields({ name: 'Nombres', value: `t!${commandsNoArgs.nombre} (${aliasComandoNoArgs})`, inline: true })
           .addFields({ name: 'Categoría', value: commandsNoArgs.categoria, inline: true })
@@ -46,7 +46,7 @@ module.exports = {
         }
 
         const embedCommandInfo = new Discord.EmbedBuilder()
-          .setColor('#facc56')
+          .setColor(client.color)
           .setTitle(`💾 | ${nombreComando}`)
           .addFields({ name: 'Nombres (alias)', value: `t!${nombreComando} (${aliasComando})`, inline: true })
           .addFields({ name: 'Categoría', value: categoriaComando, inline: true })

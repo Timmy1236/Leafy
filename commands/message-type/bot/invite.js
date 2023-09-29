@@ -9,8 +9,7 @@ module.exports = {
     const inviteEmbed = new Discord.EmbedBuilder()
       .setTitle(`Invítame!`)
       .setThumbnail(client.user.avatarURL())
-      .addFields({ name: "▸ 🤖 General", value: `> [Link](https://discord.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=414465248449) \nInvita al bot con permisos suficientes para la mayoría de comandos.` })
-      .addFields({ name: "▸ 🏅 Admin", value: `> [Link](https://discord.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=8) \nInvita al bot con permiso de administrador, **esto no es del todo recomendado.**` })
+      .addFields({ name: "▸ 📎 Link", value: `https://discord.com/oauth2/authorize?client_id=${client.user.id}&scope=bot&permissions=8` })
       .setColor(client.color)
 
     return message.reply({ embeds: [inviteEmbed] });
