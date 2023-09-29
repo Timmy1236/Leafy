@@ -51,7 +51,7 @@ module.exports = {
           .setTitle('📙 | Comandos')
           .setThumbnail(client.user.avatarURL())
           .setDescription(`📓 **Sub-Helps**: ${client.prefix}help slash\n${Commands.length} Comandos en total.`)
-          .addFields({ name: `▸ <:Discord:1146184569373073510> Discord`, value: `>>> ${comandosDiscord}` })
+          .addFields({ name: `▸ ${client.emoji.discord} Discord`, value: `>>> ${comandosDiscord}` })
           .addFields({ name: `▸ 🤖 Bot`, value: `>>> ${comandosBot}` })
         message.reply({ embeds: [help] })
         break;

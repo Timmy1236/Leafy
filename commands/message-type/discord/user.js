@@ -61,9 +61,9 @@ module.exports = {
           const link = getImageLinkById(jsonData, idUsuario);
 
           if (link) {
-            return { url: link, source: "Vencord" };
+            return { url: link, source: "Vencord USRBG" };
           } else {
-            // Si no tiene banner por nitro o vencord
+            // Si no tiene banner.
             return "ERROR";
           }
         }
@@ -115,8 +115,8 @@ module.exports = {
         const userInfo = new Discord.EmbedBuilder()
           .setThumbnail(MemberAvatarURL)
           .setColor(dominantColor)
-          .addFields({ name: "▸ <:FB_Discord:1104269881412685894> Discord", value: `>>> **Usuario:** ${member.user.username} (<@!${member.id}>)\n**Username Global:** ${member.user.globalName}\n**ID:** ${member.id}\n**Status:** ${status[statusMember]}\n**Bot:** ${isUserBot[member.user.bot]}\n**Cuenta creada en:** ${moment.utc(member.user.createdAt).format("LLLL")}` })
-          .addFields({ name: "▸ <:FB_Discord:1104269881412685894> Server", value: `>>> **Ingreso en el:** ${moment.utc(member.joinedAt).format("LLLL")}\n**Rol Alto:** ${member.roles.highest}\n**Rol Color:** ${member.roles.color} (Hex: ${member.displayHexColor})` })
+          .addFields({ name: `▸ ${client.emoji.discord} Discord`, value: `>>> **Usuario:** ${member.user.username} (<@!${member.id}>)\n**Username Global:** ${member.user.globalName}\n**ID:** ${member.id}\n**Status:** ${status[statusMember]}\n**Bot:** ${isUserBot[member.user.bot]}\n**Cuenta creada en:** ${moment.utc(member.user.createdAt).format("LLLL")}` })
+          .addFields({ name: `▸ ${client.emoji.discord} Server`, value: `>>> **Ingreso en el:** ${moment.utc(member.joinedAt).format("LLLL")}\n**Rol Alto:** ${member.roles.highest}\n**Rol Color:** ${member.roles.color} (Hex: ${member.displayHexColor})` })
           .addFields({ name: "▸ 🎖 Roles", value: `>>> ${rolesList}` })
 
         if (result.source !== "ERROR" && op !== "no-banner") {
@@ -140,7 +140,7 @@ module.exports = {
           const userInfo = new Discord.EmbedBuilder()
             .setThumbnail(memberAvatarURL)
             .setColor(dominantColor)
-            .addFields({ name: "▸ <:FB_Discord:1104269881412685894> Discord", value: `>>> **Usuario:** ${us.username} (<@!${us.id}>)\n**Username Global:** ${us.globalName}\n**ID:** ${us.id}\n**Bot:** ${isUserBot[us.bot]}\n**Cuenta Creada en:** ${moment.utc(us.createdAt).format("LLLL")}` })
+            .addFields({ name: `▸ ${client.emoji.discord} Discord`, value: `>>> **Usuario:** ${us.username} (<@!${us.id}>)\n**Username Global:** ${us.globalName}\n**ID:** ${us.id}\n**Bot:** ${isUserBot[us.bot]}\n**Cuenta Creada en:** ${moment.utc(us.createdAt).format("LLLL")}` })
 
           if (result.source !== "ERROR") {
             userInfo.addFields({ name: '▸ 🖼️ Banner', value: `>>> [${result.source}](${result.url})` })
