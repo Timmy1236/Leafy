@@ -31,7 +31,6 @@ module.exports = {
         .setDescription(`▸ 📷 Formatos\n> [WEBP](${avatarWEBP}) | [PNG](${avatarPNG}) | [JPG](${avatarJPG}) | [JPEG](${avatarJPEG}) \n\n▸ 🖌️ Color Dominante\n> HEX: ${rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2])}\n> RGB: ${dominantColor}\n\n▸ 📎 Fuentes\n>>> [Buscar en Google](https://lens.google.com/uploadbyurl?url=${avatar})\n[Buscar en Yandex](https://yandex.com/images/search?url=${avatar}&rpt=imageview)\n[Buscar en SauceNAO](https://saucenao.com/search.php?url=${avatar})`)
         .setColor(dominantColor)
         .setImage(avatar)
-        .setFooter({ text: `Obtén su banner: ${client.prefix}}banner` })
 
       interaction.reply({ embeds: [avatarglobal] })
     } else {
@@ -46,7 +45,6 @@ module.exports = {
         .setDescription(`▸ 📷 Formatos\n> [WEBP](${avatarWEBP}) | [PNG](${avatarPNG}) | [JPG](${avatarJPG}) | [JPEG](${avatarJPEG}) \n\n▸ 🖌️ Color Dominante\n> HEX: ${rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2])}\n> RGB: ${dominantColor}\n\n▸ 📎 Fuentes\n>>> [Buscar en Google](https://lens.google.com/uploadbyurl?url=${avatar})\n[Buscar en Yandex](https://yandex.com/images/search?url=${avatar}&rpt=imageview)\n[Buscar en SauceNAO](https://saucenao.com/search.php?url=${avatar})`)
         .setColor(dominantColor)
         .setImage(avatar)
-        .setFooter({ text: `Obtén su banner: ${client.prefix}banner` })
       interaction.reply({ embeds: [avatarglobal] })
     }
   }
