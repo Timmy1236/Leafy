@@ -20,7 +20,7 @@
     "axios": "^1.5.1",
     "canvas": "^2.11.2",
     "color-thief-node": "^1.0.4",
-    "discord-api-types": "^0.37.58",
+    "discord-api-types": "^0.37.59",
     "discord.js": "^14.13.0",
     "glob": "^10.3.10",
     "gradient-string": "^2.0.2",
