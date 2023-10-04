@@ -1,5 +1,5 @@
 <p align="center">
-  <img width=100% src="https://github.com/Awi-Corp/Leafy/assets/75323873/654e5127-436c-41f4-9215-5f3449805ba0" />
+  <img width=100% src="https://cdn.discordapp.com/attachments/1102699932567212082/1157383279905882123/banner.png?ex=651868ad&is=6517172d&hm=dff2c019453423e5eca021e635bc1d5c546ac6eb5b21b4c0ae33f890d5c0102a&" />
 </p>
 
 <p align="center">"Un simple bot multitarea en español para Discord"</p>
@@ -21,8 +21,8 @@ Node.js: [v18](https://nodejs.org/en/download)
 
 ## 📷 Screenshots
 <p align="center">
-  <img width=30% src="https://github.com/Awi-Corp/Leafy/assets/75323873/2212dbec-0161-4d3d-b747-0516d7fe2992" />
-  <img width=46.3% src="https://github.com/Awi-Corp/Leafy/assets/75323873/0aa103ec-1745-45f1-8a00-5cc246ea6026" />
+  <img width=30% src="https://cdn.discordapp.com/attachments/1102699932567212082/1156772515184656446/image.png?ex=65182a1b&is=6516d89b&hm=9f0e7a893adf73d69440d3bdd072e71e81eb546060480d5459f050e5b3b6e391&" />
+  <img width=46.3% src="https://cdn.discordapp.com/attachments/1102699932567212082/1156775740394709053/image.png?ex=65182d1c&is=6516db9c&hm=092b1e684f883b604dcb3ca242efa88fc3a76560a92deb5e4289e05a106c4f4b&" />
 
 </p>
 
