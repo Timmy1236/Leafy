@@ -152,7 +152,7 @@ module.exports = {
         });
       }
     } else {
-      return message.reply({ content: "❌ | Ese usuario no existe!" })
+      return message.reply({ content: `${client.emoji.error} | Ese usuario no existe!` })
     }
   }
 };

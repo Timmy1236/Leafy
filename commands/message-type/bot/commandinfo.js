@@ -55,7 +55,7 @@ module.exports = {
         return message.reply({ embeds: [embedCommandInfo] })
       })
     } catch (e) {
-      message.reply({ content: `⚠️ | Acaba de ocurrir un error, inténtalo de nuevo.` })
+      message.reply({ content: `${client.emoji.warn} | Acaba de ocurrir un error, inténtalo de nuevo.` })
       console.error(e.message);
     }
   }
