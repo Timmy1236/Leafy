@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 module.exports = {
   data: new Discord.SlashCommandBuilder()
-    .setName("desbanear")
+    .setName("unban")
     .setDescription("Quita el baneo a un usuario del servidor.")
     .setDefaultMemberPermissions(Discord.PermissionFlagsBits.BanMembers)
     .setDMPermission(false)
@@ -24,20 +24,26 @@ module.exports = {
     try {
       await interaction.deferReply(); // Dejamos el slash command en estado de "thinking".
       if (isValidSnowflake(userID)) { // Primero checkeamos si la id dada realmente es un snowflake.
-        await interaction.guild.members.unban(userID); // Desbaneamos el usuario.
+        const banList = await interaction.guild.bans.fetch(); // Obtenemos todas las ids de los usuarios baneados en el servidor.
 
-        const unbanEmbed = new Discord.EmbedBuilder()
-          .setTitle("🩹 | Desban")
-          .setDescription(`Un usuario acaba de ser desbaneado en este servidor.`)
-          .addFields({ name: `▸ 👤 Usuario`, value: `>>> **ID:** ${userID}` })
-          .setColor(client.color)
-          .setTimestamp()
+        if (banList.has(userID)) {
+          await interaction.guild.members.unban(userID); // Desbaneamos el usuario.
 
-        await interaction.editReply({ embeds: [unbanEmbed] })
-      } else { // Si la id dada no es un snowflake.
+          const unbanEmbed = new Discord.EmbedBuilder()
+            .setTitle("🩹 | Desban")
+            .setDescription(`Un usuario acaba de ser desbaneado en este servidor.`)
+            .addFields({ name: `▸ 👤 Usuario`, value: `>>> **ID:** ${userID}` })
+            .setColor(client.color)
+            .setTimestamp()
+
+          await interaction.editReply({ embeds: [unbanEmbed] })
+        } else {
+          await interaction.editReply({ content: `${client.emoji.error} | El usuario no esta baneado en este servidor.` })
+        }
+      } else {
         await interaction.editReply({ content: `${client.emoji.error} | La ID del usuario no es valida.` })
       }
-    } catch (error) { // Si occure un error al intentar desbanear el usuario
+    } catch (error) {
       await interaction.editReply({ content: `${client.emoji.warn} | Acaba de ocurrir un error al intentar desbanear a este usuario.` })
       console.error(error)
     }

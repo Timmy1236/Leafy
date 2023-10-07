@@ -45,20 +45,38 @@ module.exports = {
       return interaction.editReply({ embeds: [errorEmbed], ephermal: true })
     }
 
-    try {
-      await member.ban({ reason })
+    // Función para validar si la id dada es un snowflake.
+    function isValidSnowflake(id) {
+      const snowflakeRegex = /^[0-9]{17,19}$/;
+      return snowflakeRegex.test(id);
+    }
 
-      const banEmbed = new Discord.EmbedBuilder()
-        .setTitle("🔨 | Ban")
-        .setThumbnail(`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`)
-        .setDescription(`Un usuario acaba de ser baneado en este servidor.`)
-        .addFields({ name: `▸ 👤 Usuario`, value: `>>> **Username:** ${user.username}\n**ID:** ${user.id}` })
-        .addFields({ name: `▸ 📄 Razón`, value: `>>> \`${reason}\`` })
-        .setColor(client.color)
-        .setTimestamp()
-      await interaction.editReply({ embeds: [banEmbed] })
+    try {
+      await interaction.deferReply(); // Dejamos el slash command en estado de "thinking".
+      if (isValidSnowflake(userID)) {
+        const banList = await interaction.guild.bans.fetch(); // Obtenemos todas las ids de los usuarios baneados en el servidor.
+
+        if (!banList.has(userID)) {
+          await interaction.guild.members.unban(userID); // Desbaneamos el usuario.
+          await member.ban({ reason })
+
+          const banEmbed = new Discord.EmbedBuilder()
+            .setTitle("🔨 | Ban")
+            .setThumbnail(`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`)
+            .setDescription(`Un usuario acaba de ser baneado en este servidor.`)
+            .addFields({ name: `▸ 👤 Usuario`, value: `>>> **Username:** ${user.username}\n**ID:** ${user.id}` })
+            .addFields({ name: `▸ 📄 Razón`, value: `>>> \`${reason}\`` })
+            .setColor(client.color)
+            .setTimestamp()
+          await interaction.editReply({ embeds: [banEmbed] })
+        } else {
+          await interaction.editReply({ content: `${client.emoji.error} | El usuario ya esta baneado en este servidor.` })
+        }
+      } else {
+        await interaction.editReply({ content: `${client.emoji.error} | La ID del usuario no es valida.` })
+      }
     } catch (error) {
-      await interaction.editReply({ content: `${client.emoji.warn} | Acaba de ocurrir un error al intentar banear a este usuario.` })
+      await interaction.editReply({ content: `${client.emoji.warn} | Acaba de ocurrir un error al intentar desbanear a este usuario.` })
       console.error(error)
     }
   }
