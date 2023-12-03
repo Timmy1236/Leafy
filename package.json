@@ -15,13 +15,13 @@
   "author": "Awi-Corp",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/rest": "^2.0.1",
+    "@discordjs/rest": "^2.2.0",
     "ascii-table": "0.0.9",
-    "axios": "^1.5.1",
+    "axios": "^1.6.2",
     "canvas": "^2.11.2",
     "color-thief-node": "^1.0.4",
-    "discord-api-types": "^0.37.58",
-    "discord.js": "^14.13.0",
+    "discord-api-types": "^0.37.65",
+    "discord.js": "^14.14.1",
     "glob": "^10.3.10",
     "gradient-string": "^2.0.2",
     "moment": "^2.29.4"
