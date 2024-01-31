@@ -17,17 +17,18 @@
   "dependencies": {
     "@discordjs/rest": "^2.2.0",
     "ascii-table": "0.0.9",
-    "axios": "^1.6.2",
+    "axios": "^1.6.7",
     "canvas": "^2.11.2",
     "color-thief-node": "^1.0.4",
-    "discord-api-types": "^0.37.65",
+    "discord-api-types": "^0.37.67",
     "discord.js": "^14.14.1",
     "glob": "^10.3.10",
     "gradient-string": "^2.0.2",
-    "moment": "^2.29.4"
+    "moment": "^2.30.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Awi-Corp/Leafy.git"
-  }
+  },
+  "packageManager": "yarn@4.0.2"
 }
