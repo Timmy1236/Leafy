@@ -3,6 +3,7 @@ module.exports = {
   data: new Discord.SlashCommandBuilder()
     .setName("help")
     .setDescription("Obtén los comandos de mensajes o slash de Leafy."),
+  categoria: "Bot",
   async run(client, interaction) {
     // Declaramos los comandos de client.cmd y client.slashcommands
     const Commands = Array.from(client.cmd.keys());
@@ -20,19 +21,14 @@ module.exports = {
     }
 
     // Obtenemos los comandos de client.slashcommands
-    function getSlashCommands(client) {
+    function getSlashCommands(client, categoria) {
       const comandosEnCategoria = slashCommands.filter((nombre) => {
         const comando = client.slashcommands.get(nombre);
-        return comando;
+        return comando && comando.categoria === categoria;
       });
       const comandosFormateados = comandosEnCategoria.map((nombre) => `\`${nombre}\``);
       return comandosFormateados.join(' | ');
     }
-
-    // Agarramos todos los comandos que necesitamos.
-    const comandosBot = getCommands(client, 'Bot');
-    const comandosDiscord = getCommands(client, 'Discord');
-    const comandosSlash = getSlashCommands(client);
 
     // La lista de opciones del menú.
     const optionsMenu = [
@@ -71,8 +67,8 @@ module.exports = {
       .setTitle('📙 | Comandos')
       .setDescription(`${Commands.length} Comandos en total.`)
       .setThumbnail(client.user.avatarURL())
-      .addFields({ name: `▸ ${client.emoji.discord} Discord`, value: `>>> ${comandosDiscord}` })
-      .addFields({ name: `▸ 🤖 Bot`, value: `>>> ${comandosBot}` })
+      .addFields({ name: `▸ ${client.emoji.discord} Discord`, value: `>>> ${getCommands(client, 'Discord')}` })
+      .addFields({ name: `▸ 🤖 Bot`, value: `>>> ${getCommands(client, 'Bot')}` })
 
     const reply = await interaction.reply({ embeds: [help], components: [actionRow] })
 
@@ -90,7 +86,10 @@ module.exports = {
             .setColor(client.color)
             .setTitle('📙 | Slash')
             .setThumbnail(client.user.avatarURL())
-            .addFields({ name: '▸ 📎 Slash', value: `>>> ${comandosSlash}` })
+            .setDescription(`${slashCommands.length} SlashCommands en total.`)
+            .addFields({ name: `▸ ${client.emoji.discord} Discord`, value: `>>> ${getSlashCommands(client, 'Discord')}` })
+            .addFields({ name: `▸ 🤖 Bot`, value: ` >>> ${getSlashCommands(client, 'Bot')}` })
+            .addFields({ name: `▸ 👮 Moderación`, value: `>>> ${getSlashCommands(client, 'Moderacion')}` })
 
           interaction.update({ embeds: [helpSlash] })
           break;

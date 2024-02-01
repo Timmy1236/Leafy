@@ -21,18 +21,14 @@ module.exports = {
     }
 
     // Obtenemos los comandos de client.slashcommands
-    function getSlashCommands(client) {
+    function getSlashCommands(client, categoria) {
       const comandosEnCategoria = slashCommands.filter((nombre) => {
         const comando = client.slashcommands.get(nombre);
-        return comando;
+        return comando && comando.categoria === categoria;
       });
-      const comandosFormateados = comandosEnCategoria.map((nombre) => `\`\\${nombre}\``);
+      const comandosFormateados = comandosEnCategoria.map((nombre) => `\`${nombre}\``);
       return comandosFormateados.join(' | ');
     }
-
-    const comandosBot = getCommands(client, 'Bot');
-    const comandosDiscord = getCommands(client, 'Discord');
-    const comandosSlash = getSlashCommands(client);
 
     switch (args[0] ? args[0].toLowerCase() : undefined) {
       case "slash":
@@ -40,7 +36,10 @@ module.exports = {
           .setColor(client.color)
           .setTitle('📙 | Slash')
           .setThumbnail(client.user.avatarURL())
-          .addFields({ name: '▸ 📎 Slash', value: `>>> ${comandosSlash}` })
+          .setDescription(`${slashCommands.length} SlashCommands en total.`)
+          .addFields({ name: `▸ ${client.emoji.discord} Discord`, value: `>>> ${getSlashCommands(client, 'Discord')}` })
+          .addFields({ name: `▸ 🤖 Bot`, value: ` >>> ${getSlashCommands(client, 'Bot')}` })
+          .addFields({ name: `▸ 👮 Moderación`, value: `>>> ${getSlashCommands(client, 'Moderacion')}` })
         message.reply({ embeds: [helpSlash] })
         break;
 
@@ -49,9 +48,9 @@ module.exports = {
           .setColor(client.color)
           .setTitle('📙 | Comandos')
           .setThumbnail(client.user.avatarURL())
-          .setDescription(`📓 **Sub-Helps**: ${client.prefix}help slash\n${Commands.length} Comandos en total.`)
-          .addFields({ name: `▸ ${client.emoji.discord} Discord`, value: `>>> ${comandosDiscord}` })
-          .addFields({ name: `▸ 🤖 Bot`, value: `>>> ${comandosBot}` })
+          .setDescription(`📎 **SlashCommands**: /help o ${client.prefix}help slash\n${Commands.length} Comandos en total.`)
+          .addFields({ name: `▸ ${client.emoji.discord} Discord`, value: `>>> ${getCommands(client, 'Discord')}` })
+          .addFields({ name: `▸ 🤖 Bot`, value: ` >>> ${getCommands(client, 'Bot')}` })
         message.reply({ embeds: [help] })
         break;
     }
