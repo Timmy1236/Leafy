@@ -9,6 +9,7 @@ module.exports = {
       .setDescription('El usuario que quieras obtener su avatar')
       .setRequired(false)
     ),
+  categoria: "Discord",
   async run(client, interaction) {
 
     function componentToHex(c) {

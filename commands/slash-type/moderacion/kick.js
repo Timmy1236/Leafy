@@ -14,6 +14,7 @@ module.exports = {
       option.setName("motivo")
         .setDescription("¿Cual es la razón del kick?")
     ),
+  categoria: "Moderacion",
   userPermissions: [Discord.PermissionFlagsBits.KickMembers],
   async run(client, interaction) {
     const errorEmbed = new Discord.EmbedBuilder()

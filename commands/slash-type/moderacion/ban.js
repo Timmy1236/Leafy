@@ -14,6 +14,7 @@ module.exports = {
       option.setName("motivo")
         .setDescription("¿Cual es la razón del ban?")
     ),
+  categoria: "Moderacion",
   userPermissions: [Discord.PermissionFlagsBits.BanMembers],
   async run(client, interaction) {
     const errorEmbed = new Discord.EmbedBuilder()

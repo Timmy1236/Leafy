@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 module.exports = {
   data: new Discord.SlashCommandBuilder()
-    .setName("desbanear")
+    .setName("unban")
     .setDescription("Quita el baneo a un usuario del servidor.")
     .setDefaultMemberPermissions(Discord.PermissionFlagsBits.BanMembers)
     .setDMPermission(false)
@@ -10,6 +10,7 @@ module.exports = {
       .setDescription('El usuario que deseas desbanear.')
       .setRequired(true)
     ),
+  categoria: "Moderacion",
   userPermissions: [Discord.PermissionFlagsBits.BanMembers],
   async run(client, interaction) {
     const { options } = interaction;

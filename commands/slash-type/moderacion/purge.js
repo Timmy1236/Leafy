@@ -10,6 +10,7 @@ module.exports = {
       .setDescription('La cantidad de mensajes que quieras borrar')
       .setRequired(true)
     ),
+  categoria: "Moderacion",
   userPermissions: [Discord.PermissionFlagsBits.ManageMessages],
   async run(client, interaction) {
     try {
