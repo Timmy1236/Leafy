@@ -1,11 +1,10 @@
 {
   "name": "leafy",
   "version": "1.0.0",
-  "description": "Simple discord bot.",
+  "description": "Un simple bot para discord totalmente en español y free software.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "slash": "node deploy_slash.js"
+    "start": "node index.js"
   },
   "engines": {
     "node": ">=18.0.0",
