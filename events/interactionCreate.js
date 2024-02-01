@@ -6,7 +6,7 @@ module.exports = async (client, interaction) => {
 
   try {
     if (slashCommand.permissions && slashCommand.permissions.length > 0) {
-      if (!interaction.member.permissions.has(slashCommand.userPermissions)) return await interaction.reply({ content: "No tienes permisos para ejecutar este comando.", ephemeral: true });
+      if (!interaction.member.permissions.has(slashCommand.userPermissions)) return await interaction.reply({ content: `No tienes el permiso ${slashCommand.userPermissions} para ejecutar este comando.`, ephemeral: true });
     }
 
     await slashCommand.run(client, interaction);
