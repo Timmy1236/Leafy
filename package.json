@@ -7,10 +7,16 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "javascript",
+    "discord",
+    "discord.js",
+    "bot"
+  ],
   "author": "Awi-Corp",
   "license": "MIT",
   "dependencies": {
@@ -24,6 +30,9 @@
     "glob": "^10.3.10",
     "gradient-string": "^2.0.2",
     "moment": "^2.30.1"
+  },
+  "bugs": {
+    "url": "https://github.com/Awi-Corp/Leafy/issues"
   },
   "repository": {
     "type": "git",
