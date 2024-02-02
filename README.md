@@ -17,7 +17,9 @@
 ---
 
 ## 🗃 Requisitos
-Node.js: [v18](https://nodejs.org/en/download)
+Node.js: [v20.x^](https://nodejs.org/en/download)\
+NPM: [v10.x^](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)\
+*(Técnicamente puedes usar este bot incluso con [Node.js v16](https://discordjs.guide/preparations/#installing-node-js), pero lo programé todo usando con la última versión estable disponible de Node.js)*
 
 ## 📷 Screenshots
 <p align="center">
