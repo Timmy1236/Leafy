@@ -7,7 +7,7 @@ module.exports = {
     .setDMPermission(false)
     .addStringOption(option => option.setName('usuarioid').setDescription('El usuario que deseas desbanear.').setRequired(true)),
   categoria: "Moderacion",
-  userPermissions: [Discord.PermissionFlagsBits.BanMembers],
+  permisos: ["BAN_MEMBERS"],
   async run(client, interaction) {
 
     const { options } = interaction;

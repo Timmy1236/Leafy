@@ -8,7 +8,7 @@ module.exports = {
     .addUserOption(option => option.setName('usuario').setDescription('El usuario que deseas banear.').setRequired(true))
     .addStringOption(option => option.setName("motivo").setDescription("¿Cual es la razón del ban?")),
   categoria: "Moderacion",
-  userPermissions: [Discord.PermissionFlagsBits.BanMembers],
+  permisos: ["BAN_MEMBERS"],
   async run(client, interaction) {
 
     const { options } = interaction;

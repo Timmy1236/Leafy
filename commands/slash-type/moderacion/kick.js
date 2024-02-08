@@ -3,12 +3,12 @@ module.exports = {
   data: new Discord.SlashCommandBuilder()
     .setName("kick")
     .setDescription("Kickea a un usuario del servidor.")
-    .setDefaultMemberPermissions(Discord.PermissionFlagsBits.BanMembers)
+    .setDefaultMemberPermissions(Discord.PermissionFlagsBits.KickMembers)
     .setDMPermission(false)
     .addUserOption(option => option.setName('usuario').setDescription('El usuario que deseas kickear.').setRequired(true))
     .addStringOption(option => option.setName("motivo").setDescription("¿Cual es la razón del kick?")),
   categoria: "Moderacion",
-  userPermissions: [Discord.PermissionFlagsBits.KickMembers],
+  permisos: ["KICK_MEMBERS"],
   async run(client, interaction) {
 
     const { options } = interaction;
