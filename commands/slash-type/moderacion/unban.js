@@ -5,14 +5,11 @@ module.exports = {
     .setDescription("Quita el baneo a un usuario del servidor.")
     .setDefaultMemberPermissions(Discord.PermissionFlagsBits.BanMembers)
     .setDMPermission(false)
-    .addStringOption(option => option
-      .setName('usuarioid')
-      .setDescription('El usuario que deseas desbanear.')
-      .setRequired(true)
-    ),
+    .addStringOption(option => option.setName('usuarioid').setDescription('El usuario que deseas desbanear.').setRequired(true)),
   categoria: "Moderacion",
   userPermissions: [Discord.PermissionFlagsBits.BanMembers],
   async run(client, interaction) {
+
     const { options } = interaction;
     const userID = options.getString("usuarioid")
 

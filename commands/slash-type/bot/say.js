@@ -3,11 +3,7 @@ module.exports = {
   data: new Discord.SlashCommandBuilder()
     .setName("say")
     .setDescription("Escriba un mensaje que quieras para que Leafy lo diga")
-    .addStringOption(option => option
-      .setName('mensaje')
-      .setDescription('Cual es el mensaje que quieres que Leafy lo repita')
-      .setRequired(true)
-    ),
+    .addStringOption(option => option.setName('mensaje').setDescription('Cual es el mensaje que quieres que Leafy lo repita').setRequired(true)),
   categoria: "Bot",
   async run(client, interaction) {
 

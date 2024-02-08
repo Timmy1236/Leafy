@@ -5,28 +5,23 @@ module.exports = {
     .setDescription("Kickea a un usuario del servidor.")
     .setDefaultMemberPermissions(Discord.PermissionFlagsBits.BanMembers)
     .setDMPermission(false)
-    .addUserOption(option => option
-      .setName('usuario')
-      .setDescription('El usuario que deseas kickear.')
-      .setRequired(true)
-    )
-    .addStringOption(option =>
-      option.setName("motivo")
-        .setDescription("¿Cual es la razón del kick?")
-    ),
+    .addUserOption(option => option.setName('usuario').setDescription('El usuario que deseas kickear.').setRequired(true))
+    .addStringOption(option => option.setName("motivo").setDescription("¿Cual es la razón del kick?")),
   categoria: "Moderacion",
   userPermissions: [Discord.PermissionFlagsBits.KickMembers],
   async run(client, interaction) {
-    const errorEmbed = new Discord.EmbedBuilder()
-      .setTitle("❌ | Error")
-      .setColor(client.color)
 
     const { options } = interaction;
     const user = options.getUser("usuario")
-    const reason = options.getString("motivo") || "Ningún motivo dado."
+    const reason = options.getString("motivo") || "Ningún motivo dado." // Si no se da un motivo, se pondrá "Ningún motivo dado."
     const member = await interaction.guild.members.fetch(user.id)
 
     await interaction.deferReply();
+
+    // Creamos un embed por si ocurre un error.
+    const errorEmbed = new Discord.EmbedBuilder()
+      .setTitle("❌ | Error")
+      .setColor(client.color)
 
     // Si el usuario que desea kickear tiene un rol superior al del usuario que ejecuto el comando.
     if (member.roles.highest.position >= interaction.member.roles.highest.position) {

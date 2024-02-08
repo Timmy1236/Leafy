@@ -5,11 +5,7 @@ module.exports = {
     .setDescription("Elimina una cantidad de mensajes del canal actual")
     .setDefaultMemberPermissions(Discord.PermissionFlagsBits.ManageMessages)
     .setDMPermission(false)
-    .addStringOption(option => option
-      .setName('cantidad')
-      .setDescription('La cantidad de mensajes que quieras borrar')
-      .setRequired(true)
-    ),
+    .addStringOption(option => option.setName('cantidad').setDescription('La cantidad de mensajes que quieras borrar').setRequired(true)),
   categoria: "Moderacion",
   userPermissions: [Discord.PermissionFlagsBits.ManageMessages],
   async run(client, interaction) {

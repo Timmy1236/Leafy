@@ -4,11 +4,7 @@ module.exports = {
   data: new Discord.SlashCommandBuilder()
     .setName("avatar")
     .setDescription("Obtén el avatar de un usuario que menciones")
-    .addUserOption(option => option
-      .setName('usuario')
-      .setDescription('El usuario que quieras obtener su avatar')
-      .setRequired(true)
-    ),
+    .addUserOption(option => option.setName('usuario').setDescription('El usuario que quieras obtener su avatar').setRequired(true)),
   categoria: "Discord",
   async run(client, interaction) {
 

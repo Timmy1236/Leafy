@@ -5,28 +5,23 @@ module.exports = {
     .setDescription("Banea a un usuario del servidor.")
     .setDefaultMemberPermissions(Discord.PermissionFlagsBits.BanMembers)
     .setDMPermission(false)
-    .addUserOption(option => option
-      .setName('usuario')
-      .setDescription('El usuario que deseas banear.')
-      .setRequired(true)
-    )
-    .addStringOption(option =>
-      option.setName("motivo")
-        .setDescription("¿Cual es la razón del ban?")
-    ),
+    .addUserOption(option => option.setName('usuario').setDescription('El usuario que deseas banear.').setRequired(true))
+    .addStringOption(option => option.setName("motivo").setDescription("¿Cual es la razón del ban?")),
   categoria: "Moderacion",
   userPermissions: [Discord.PermissionFlagsBits.BanMembers],
   async run(client, interaction) {
-    const errorEmbed = new Discord.EmbedBuilder()
-      .setTitle("❌ | Error")
-      .setColor(client.color)
 
     const { options } = interaction;
     const user = options.getUser("usuario")
-    const reason = options.getString("motivo") || "Ningún motivo dado."
+    const reason = options.getString("motivo") || "Ningún motivo dado." // Si no se da un motivo, se pondrá "Ningún motivo dado."
     const member = await interaction.guild.members.fetch(user.id)
 
     await interaction.deferReply();
+
+    // Creamos un embed por si ocurre un error. 
+    const errorEmbed = new Discord.EmbedBuilder()
+      .setTitle("❌ | Error")
+      .setColor(client.color)
 
     // Si el usuario que desea banear tiene un rol superior al del usuario que ejecuto el comando.
     if (member.roles.highest.position >= interaction.member.roles.highest.position) {
@@ -47,6 +42,7 @@ module.exports = {
     }
 
     try {
+      // Baneamos al usuario
       await member.ban({ reason })
 
       const banEmbed = new Discord.EmbedBuilder()
@@ -57,9 +53,11 @@ module.exports = {
         .addFields({ name: `▸ 📄 Razón`, value: `>>> \`${reason}\`` })
         .setColor(client.color)
         .setTimestamp()
+
       await interaction.editReply({ embeds: [banEmbed] })
     } catch (error) {
       await interaction.editReply({ content: "⚠ | Acaba de ocurrir un error al intentar banear a este usuario." })
+      console.log("Hubo un error al intentar banear a un usuario.")
       console.error(error)
     }
   }
