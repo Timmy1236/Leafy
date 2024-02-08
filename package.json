@@ -25,7 +25,7 @@
     "axios": "^1.6.7",
     "canvas": "^2.11.2",
     "color-thief-node": "^1.0.4",
-    "discord-api-types": "^0.37.67",
+    "discord-api-types": "^0.37.69",
     "discord.js": "^14.14.1",
     "glob": "^10.3.10",
     "gradient-string": "^2.0.2",
@@ -38,5 +38,5 @@
     "type": "git",
     "url": "https://github.com/Awi-Corp/Leafy.git"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.1.0"
 }
