@@ -6,10 +6,10 @@ module.exports = async (client, interaction) => {
   if (!slashCommand) return; // Si el comando no existe, lo ignoramos.
 
   try {
-    // Juntamos todos los permisos necesarios en un string separado por comas.
-    let permisos = slashCommand.permisos.map(permiso => { return `\`${permiso}\``; }).join(", ");
-
     if (slashCommand.data.default_member_permissions && slashCommand.data.default_member_permissions.length > 0) {
+      // Juntamos todos los permisos necesarios en un string separado por comas.
+      let permisos = slashCommand.permisos.map(permiso => { return `\`${permiso}\``; }).join(", ");
+
       // Checkeamos si el usuario tiene los permisos necesarios para ejecutar el comando
       if (!interaction.member.permissions.has(slashCommand.data.default_member_permissions)) return await interaction.reply({ content: `No tienes el permiso **${permisos}** para ejecutar este comando.`, ephemeral: true });
       // Checkeamos si el bot también tiene los permisos necesarios para ejecutar el comando
