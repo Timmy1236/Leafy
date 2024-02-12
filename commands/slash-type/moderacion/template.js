@@ -1,6 +1,5 @@
 const Discord = require("discord.js")
 const axios = require("axios")
-
 module.exports = {
   data: new Discord.SlashCommandBuilder()
     .setName("template")
