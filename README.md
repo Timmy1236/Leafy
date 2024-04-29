@@ -1,6 +1,7 @@
 <p align="center">
-  <img width=100% src="https://cdn.discordapp.com/attachments/1102699932567212082/1157383279905882123/banner.png?ex=651868ad&is=6517172d&hm=dff2c019453423e5eca021e635bc1d5c546ac6eb5b21b4c0ae33f890d5c0102a&" />
+  <img width=100% src="https://github.com/Awi-Corp/Leafy/assets/75323873/be3d2a44-6717-4926-9ebb-20171f3bada6" />
 </p>
+
 
 <p align="center">"Un simple bot multitarea en español para Discord"</p>
 
@@ -23,11 +24,9 @@ NPM: [v10.x^](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## 📷 Screenshots
 <p align="center">
-  <img width=30% src="https://cdn.discordapp.com/attachments/1102699932567212082/1156772515184656446/image.png?ex=65182a1b&is=6516d89b&hm=9f0e7a893adf73d69440d3bdd072e71e81eb546060480d5459f050e5b3b6e391&" />
-  <img width=46.3% src="https://cdn.discordapp.com/attachments/1102699932567212082/1156775740394709053/image.png?ex=65182d1c&is=6516db9c&hm=092b1e684f883b604dcb3ca242efa88fc3a76560a92deb5e4289e05a106c4f4b&" />
-
+  <img width=30% src="https://github.com/Awi-Corp/Leafy/assets/75323873/a39c2ebc-25d4-4130-942f-70a66c8e1e4e" />
+  <img width=46.3% src="https://github.com/Awi-Corp/Leafy/assets/75323873/ca1c63dd-3321-4bfb-ba81-a3537fbc089a" />
 </p>
-
 
 ## 🚀 Instalarlo
 1. Clonar el proyecto y entrar a la carpeta.
