@@ -30,7 +30,7 @@ module.exports = {
       }
     ).catch(err => {
       //console.error(err)
-      return interaction.reply({ content: "⚠ | Acaba de ocurrir un error al intentar crear el template! Ten en cuenta que solamente puede existir un template a la vez." })
+      return interaction.reply({ content: `${client.emoji.warning} 『 Acaba de ocurrir un error al intentar crear el template! Ten en cuenta que solamente puede existir un template a la vez 』` })
     });
 
     const templateEmbed = new Discord.EmbedBuilder()

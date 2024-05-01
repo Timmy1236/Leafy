@@ -11,7 +11,7 @@ module.exports = {
     const rol = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(role => role.name === args.slice(1).join(" "));
 
     // Si no se menciona o no tenemos la id de un rol
-    if (!rol) return message.reply({ content: `❌ | Debes de mencionar un rol o añadir su id.` });
+    if (!rol) return message.reply({ content: `${client.emoji.error} 『 Debes de mencionar un rol o poner su id 』` });
 
     // Obtenemos los permisos del rol y los juntamos separado por comas
     const permisos = rol.permissions.toArray().join('\`, \`');

@@ -37,7 +37,8 @@ module.exports = {
       // Enviamos el embed
       await interaction.reply({ embeds: [embed], ephemeral: true })
     } catch (error) {
-      await interaction.reply({ content: "❌ | Acaba de ocurrir un error al ejecutar el comando.", ephemeral: true });
+      await interaction.reply({ content: `${client.emoji.warning} 『 Acaba de ocurrir un error al ejecutar el comando 』`, ephemeral: true });
+      console.error(error)
     }
   }
 }

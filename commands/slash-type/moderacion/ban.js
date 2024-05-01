@@ -56,8 +56,7 @@ module.exports = {
 
       await interaction.editReply({ embeds: [banEmbed] })
     } catch (error) {
-      await interaction.editReply({ content: "⚠ | Acaba de ocurrir un error al intentar banear a este usuario." })
-      console.log("Hubo un error al intentar banear a un usuario.")
+      await interaction.editReply({ content: `${client.emoji.warning} 『 Acaba de ocurrir un error al intentar banear a este usuario 』` })
       console.error(error)
     }
   }

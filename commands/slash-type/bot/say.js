@@ -11,16 +11,16 @@ module.exports = {
     const mensaje = interaction.options.getString("mensaje");
 
     // Si el mensaje no tiene nada
-    if (!mensaje) return interaction.reply({ content: `❌ | Debes de escribir un mensaje.` });
+    if (!mensaje) return interaction.reply({ content: `${client.emoji.error} 『 **El mensaje no puede estar vació** 』` });
 
     // Si el mensaje tiene más de 2000 caracteres
-    if (mensaje.length > 2000) return interaction.reply({ content: `❌ | El mensaje no puede tener más de 2000 caracteres.` });
+    if (mensaje.length > 2000) return interaction.reply({ content: `${client.emoji.error} 『 **El mensaje no puede tener más de 2000 caracteres** 』` });
 
     // Si el mensaje tiene un @everyone o @here
-    if (mensaje.includes("@everyone") || mensaje.includes("@here")) return interaction.reply({ content: `❌ | No puedes mencionar a "everyone" o "here".` });
+    if (mensaje.includes("@everyone") || mensaje.includes("@here")) return interaction.reply({ content: `${client.emoji.error} 『 **El mensaje no puede contener una mención a everyone o here** 』` });
 
     // Si el mensaje tiene un rol
-    if (mensaje.includes("<@&")) return interaction.reply({ content: `❌ | No puedes mencionar roles.` });
+    if (mensaje.includes("<@&")) return interaction.reply({ content: `${client.emoji.error} 『 **No puedes mencionar a otros roles** 』` });
 
     // Si todo esta correcto, enviaremos el mensaje que el bot debe decir
     return interaction.reply({ content: mensaje });

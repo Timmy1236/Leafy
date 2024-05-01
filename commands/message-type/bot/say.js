@@ -11,16 +11,13 @@ module.exports = {
     const mensaje = args.slice(0).join(" ");
 
     // Si el mensaje no tiene nada
-    if (!mensaje) return message.reply({ content: `❌ | Debes de escribir un mensaje.` });
+    if (!mensaje) return message.reply({ content: `${client.emoji.warning} 『 **El mensaje no puede estar vació** 』` });
 
     // Si el mensaje tiene más de 2000 caracteres
-    if (mensaje.length > 2000) return message.reply({ content: `❌ | El mensaje no puede tener más de 2000 caracteres.` });
+    if (mensaje.length > 2000) return message.reply({ content: `${client.emoji.warning} 『 **El mensaje no puede tener más de 2000 caracteres** 』` });
 
-    // Si el mensaje tiene un @everyone o @here
-    if (mensaje.includes("@everyone") || mensaje.includes("@here")) return message.reply({ content: `❌ | No puedes mencionar a "everyone" o "here".` });
-
-    // Si el mensaje tiene un rol
-    if (mensaje.includes("<@&")) return message.reply({ content: `❌ | No puedes mencionar roles.` });
+    // Si el mensaje tiene un @everyone, @here o un rol aleatorio
+    if (mensaje.includes("@everyone") || mensaje.includes("@here") || mensaje.includes("<@&")) return message.reply({ content: `${client.emoji.warning} 『 **El mensaje no puede contener una menciones a los roles** 』` });
 
     // Si todo esta correcto, borraremos el mensaje enviado por el usuario para despues enviar el mensaje que el bot debe decir
     message.delete();

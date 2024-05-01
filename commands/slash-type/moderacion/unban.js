@@ -33,10 +33,10 @@ module.exports = {
 
         await interaction.editReply({ embeds: [unbanEmbed] })
       } else { // Si la id dada no es un snowflake.
-        await interaction.editReply({ content: "❌ | La ID del usuario no es valida." })
+        await interaction.editReply({ content: `${client.emoji.error} 『 La ID del usuario no es valida 』` })
       }
     } catch (error) { // Si occure un error al intentar desbanear el usuario
-      await interaction.editReply({ content: "⚠ | Acaba de ocurrir un error al intentar desbanear a este usuario." })
+      await interaction.editReply({ content: `${client.emoji.warning} 『 Acaba de ocurrir un error al intentar desbanear este usuario. 』` })
       console.error(error)
     }
   }

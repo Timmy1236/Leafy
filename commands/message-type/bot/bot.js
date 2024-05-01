@@ -47,7 +47,8 @@ module.exports = {
       message.reply({ embeds: [botEmbed], components: [row] })
 
     } catch (error) {
-      console.log(error);
+      message.reply({ content: `${client.emoji.warning} 『 **Acaba de ocurrir un error al intentar ejecutar el comando, inténtalo mas tarde.** 』` })
+      console.error(error.message);
     }
   }
 }

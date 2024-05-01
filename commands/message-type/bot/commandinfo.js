@@ -76,9 +76,9 @@ module.exports = {
 
         return message.reply({ embeds: [embedCommandInfo] })
       })
-    } catch (e) {
-      message.reply({ content: `⚠️ | Acaba de ocurrir un error, inténtalo de nuevo.` })
-      console.error(e.message);
+    } catch (error) {
+      message.reply({ content: `${client.emoji.warning} 『 **Acaba de ocurrir un error al intentar ejecutar el comando, inténtalo mas tarde.** 』` })
+      console.error(error.message);
     }
   }
 }

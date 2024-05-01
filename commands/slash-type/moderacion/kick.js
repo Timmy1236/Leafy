@@ -55,7 +55,7 @@ module.exports = {
 
       await interaction.editReply({ embeds: [kickEmbed] })
     } catch (error) {
-      await interaction.editReply({ content: "⚠ | Acaba de ocurrir un error al intentar kickear a este usuario." })
+      await interaction.editReply({ content: `${client.emoji.warning} 『 Acaba de ocurrir un error al intentar kickear a este usuario 』` })
       console.error(error)
     }
   }

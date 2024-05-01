@@ -26,7 +26,8 @@ module.exports = {
         .setDescription(changelogData)
       message.reply({ embeds: [changelogEmbed] })
     } catch (error) {
-      console.log(error);
+      message.reply({ content: `${client.emoji.warning} 『 **Acaba de ocurrir un error al intentar ejecutar el comando, inténtalo mas tarde.** 』` })
+      console.error(error.message);
     }
   }
 }
