@@ -1,8 +1,6 @@
 # Leafy
 config.json
-
-# npm-check (https://github.com/dylang/npm-check?tab=readme-ov-file#rc-file-support)
-.npmcheckrc
+db/database.sqlite
 
 # Logs
 logs
@@ -148,3 +146,7 @@ dist
 
 # GitHub Desktop
 .vscode/launch.json
+
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md

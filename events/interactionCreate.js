@@ -1,28 +1,52 @@
+const User = require("../db/models/user.js");
+const Server = require("../db/models/server.js");
+
 module.exports = async (client, interaction) => {
-  if (!interaction.isChatInputCommand) return; // Si la interacción no es un comando de chat, lo ignoramos.
+  const slashCommand = client.slashCommands.get(interaction.commandName);
 
-  const slashCommand = client.slashcommands.get(interaction.commandName); // Obtenemos el comando de la colección de comandos de chat.
-
-  if (!slashCommand) return; // Si el comando no existe, lo ignoramos.
+  if (!slashCommand) return;
+  if (!interaction.isChatInputCommand()) return;
 
   try {
-    if (slashCommand.data.default_member_permissions && slashCommand.data.default_member_permissions.length > 0) {
-      // Juntamos todos los permisos necesarios en un string separado por comas.
-      let permisos = slashCommand.permisos.map(permiso => { return `\`${permiso}\``; }).join(", ");
+    const [userDB] = await User.findOrCreate({ where: { id: interaction.user.id } });
+    const [serverDB] = await Server.findOrCreate({ where: { id: interaction.guild.id } });
 
-      // Checkeamos si el usuario tiene los permisos necesarios para ejecutar el comando
-      if (!interaction.member.permissions.has(slashCommand.data.default_member_permissions)) return await interaction.reply({ content: `No tienes el permiso **${permisos}** para ejecutar este comando.`, ephemeral: true });
-      // Checkeamos si el bot también tiene los permisos necesarios para ejecutar el comando
-      if (!interaction.guild.members.me.permissions.has(slashCommand.data.default_member_permissions)) return await interaction.reply({ content: `No tengo el permiso **${permisos}** para ejecutar este comando.`, ephemeral: true });
+    // Manejo de permisos 
+    if (
+      slashCommand.data.default_member_permissions &&
+      slashCommand.data.default_member_permissions.length > 0
+    ) {
+      const permisosArray = Array.isArray(slashCommand.data.default_member_permissions)
+        ? slashCommand.data.default_member_permissions
+        : [slashCommand.data.default_member_permissions];
+
+      const permisos = permisosArray.map(permiso => `\`${permiso}\``).join(", ");
+
+      if (!interaction.member.permissions.has(permisosArray)) {
+        return await interaction.reply({
+          content: `No tienes el permiso **${permisos}** para ejecutar este comando.`,
+          ephemeral: true
+        });
+      }
+
+      if (!interaction.guild.members.me.permissions.has(permisosArray)) {
+        return await interaction.reply({
+          content: `No tengo el permiso **${permisos}** para ejecutar este comando.`,
+          ephemeral: true
+        });
+      }
     }
 
-    // Si el usuario cumple con los permisos necesarios, ejecutamos el comando.
-    await slashCommand.run(client, interaction);
+    // Ejecutar el comando
+    await slashCommand.run(client, interaction, userDB, serverDB);
 
-  } catch (error) { // Si ocurre un error al ejecutar el comando, devolvemos un mensaje de error y lo registramos en la consola para el debug.
+  } catch (error) {
+    console.error("Error al ejecutar el comando:", error);
 
-    await interaction.reply({ content: "Acaba de ocurrir un error al ejecutar el comando.", ephemeral: true });
-    console.log("Acaba de ocurrir un error al intentar ejecutar un slash-command")
-    console.error(error);
+    if (!interaction.replied && !interaction.deferred) {
+      await interaction.reply({ content: "⚠️ | Ha ocurrido un error inesperado al ejecutar el comando.", ephemeral: true });
+    } else {
+      await interaction.editReply({ content: "⚠️ | Ha ocurrido un error inesperado al ejecutar el comando.", ephemeral: true });
+    }
   }
-}
+};

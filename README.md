@@ -1,84 +1,57 @@
-<p align="center">
-  <img width=100% src="https://github.com/Awi-Corp/Leafy/assets/75323873/be3d2a44-6717-4926-9ebb-20171f3bada6" />
-</p>
+# Leafy
+Un simple bot para discord, nada más, simple como eso.
+> La refactorización del proyecto sigue en progreso, algunas partes del código pueden no estar optimizadas o incluso no funcionales ahora mismo.
 
+[![Node.js](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](#)
+[![Discord.js](https://img.shields.io/badge/Discord.js-5865F2?logo=discord&logoColor=white)](#)
+[![SQLite](https://img.shields.io/badge/SQLite-%2307405e.svg?logo=sqlite&logoColor=white)](#)
 
-<p align="center">"Un simple bot multitarea en español para Discord"</p>
+## Tabla de contenidos
+- [📦 Características](#características)
+- [📷 Screenshots](#screenshots)
+- [🤖 Instalación](#instalación)
+- [📋 To-Do](#to-do)
+- [🔐 Licencia](#licencia)
 
-<p align="center">
-  <a href="https://discord.com/">
-    <img alt="Discord" src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" />
-  </a>
-    <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />
-  <a href="https://nodejs.org">
-    <img alt="Node.js" src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
-  </a>
-</p>
+## Características
+1. Soporte de los comandos clásicos y [slash commands](https://discord.com/developers/docs/interactions/application-commands).
+2. Fácil de modificar, puedes añadir un nuevo comando en menos de un minuto.
+3. Compacto, usando la minima cantidad de dependencias posibles.
+4. Siempre actualizado a las ultimas versiones de Discord.js para tener acceso a todas las funciones nuevas de Discord.
+5. Base de datos hecho con: [SQLite](https://sqlite.org/), no dependes de un servicio externo.
 
----
+## Screenshots
+  <img src="https://timmy.nekoweb.org//assets/images/leafy/user.png" />
+  <img src="https://timmy.nekoweb.org//assets/images/leafy/server.png" />
 
-## 🗃 Requisitos
-Node.js: [v20.x^](https://nodejs.org/en/download)\
-NPM: [v10.x^](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)\
-*(Técnicamente puedes usar este bot incluso con [Node.js v16](https://discordjs.guide/preparations/#installing-node-js), pero lo programé todo usando con la última versión estable disponible de Node.js)*
+## Instalación
+1. Es recomendable que tengas instalado la ultima version [LTS de Node.js](https://nodejs.org).
+2. [Clona](https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository) el repositorio.
+3. Crea un archivo llamado: "config.json" dentro del repositorio basado en: "[config_example.json](https://github.com/Timmy1236/Leafy/blob/main/config_example.json)" y remplaza las variables.
 
-## 📷 Screenshots
-<p align="center">
-  <img width=30% src="https://github.com/Awi-Corp/Leafy/assets/75323873/a39c2ebc-25d4-4130-942f-70a66c8e1e4e" />
-  <img width=46.3% src="https://github.com/Awi-Corp/Leafy/assets/75323873/ca1c63dd-3321-4bfb-ba81-a3537fbc089a" />
-</p>
-
-## 🚀 Instalarlo
-1. Clonar el proyecto y entrar a la carpeta.
+4. Instala todas las dependencias del bot.
 ```bash
-git clone https://github.com/Awi-Corp/Leafy.git
-cd Leafy
-```
-2. Crea un archivo llamado: "config.json", copiando la plantilla de: "[config_example.json](https://github.com/Awi-Corp/Leafy/blob/main/config_example.json)" y remplazar las variables.
-```
-"TOKEN": "Token del bot (https://discord.com/developers)",
-   |
-   V
-"TOKEN": "ODg5N...
-```
-3. Instalar las dependencias.
-```bash
-# yarn
-yarn install
-
-# npm
 npm install
 ```
-4. Encender el bot.
-```bash
-# yarn
-yarn start
 
-# npm
+5. Sincroniza los comandos slash y el database, tendrás que ejecutarlo de vuelta si agregas o eliminas slash commands, o cuando realizas cambios en la base de datos.
+```bash
+npm run sync_slash.js
+
+npm run sync_db.js
+```
+
+6. Encender el bot, ya estaría, simple como eso.
+```bash
 npm run start
 ```
 
-## ✨ Contribuidores 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+## To-Do
+1. Portear todo a TypeScript. *:T*
+2. Soporte multilenguaje.
+3. Documentar mejor en los códigos.
+4. Añadir mas cosas en el To-Do.
 
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://timmy1236.me/"><img src="https://avatars.githubusercontent.com/u/75323873?v=4?s=100" width="100px;" alt="Timmy"/><br /><sub><b>Timmy</b></sub></a><br /><a href="https://github.com/Awi-Corp/Leafy/commits?author=Timmy1236" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.demitard.tech"><img src="https://avatars.githubusercontent.com/u/78510889?v=4?s=100" width="100px;" alt="Demitard"/><br /><sub><b>Demitard</b></sub></a><br /><a href="https://github.com/Awi-Corp/Leafy/commits?author=Mendo6472" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-## 🔐 Licencia
-Proyecto licenciado con "[MIT license](https://mit-license.org/)"
+## Licencia
+Este proyecto esta licenciado bajo la licencia [MIT](https://mit-license.org/).

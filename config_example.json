@@ -1,11 +1,10 @@
 {
-  "TOKEN": "Token del bot. (https://discord.com/developers) [STRING]",
-  "OWNER_ID": "Tu id de usuario en Discord. [STRING]",
-  "CLIENT_ID": "El application id de tu bot. (https://discord.com/developers) [STRING]",
+  "TOKEN": "Token del bot. (https://discord.com/developers)",
+  "OWNER_ID": "Id de un usuario de Discord que tendrá acceso a comandos especiales del bot. (Ej: 375889010419171328)",
+  "CLIENT_ID": "El application id del bot. (https://support-dev.discord.com/hc/en-us/articles/360028717192-Where-can-I-find-my-Application-Team-Server-ID)",
+  "GUILD_TEST_ID": "Un id del servidor de pruebas para testear el bot. (Ej: 803738326175711262)",
   "BOT": {
-    "PREFIX": "Un prefix para poder usar los comandos. [STRING]",
-    "EMBED_COLOR": "El color que deseas para ser usado en los embeds. [STRING]",
-    "ANTI_CRASH": "true/false (Si ocurre un error, el bot seguirá prendido) [BOOLEAN]"
-  },
-  "CHANGELOG_URL": "Una url que te lleve directamente a un archivo de texto que contenga el changelog del bot, puedes usar gist. [STRING]"
+    "PREFIX": "Un prefix para poder usar los comandos clásicos. (Ej: t!)",
+    "EMBED_COLOR": "El color que deseas para ser usado en los embeds. (Ej: #7bd383)"
+  }
 }
