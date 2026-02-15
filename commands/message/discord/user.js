@@ -6,8 +6,8 @@ module.exports = {
   alias: ["usuario"],
   descripcion: "Obtén el información de un usuario o del tuyo.",
   categoria: "🌐 Discord",
-  run: async (Discord, client, message, args, userDB, serverDB) => {
-    let user = message.mentions.members.size > 0 ? message.mentions.users.first().id : undefined || args[0] || message.author.id;
+  run: async (Discord, client, message, args, _userDB, _serverDB) => {
+    let user = message.mentions.members.size > 0 ? message.mentions.users.first().id : args[0] || message.author.id
 
     let status = {
       online: "🟢 En Línea",

@@ -4,7 +4,7 @@ module.exports = {
   alias: [""],
   descripcion: "",
   categoria: "🤖 Bot",
-  run: async (Discord, client, message, args, userDB, serverDB) => {
+  run: async (Discord, client, message, args, userDB, _serverDB) => {
     const embed = new Discord.EmbedBuilder()
       .setColor(client.color)
       .setTitle(message.author.username)

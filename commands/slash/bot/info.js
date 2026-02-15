@@ -6,7 +6,7 @@ module.exports = {
     .setName("info")
     .setDescription("Información sobre el bot."),
   categoria: "⚙️ Configuración",
-  async run(client, interaction, userDB, serverDB) {
+  async run(client, interaction, _userDB, _serverDB) {
     try {
       const uptime = client.uptime;
 

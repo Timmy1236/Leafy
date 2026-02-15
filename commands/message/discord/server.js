@@ -6,7 +6,7 @@ module.exports = {
   alias: ["serverinfo", "guild", "guildinfo"],
   descripcion: "Información detallada del servidor.",
   categoria: "🌐 Discord",
-  run: async (Discord, client, message, args, userDB, serverDB) => {
+  run: async (Discord, client, message, _args, _userDB, _serverDB) => {
     const server = message.guild;
 
     // Miembros  

@@ -5,7 +5,7 @@ module.exports = {
   alias: ["botinfo", "leafy", "info"],
   descripcion: "Información básica del bot.",
   categoria: "🤖 Bot",
-  run: async (Discord, client, message, args, userDB, serverDB) => {
+  run: async (Discord, client, message, _args, _userDB, _serverDB) => {
     try {
       const uptime = client.uptime;
 

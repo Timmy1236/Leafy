@@ -3,7 +3,7 @@ module.exports = {
   alias: ["latencia"],
   descripcion: "Pong!",
   categoria: "🤖 Bot",
-  run: async (Discord, client, message, args, userDB, serverDB) => {
+  run: async (Discord, client, message, _args, _userDB, _serverDB) => {
     const pingeValues = (ping, { high = 500, medium = 300 } = {}) =>
       ping > high ? '🔴' : ping > medium ? '🟡' : '🟢';
 

@@ -4,7 +4,7 @@ module.exports = {
   alias: ["cmdinfo", "comandoinfo", "comando-info", "cmd-info"],
   descripcion: "Obtén información de los comandos message-type, sobre su función, como usarlo, etc. Los slash-type ya cuentan con su información en la propia UI de Discord.",
   categoria: "🤖 Bot",
-  run: async (Discord, client, message, args, userDB, serverDB) => {
+  run: async (Discord, client, message, args, _userDB, _serverDB) => {
     try {
       async function findFile(file) {
         const jsfiles = [];

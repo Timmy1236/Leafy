@@ -86,16 +86,16 @@ module.exports = {
 
     collector.on('collect', async (interaction) => {
       switch (interaction.values[0]) {
-        case "commands":
+        case "commands": {
           const helpClassicCommands = new Discord.EmbedBuilder()
             .setColor(client.color)
             .setTitle('📙 | Comandos')
             .setDescription(`${Commands.size} Comandos en total.`)
             .setThumbnail(client.user.avatarURL())
             .addFields(...generateFields(Commands));
-
           interaction.update({ embeds: [helpClassicCommands] })
           break;
+        }
         case "slash":
           interaction.update({ embeds: [help] })
           break;

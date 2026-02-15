@@ -4,7 +4,7 @@ module.exports = {
   alias: ["clearcache", "cr", "restart"],
   descripcion: "Reinicia los comandos para que se apliquen los últimos cambios.",
   categoria: "👑 Owner",
-  run: async (Discord, client, message, args, userDB, serverDB) => {
+  run: async (Discord, client, message, args, _userDB, _serverDB) => {
     if (!args[0]) return message.reply({ content: "Necesitas pasarme un comando" })
 
     async function findFile(file) {

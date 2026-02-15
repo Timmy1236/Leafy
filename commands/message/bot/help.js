@@ -4,7 +4,7 @@ module.exports = {
   descripcion: "Obtén una lista de todos los comandos disponibles.",
   categoria: "🤖 Bot",
   ejemplos: ["help slash"],
-  run: async (Discord, client, message, args, userDB, serverDB) => {
+  run: async (Discord, client, message, args, _userDB, _serverDB) => {
     // Obtiene todas las categorías únicas de una colección de comandos
     function getCategory(collection) {
       const categories = new Set();
@@ -39,7 +39,7 @@ module.exports = {
     }
 
     switch (args[0] ? args[0].toLowerCase() : undefined) {
-      case "slash":
+      case "slash": {
         const helpSlash = new Discord.EmbedBuilder()
           .setColor(client.color)
           .setTitle('📙 | Slash')
@@ -48,8 +48,8 @@ module.exports = {
           .addFields(...generateFields(slashCommands));
         message.reply({ embeds: [helpSlash] });
         break;
-
-      default:
+      }
+      default: {
         const help = new Discord.EmbedBuilder()
           .setColor(client.color)
           .setTitle('📙 | Comandos')
@@ -57,6 +57,7 @@ module.exports = {
           .addFields(...generateFields(Commands));
         message.reply({ embeds: [help] });
         break;
+      }
     }
   }
 };

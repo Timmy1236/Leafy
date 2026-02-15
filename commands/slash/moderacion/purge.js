@@ -48,9 +48,7 @@ module.exports = {
 
       await confirmation.update({ embeds: [embed], content: null, components: [] });
     } catch (error) {
-      try {
-        await interaction.reply({ content: `『 Acaba de ocurrir un error al ejecutar el comando 』`, flags: Discord.MessageFlags.Ephemeral });
-      } catch { }
+      await interaction.reply({ content: `『 Acaba de ocurrir un error al ejecutar el comando 』`, flags: Discord.MessageFlags.Ephemeral });
       console.error(error)
     }
   }

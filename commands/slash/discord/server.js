@@ -7,7 +7,7 @@ module.exports = {
     .setName("server")
     .setDescription("Muestra información detallada del servidor."),
   categoria: "🌐 Discord",
-  async run(client, interaction, userDB, serverDB) {
+  async run(client, interaction, _userDB, _serverDB) {
     await interaction.deferReply();
     const server = interaction.guild;
 
