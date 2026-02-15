@@ -1,19 +1,21 @@
 const fs = require("fs");
+const path = require('path');
+const logTable = [];
 
 module.exports = client => {
   try {
-    const table = [];
-    const events = fs.readdirSync("./events/").filter((file) => file.endsWith(".js"));
+    const eventsPath = path.join(__dirname, "..", "events") // Ruta: Leafy/events
+    const events = fs.readdirSync(eventsPath).filter((file) => file.endsWith(".js")); // Los eventos, no hay categorías.
 
-    for (var file of events) {
-      let fileContents = require(`../events/${file}`);
-      let fileName = file.substring(0, file.length - 3);
+    for (var event of events) {
+      const eventPath = path.join(eventsPath, event) // La ruta de un evento
+      const eventLoaded = require(eventPath);
+      const eventParsed = path.parse(eventPath)
 
-      client.on(fileName, fileContents.bind(null, client));
-      table.push({ Evento: fileName, Estado: "LISTO!" });
+      client.on(eventParsed.name, eventLoaded.bind(null, client));
+      logTable.push({ Evento: eventParsed.name, Estado: "CARGADO" });
     }
-
-    console.table(table);
+    console.table(logTable);
   } catch (error) {
     console.log(`\x1b[0;31mbot/loaders/events.js>\x1b[0m Error!`);
     console.error(error);
