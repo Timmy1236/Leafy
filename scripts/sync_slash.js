@@ -1,8 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
-const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v10");
+const { Routes, REST } = require("discord.js")
 
 const config = require(path.join(__dirname, "..", "config.json"));
 const CLIENT_ID = config.CLIENT_ID;
