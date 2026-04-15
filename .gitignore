@@ -1,6 +1,6 @@
 # Leafy
 config.json
-db/
+/db/
 
 # Logs
 logs
