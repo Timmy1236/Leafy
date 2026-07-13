@@ -1,11 +1,11 @@
-import Server from "../db/models/server.js";
+import { getServer } from "../db/server.js";
 import { Event } from "../types/Events.js";
 
 const event: Event<"guildMemberAdd"> = {
   name: "guildMemberAdd",
   once: false,
   execute: async (client, interaction) => {
-    const serverDB = await Server.findOne({ where: { id: interaction.guild.id } });
+    const serverDB = getServer(interaction.guild.id);
 
     if (!serverDB || !serverDB.welcomeChannel) {
       console.log(`No se encontró un canal de bienvenida configurado para el servidor: ${interaction.guild.id}`);

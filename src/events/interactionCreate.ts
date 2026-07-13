@@ -1,6 +1,6 @@
 import { PermissionResolvable, GuildMember } from "discord.js";
-import User from "../db/models/user.js";
-import Server from "../db/models/server.js";
+import { getUserOrCreate } from "../db/user.js";
+import { getServerOrCreate } from "../db/server.js";
 import { Event } from "../types/Events.js";
 
 const event: Event<"interactionCreate"> = {
@@ -15,8 +15,8 @@ const event: Event<"interactionCreate"> = {
     if (!interaction.guild || !interaction.member) return;
 
     try {
-      const [userDB] = await User.findOrCreate({ where: { id: interaction.user.id } });
-      const [serverDB] = await Server.findOrCreate({ where: { id: interaction.guild.id } });
+      const userDB = getUserOrCreate(interaction.user.id);
+      const serverDB = getServerOrCreate(interaction.guild.id);
 
       const rawPermissions = slashCommand.data.default_member_permissions;
 

@@ -1,10 +1,13 @@
-import { Sequelize } from "sequelize";
+import Database from 'better-sqlite3';
+import fs from 'fs';
 
-const sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
-  dialect: 'sqlite',
-  storage: 'db/database.sqlite',
-  logging: false,
-});
+if (!fs.existsSync('db')) {
+  fs.mkdirSync('db');
+}
 
-export default sequelize;
+const db = new Database('db/database.sqlite');
+
+db.pragma('journal_mode = WAL'); // https://sqlite.org/wal.html
+db.pragma('foreign_keys = ON'); // Activa llaves foráneas
+
+export default db;

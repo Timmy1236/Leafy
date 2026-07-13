@@ -1,6 +1,7 @@
 import alertBox from "../../utils/alertBox.js";
 import { SlashCommandBuilder, EmbedBuilder, ChannelType } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
+import { saveServer } from "../../db/server.js";
 
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
@@ -79,7 +80,7 @@ const command: SlashCommand = {
       const oldChannel = guild.channels.cache.get(_serverDB.welcomeChannel);
 
       _serverDB.welcomeChannel = null;
-      await _serverDB.save();
+      saveServer(_serverDB);
 
       await interaction.reply({ embeds: [alertBox.createAlertBox("info", `El canal ${oldChannel ? oldChannel : "`(eliminado)`"} dejó de ser el canal de bienvenida.`)] });
       return;
@@ -100,7 +101,7 @@ const command: SlashCommand = {
       }
 
       _serverDB.welcomeChannel = channel.id;
-      await _serverDB.save();
+      saveServer(_serverDB);
 
       await interaction.reply({ embeds: [alertBox.createAlertBox("info", `✅ Canal de bienvenida establecido en: ${channel}`)] });
       return;

@@ -1,7 +1,6 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 import { LeafyClient } from "./Client.js";
-import User from "../db/models/user.js";
-import Server from "../db/models/server.js";
+import { UserAttributes, ServerAttributes } from '../types/Database.js';
 
 export interface SlashCommand {
   data: SlashCommandBuilder;
@@ -10,7 +9,7 @@ export interface SlashCommand {
   run: (
     client: LeafyClient,
     interaction: ChatInputCommandInteraction,
-    userDB?: InstanceType<typeof User>,
-    serverDB?: InstanceType<typeof Server>
+    userDB?: UserAttributes,
+    serverDB?: ServerAttributes
   ) => Promise<void>;
 }

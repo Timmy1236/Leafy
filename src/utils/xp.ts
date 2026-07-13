@@ -1,7 +1,7 @@
 /*
   Esto es demasiado experimental :T
 */
-import User from '../db/models/user.js';
+import { getUserOrCreate, saveUser } from '../db/user.js';
 import { UserAttributes } from '../types/Database.js';
 
 async function _getXPNeeded(level: number) {
@@ -9,7 +9,7 @@ async function _getXPNeeded(level: number) {
 }
 
 async function giveUserXP(userID: string) {
-  const [user] = await User.findOrCreate({ where: { id: userID } });
+  const user = await getUserOrCreate(userID)
 
   const xpGained = Math.floor(Math.random() * 5) + 1;
   let xpNeededToLevelUp = await _getXPNeeded(user.level);
@@ -22,7 +22,7 @@ async function giveUserXP(userID: string) {
     xpNeededToLevelUp = await _getXPNeeded(user.level);
   }
 
-  user.save();
+  saveUser(user);
 }
 
 function getUserXPNeeded(user: UserAttributes) {
