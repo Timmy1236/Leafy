@@ -8,7 +8,6 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "start:build": "npm run build && npm run start",
-    "db": "node dist/scripts/sync_db.js",
     "slash": "node dist/scripts/sync_slash.js"
   },
   "repository": {
