@@ -1,0 +1,3 @@
+allowBuilds:
+  canvas: true
+  sqlite3: true
