@@ -6,6 +6,8 @@ import { Event } from "../types/Events.js";
 
 const logTable: { Evento: string; Estado: string }[] = [];
 
+type EventModule = { default: Event<keyof import("discord.js").ClientEvents> };
+
 export default async (client: LeafyClient) => {
   try {
     const __filename = fileURLToPath(import.meta.url);
@@ -15,13 +17,21 @@ export default async (client: LeafyClient) => {
 
     for (const event of events) {
       const eventPath = path.join(eventsPath, event)
-      const eventLoaded = await import(pathToFileURL(eventPath).href);
-      const eventImport = eventLoaded.default || eventLoaded as Event<keyof import("discord.js").ClientEvents>;
+      const eventLoaded = await import(pathToFileURL(eventPath).href) as EventModule;
+      const eventImport = eventLoaded.default;
 
       if (eventImport.once) {
-        client.once(eventImport.name, (...args) => eventImport.execute(client, ...args));
+        client.once(eventImport.name, (...args) => {
+          eventImport.execute(client, ...args)?.catch((err) => {
+            console.error(`Error en el evento once (${eventImport.name}): `, err);
+          });
+        });
       } else {
-        client.on(eventImport.name, (...args) => eventImport.execute(client, ...args));
+        client.on(eventImport.name, (...args) => {
+          eventImport.execute(client, ...args)?.catch((err) => {
+            console.error(`Error en el evento on (${eventImport.name}): `, err);
+          });
+        });
       }
 
       logTable.push({ Evento: eventImport.name, Estado: "CARGADO" });

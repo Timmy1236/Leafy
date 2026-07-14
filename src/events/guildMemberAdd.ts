@@ -23,7 +23,7 @@ const event: Event<"guildMemberAdd"> = {
       return;
     }
 
-    welcomeChannel.send(`¡Bienvenido al servidor, <@${interaction.user.id}>!`);
+    await welcomeChannel.send(`¡Bienvenido al servidor, <@${interaction.user.id}>!`);
   }
 };
 

@@ -28,7 +28,7 @@ async function initializeBot() {
   );
 
   console.log("\x1b[0;92mbot/index.js>\x1b[0m Ejecutando: loader.js");
-  loader(client);
+  await loader(client);
 
   client.login(config.TOKEN).catch((err) => {
     console.log(`\x1b[0;31mbot/index.js>\x1b[0m Error!`);
@@ -37,4 +37,4 @@ async function initializeBot() {
 }
 
 console.time("Tiempo de carga");
-initializeBot();
+await initializeBot();

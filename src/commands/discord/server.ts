@@ -112,7 +112,7 @@ const command: SlashCommand = {
         value: `>>> ${emojiAnimados || "Sin emojis animados."}`
       });
 
-    interaction.editReply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
   }
 };
 

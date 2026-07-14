@@ -1,10 +1,13 @@
 import fs from "fs";
 import path from 'path';
 import { LeafyClient } from "../types/Client.js";
-import { fileURLToPath, pathToFileURL } from 'url'; // <-- agregar esto
+import { fileURLToPath, pathToFileURL } from 'url';
 import { Collection } from "discord.js";
+import { SlashCommand } from "../types/Commands.js";
 
 const logTable: { Comando: string; Estado: string }[] = [];
+
+type CommandModule = { default: SlashCommand };
 
 export default async (client: LeafyClient) => {
   try {
@@ -22,12 +25,10 @@ export default async (client: LeafyClient) => {
 
       for (const slash of slashs) {
         const slashPath = path.join(categorysPath, slash);
-        const slashLoaded = await import(pathToFileURL(slashPath).href);
-
-        const commandData = slashLoaded.default || slashLoaded;
+        const slashLoaded = await import(pathToFileURL(slashPath).href) as CommandModule;
+        const commandData = slashLoaded.default;
 
         client.slashCommands.set(commandData.data.name, commandData);
-
         logTable.push({ Comando: commandData.data.name, Estado: "CARGADO" });
       }
     }

@@ -32,7 +32,7 @@ const command: SlashCommand = {
     function generateFields(collection: Collection<string, SlashCommand>) {
       const categories = getCategory(collection);
       return categories.map((category) => ({
-        name: `▸ ${category}`,
+        name: `▸ ${String(category)}`,
         value: `>>> ${getCommandsByCategory(collection, category as string)}`
       }));
     }

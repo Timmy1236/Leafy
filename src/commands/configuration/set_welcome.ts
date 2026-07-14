@@ -66,7 +66,7 @@ const command: SlashCommand = {
         return;
       }
 
-      await interaction.reply({ embeds: [alertBox.createAlertBox("info", `El canal de bienvenida actual es: ${channel}`)] });
+      await interaction.reply({ embeds: [alertBox.createAlertBox("info", `El canal de bienvenida actual es: ${String(channel)}`)] });
       return;
     }
 
@@ -82,7 +82,7 @@ const command: SlashCommand = {
       _serverDB.welcomeChannel = null;
       saveServer(_serverDB);
 
-      await interaction.reply({ embeds: [alertBox.createAlertBox("info", `El canal ${oldChannel ? oldChannel : "`(eliminado)`"} dejó de ser el canal de bienvenida.`)] });
+      await interaction.reply({ embeds: [alertBox.createAlertBox("info", `El canal ${oldChannel ? String(oldChannel) : "`(eliminado)`"} dejó de ser el canal de bienvenida.`)] });
       return;
     }
 
@@ -103,7 +103,7 @@ const command: SlashCommand = {
       _serverDB.welcomeChannel = channel.id;
       saveServer(_serverDB);
 
-      await interaction.reply({ embeds: [alertBox.createAlertBox("info", `✅ Canal de bienvenida establecido en: ${channel}`)] });
+      await interaction.reply({ embeds: [alertBox.createAlertBox("info", `✅ Canal de bienvenida establecido en: <#${channel.id}> `)] });
       return;
     }
   }

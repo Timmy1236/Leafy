@@ -27,7 +27,7 @@ const command: SlashCommand = {
       .setDescription(`▸ 📷 Formatos\n> [WEBP](${_getAvatarWithExtension("webp")}) | [PNG](${_getAvatarWithExtension("png")}) | [JPG](${_getAvatarWithExtension("jpg")}) | [JPEG](${_getAvatarWithExtension("jpeg")}) \n\n▸ 🖌️ Color Dominante\n> HEX: ${hex}\n> RGB: ${stringRgb}\n\n▸ 📎 Fuentes\n>>> [Buscar en Google](https://lens.google.com/uploadbyurl?url=${avatar})\n[Buscar en Yandex](https://yandex.com/images/search?url=${avatar}&rpt=imageview)\n[Buscar en SauceNAO](https://saucenao.com/search.php?url=${avatar})`)
       .setColor(dominantColor)
       .setImage(avatar)
-    interaction.reply({ embeds: [avatarEmbed] })
+    await interaction.reply({ embeds: [avatarEmbed] })
   }
 }
 

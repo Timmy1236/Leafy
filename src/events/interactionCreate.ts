@@ -25,18 +25,18 @@ const event: Event<"interactionCreate"> = {
           ? (rawPermissions as PermissionResolvable[])
           : [rawPermissions as PermissionResolvable];
 
-        const permisosString = permisosArray.map(p => `\`${p}\``).join(", ");
+        const permisosString = permisosArray.map(p => `\`${String(p)}\``).join(", ");
 
         const member = interaction.member as GuildMember;
         if (!member.permissions.has(permisosArray)) {
-          return await interaction.reply({
+          await interaction.reply({
             content: `No tienes los permisos: ${permisosString}`,
             ephemeral: true
           });
         }
 
         if (!interaction.guild.members.me?.permissions.has(permisosArray)) {
-          return await interaction.reply({
+          await interaction.reply({
             content: `No tengo los permisos necesarios: ${permisosString}`,
             ephemeral: true
           });

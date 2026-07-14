@@ -76,8 +76,8 @@ const command: SlashCommand = {
           name: `▸ ${client.botEmojis.discord} Server`,
           value:
             `**Ingreso en el:** ${formatDateLong(member.joinedAt!)} (${time(member.joinedAt!, TimestampStyles.RelativeTime)})\n` +
-            `**Rol Alto:** ${member.roles.highest}\n` +
-            `**Rol Color:** ${member.roles.color} (Hex: ${member.displayHexColor})`
+            `**Rol Alto:** ${String(member.roles.highest)}\n` +
+            `**Rol Color:** ${String(member.roles.color)} (Hex: ${member.displayHexColor})`
         })
         .addFields({
           name: "▸ 🎖 Roles",
@@ -86,7 +86,7 @@ const command: SlashCommand = {
 
       if (banner) embed.setImage(banner);
 
-      interaction.editReply({ embeds: [embed] });
+      await interaction.editReply({ embeds: [embed] });
     }
 
     // Usuario fuera del servidor
@@ -114,7 +114,7 @@ const command: SlashCommand = {
 
       if (banner) embed.setImage(banner);
 
-      interaction.editReply({ embeds: [embed] });
+      await interaction.editReply({ embeds: [embed] });
     }
   }
 };

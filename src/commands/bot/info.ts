@@ -44,10 +44,10 @@ const command: SlashCommand = {
         .setColor(client.color)
         .addFields({ name: `▸ 💻 Info`, value: `>>> **Lenguaje:** JavaScript\n**Discord.js:** v${version}\n**Node.js:** ${process.version}\n**NPM:** ${npmVersion}`, inline: true })
         .addFields({ name: `▸ 📈 Stats`, value: `>>> **Uptime:** ${activity}\n**Usuarios:** ${userSize}\n**Servers:** ${serverSize}\n**Canales:** ${channelSize}`, inline: true })
-      interaction.reply({ embeds: [botEmbed], components: [row] })
+      await interaction.reply({ embeds: [botEmbed], components: [row] })
 
     } catch (error) {
-      interaction.reply({ content: `${client.botEmojis.warning} 『 **Acaba de ocurrir un error al intentar ejecutar el comando, inténtalo mas tarde.** 』` })
+      await interaction.reply({ content: `${client.botEmojis.warning} 『 **Acaba de ocurrir un error al intentar ejecutar el comando, inténtalo mas tarde.** 』` })
       console.error(error);
     }
   }
