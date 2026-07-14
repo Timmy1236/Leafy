@@ -16,7 +16,7 @@
 > ⚠️ El soporte de los message commands fue deprecatado. Si quieres usar message commands, puedes ver la rama: [legacy-2025](https://github.com/Timmy1236/Leafy/tree/legacy-2025)
 
 # Leafy
-El objetivo de Leafy es ser un bot lo mas *'ligero'* posible en discord.js.<br>
+El objetivo de Leafy es ser un bot lo mas ***'ligero'*** posible en discord.js.<br>
 **No** usar servicios externos como base de datos o API que podrían sufrir cambios que dejen de ser compatibles con el bot.
 <br>
 **No** usar funciones experimentales que podrían fallar de un dia para el otro. <br>
@@ -41,26 +41,29 @@ Ejemplo: "/User"           |  Ejemplos: "/Server"
 ![user](https://file.garden/aSqYsBZqpx5ZY3su/github/leafy/example-user.png)  |  ![server](https://file.garden/aSqYsBZqpx5ZY3su/github/leafy/example-server.png)
 
 ## Instalación
-1. Es recomendable que tengas instalado la ultima version [LTS de Node.js](https://nodejs.org).
-2. [Clona](https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository) el repositorio.
-3. Crea un archivo llamado: "config.json" con las variables del: "[config_example.json](https://github.com/Timmy1236/Leafy/blob/main/config_example.json)" y déjalo dentro de la carpeta 'src/'.
+* Es recomendable que tengas instalado la ultima version [LTS de Node.js](https://nodejs.org).
+1. [Clona](https://docs.github.com/es/repositories/creating-and-managing-repositories/cloning-a-repository) el repositorio.
+2. Crea un archivo llamado: "config.json" con las variables del: "[config_example.json](https://github.com/Timmy1236/Leafy/blob/main/config_example.json)" y déjalo dentro de la carpeta '[src/](https://github.com/Timmy1236/Leafy/tree/main/src)'.
 
-4. Instala todas las dependencias del bot.
+3. Instala todas las dependencias del bot.
 ```bash
-npm install
+pnpm install
 ```
 
-5. Sincroniza los comandos slash y el database, tendrás que ejecutarlo de vuelta si agregas o eliminas slash commands, o cuando realizas cambios en la base de datos.
+4. Compila el codigo fuente del bot para que pueda ser ejecutable
 ```bash
-npm run slash
-
-npm run db
+pnpm build
 ```
 
-6. Encender el bot, ya estaría, simple como eso.
+5. Encender el bot, ya estaría, simple como eso.
 ```bash
-npm run start:build
+pnpm start
+```
+
+* En caso de que hayas creado o modificado nuevos comandos slash para el bot, es necesario que sincronices tus comandos al servidor de Discord.
+```bash
+pnpm sync
 ```
 
 ## Licencia
-Todo el código de este proyecto esta debajo de la licencia "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+Todo el código fuente está bajo la licencia: [GPL-3.0-only](https://www.gnu.org/licenses/gpl-3.0.html)
