@@ -23,8 +23,7 @@
   "dependencies": {
     "better-sqlite3": "^12.9.0",
     "color-thief-node": "github:TheMonDon/color-thief-node",
-    "discord.js": "^14.26.3",
-    "moment": "^2.30.1"
+    "discord.js": "^14.26.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

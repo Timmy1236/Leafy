@@ -2,13 +2,6 @@
   Cositas generales que no son necesarias para el funcionamiento en algo en especifico.
 */
 
-import moment from 'moment';
-
-moment.updateLocale("es", {
-  months: "Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre".split("_"),
-  weekdays: "Domingo_Lunes_Martes_Miércoles_Jueves_Viernes_Sábado".split("_")
-});
-
 export function boolToSpanish(value: boolean) {
   return value ? "Sí" : "No";
 }
@@ -18,4 +11,12 @@ export function isValidSnowflake(id: string) {
   return snowflakeRegex.test(id);
 }
 
-export default { moment, boolToSpanish, isValidSnowflake };
+export function formatDateLong(date: Date) {
+  return new Intl.DateTimeFormat("es", {
+    dateStyle: "full",
+    timeStyle: "short",
+    timeZone: "UTC"
+  }).format(date);
+}
+
+export default { boolToSpanish, isValidSnowflake, formatDateLong };

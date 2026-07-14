@@ -1,8 +1,7 @@
 import extractColorFromImage from '../../utils/extractColor.js';
-import { boolToSpanish } from '../../utils/general.js';
+import { boolToSpanish, formatDateLong } from '../../utils/general.js';
 import { SlashCommandBuilder, EmbedBuilder, time, TimestampStyles } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
-import moment from "moment";
 
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
@@ -71,12 +70,12 @@ const command: SlashCommand = {
             `**ID:** ${member.id}\n` +
             `**Status:** ${status[statusMember]}\n` +
             `**Bot:** ${boolToSpanish(member.user.bot)}\n` +
-            `**Cuenta creada en:** ${moment.utc(member.user.createdAt).format("LLLL")} (${time(member.user.createdAt, TimestampStyles.RelativeTime)})`
+            `**Cuenta creada en:** ${formatDateLong(member.user.createdAt)} (${time(member.user.createdAt, TimestampStyles.RelativeTime)})`
         })
         .addFields({
           name: `▸ ${client.botEmojis.discord} Server`,
           value:
-            `>>> **Ingreso en el:** ${moment.utc(member.joinedAt).format("LLLL")} (${time(member.joinedAt!, TimestampStyles.RelativeTime)})\n` +
+            `**Ingreso en el:** ${formatDateLong(member.joinedAt!)} (${time(member.joinedAt!, TimestampStyles.RelativeTime)})\n` +
             `**Rol Alto:** ${member.roles.highest}\n` +
             `**Rol Color:** ${member.roles.color} (Hex: ${member.displayHexColor})`
         })
@@ -110,7 +109,7 @@ const command: SlashCommand = {
             `**Username Global:** ${fetchedUser.globalName}\n` +
             `**ID:** ${fetchedUser.id}\n` +
             `**Bot:** ${boolToSpanish(fetchedUser.bot)}\n` +
-            `**Cuenta creada en:** ${moment.utc(fetchedUser.createdAt).format("LLLL")} (${time(fetchedUser.createdAt, TimestampStyles.RelativeTime)})`
+            `**Cuenta creada en:** ${formatDateLong(fetchedUser.createdAt)} (${time(fetchedUser.createdAt, TimestampStyles.RelativeTime)})`
         });
 
       if (banner) embed.setImage(banner);

@@ -1,8 +1,7 @@
 import extractColorFromImage from '../../utils/extractColor.js';
-import { boolToSpanish } from '../../utils/general.js';
+import { boolToSpanish, formatDateLong } from '../../utils/general.js';
 import { SlashCommandBuilder, EmbedBuilder, ChannelType } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
-import moment from "moment";
 
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
@@ -77,7 +76,7 @@ const command: SlashCommand = {
           `>>> **Owner:** <@!${Owner.user.id}>\n` +
           `**Verificado:** ${boolToSpanish(server.verified)}\n` +
           `**Seguridad:** ${guildVerification}\n` +
-          `**Creación:** ${moment.utc(server.createdAt).format("LLLL")}`
+          `**Creación:** ${formatDateLong(server.createdAt)}`
       })
       .addFields({
         name: "▸ 💬 Canales",
