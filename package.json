@@ -15,7 +15,12 @@
     "url": "git+https://github.com/Timmy1236/Leafy.git"
   },
   "author": "Timmy1236 (https://timmy.nekoweb.org/)",
-  "license": "MIT",
+  "licenses": [
+    {
+      "type": "GPL-3.0-only",
+      "url": "https://github.com/Timmy1236/Website/blob/main/LICENSE"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/Timmy1236/Leafy/issues"
   },
