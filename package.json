@@ -1,38 +1,38 @@
 {
-	"name": "leafy",
-	"type": "module",
-	"version": "1.0.0",
-	"description": "Un simple bot para discord, nada más, simple como eso.",
-	"main": "dist/index.js",
-	"scripts": {
-		"build": "tsc",
-		"start": "node dist/index.js",
-		"sync": "node dist/scripts/sync_slash.js",
-		"lint": "eslint ."
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Timmy1236/Leafy.git"
-	},
-	"author": "Timmy1236 (https://timmy.nekoweb.org/)",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/Timmy1236/Leafy/issues"
-	},
-	"homepage": "https://github.com/Timmy1236/Leafy#readme",
-	"dependencies": {
-		"better-sqlite3": "^12.11.1",
-		"color-thief-node": "github:TheMonDon/color-thief-node",
-		"discord.js": "^14.26.5"
-	},
-	"devDependencies": {
-		"@eslint/js": "^10.0.1",
-		"@stylistic/eslint-plugin": "^5.10.0",
-		"@types/better-sqlite3": "^7.6.13",
-		"@types/color-thief-node": "^1.0.4",
-		"@types/node": "^26.1.1",
-		"eslint": "^10.7.0",
-		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.64.0"
-	}
+  "name": "leafy",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Un simple bot para discord, nada más, simple como eso.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "sync": "node dist/scripts/sync_slash.js",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Timmy1236/Leafy.git"
+  },
+  "author": "Timmy1236 (https://timmy.nekoweb.org/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Timmy1236/Leafy/issues"
+  },
+  "homepage": "https://github.com/Timmy1236/Leafy#readme",
+  "dependencies": {
+    "better-sqlite3": "^12.11.1",
+    "color-thief-node": "github:TheMonDon/color-thief-node",
+    "discord.js": "^14.26.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/color-thief-node": "^1.0.4",
+    "@types/node": "^26.1.1",
+    "eslint": "^10.7.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.64.0"
+  }
 }

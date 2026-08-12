@@ -9,19 +9,19 @@ db.prepare(`
 `).run();
 
 export function getServer(id: string): ServerAttributes | undefined {
-	return db.prepare("SELECT * FROM servers WHERE id = ?").get(id) as ServerAttributes | undefined;
+  return db.prepare("SELECT * FROM servers WHERE id = ?").get(id) as ServerAttributes | undefined;
 }
 
 export function getServerOrCreate(id: string): ServerAttributes {
-	const existing = getServer(id);
-	if (existing) return existing;
+  const existing = getServer(id);
+  if (existing) return existing;
 
-	db.prepare("INSERT INTO servers (id) VALUES (?)").run(id);
-	return getServer(id)!;
+  db.prepare("INSERT INTO servers (id) VALUES (?)").run(id);
+  return getServer(id)!;
 }
 
 export function saveServer(server: ServerAttributes): void {
-	db.prepare(`
+  db.prepare(`
     UPDATE servers
     SET welcomeChannel = ?
     WHERE id = ?

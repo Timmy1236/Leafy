@@ -10,33 +10,33 @@ const logTable: { Comando: string, Estado: string }[] = [];
 type CommandModule = { default: SlashCommand };
 
 export default async (client: LeafyClient) => {
-	try {
-		client.slashCommands = new Collection();
+  try {
+    client.slashCommands = new Collection();
 
-		const __filename = fileURLToPath(import.meta.url);
-		const __dirname = path.dirname(__filename);
-		const folderPath = path.join(__dirname, "..", "commands");
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const folderPath = path.join(__dirname, "..", "commands");
 
-		const folders = fs.readdirSync(folderPath);
+    const folders = fs.readdirSync(folderPath);
 
-		for (const folder of folders) {
-			const categorysPath = path.join(folderPath, folder);
-			const slashs = fs.readdirSync(categorysPath).filter(file => file.endsWith(".js"));
+    for (const folder of folders) {
+      const categorysPath = path.join(folderPath, folder);
+      const slashs = fs.readdirSync(categorysPath).filter(file => file.endsWith(".js"));
 
-			for (const slash of slashs) {
-				const slashPath = path.join(categorysPath, slash);
-				const slashLoaded = await import(pathToFileURL(slashPath).href) as CommandModule;
-				const commandData = slashLoaded.default;
+      for (const slash of slashs) {
+        const slashPath = path.join(categorysPath, slash);
+        const slashLoaded = await import(pathToFileURL(slashPath).href) as CommandModule;
+        const commandData = slashLoaded.default;
 
-				client.slashCommands.set(commandData.data.name, commandData);
-				logTable.push({ Comando: commandData.data.name, Estado: "CARGADO" });
-			}
-		}
+        client.slashCommands.set(commandData.data.name, commandData);
+        logTable.push({ Comando: commandData.data.name, Estado: "CARGADO" });
+      }
+    }
 
-		console.table(logTable);
-	}
-	catch (error) {
-		console.log("\x1b[0;31mbot/loaders/slash.js>\x1b[0m Error!");
-		console.error(error);
-	}
+    console.table(logTable);
+  }
+  catch (error) {
+    console.log("\x1b[0;31mbot/loaders/slash.js>\x1b[0m Error!");
+    console.error(error);
+  }
 };

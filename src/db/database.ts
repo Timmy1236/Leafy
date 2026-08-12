@@ -2,7 +2,7 @@ import Database from "better-sqlite3";
 import fs from "fs";
 
 if (!fs.existsSync("db")) {
-	fs.mkdirSync("db");
+  fs.mkdirSync("db");
 }
 
 const db = new Database("db/database.sqlite");
