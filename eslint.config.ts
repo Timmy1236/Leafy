@@ -13,13 +13,15 @@ export default tseslint.config([
     files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ["eslint.config.ts"]
+        },
         tsconfigRootDir: import.meta.dirname
       }
     }
   },
   {
-    files: ["**/*.js", "**/*.mjs", "**/*.cjs"],
+    files: ["eslint.config.ts", "**/*.js", "**/*.mjs", "**/*.cjs"],
     ...tseslint.configs.disableTypeChecked
   },
   {
