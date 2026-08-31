@@ -35,7 +35,7 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/better-sqlite3": "^9.6.0",
     "@types/color-thief-node": "^1.0.4",
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.4.0",
     "eslint": "^10.9.0",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "@typescript/native": "npm:typescript@^7.0.2",
