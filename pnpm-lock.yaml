@@ -422,8 +422,8 @@ packages:
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
 
-  brace-expansion@5.0.9:
-    resolution: {integrity: sha512-ScQ4IuvIEF1TMlP7Zt+vjJ//9zlPb2SDcxWxM3bk8s6t6GGdJ7KO1dCcTidOPJKePW30LE/2cT7wCyPho9/Wxg==}
+  brace-expansion@5.0.12:
+    resolution: {integrity: sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ==}
     engines: {node: 20 || >=22}
 
   buffer@5.7.1:
@@ -440,7 +440,7 @@ packages:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
 
   color-thief-node@https://codeload.github.com/TheMonDon/color-thief-node/tar.gz/027a0db1b670bef96d962ce650071ba3e76b6ead:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/TheMonDon/color-thief-node/tar.gz/027a0db1b670bef96d962ce650071ba3e76b6ead}
+    resolution: {gitHosted: true, integrity: sha512-dvj+whuu8sCpQnRvER54aF5A7A6TWN3fLj8dsVycNWwjibbgmGwxZx1m/Co8pn9OvtSGN+UsZ8NqkPU91X6qAw==, tarball: https://codeload.github.com/TheMonDon/color-thief-node/tar.gz/027a0db1b670bef96d962ce650071ba3e76b6ead}
     version: 1.0.3
 
   cross-spawn@7.0.6:
@@ -1235,7 +1235,7 @@ snapshots:
       inherits: 2.0.4
       readable-stream: 3.6.2
 
-  brace-expansion@5.0.9:
+  brace-expansion@5.0.12:
     dependencies:
       balanced-match: 4.0.4
 
@@ -1476,7 +1476,7 @@ snapshots:
 
   minimatch@10.2.6:
     dependencies:
-      brace-expansion: 5.0.9
+      brace-expansion: 5.0.12
 
   minimist@1.2.8: {}
 
