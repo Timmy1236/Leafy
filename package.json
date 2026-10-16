@@ -4,6 +4,10 @@
   "version": "1.0.0",
   "description": "Un simple bot para discord, nada más, simple como eso.",
   "main": "dist/index.js",
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@12.13.0",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
@@ -37,9 +41,9 @@
     "@types/better-sqlite3": "^9.6.0",
     "@types/color-thief-node": "^1.0.4",
     "@types/node": "^26.6.3",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "eslint": "^10.11.0",
     "typescript": "npm:@typescript/typescript6@6.0.2",
-    "@typescript/native": "npm:typescript@^7.0.2",
     "typescript-eslint": "^8.71.0"
   }
 }
