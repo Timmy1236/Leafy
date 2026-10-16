@@ -1,5 +1,6 @@
 import { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, InteractionContextType, PermissionFlagsBits, ButtonStyle, MessageFlags, ButtonInteraction, ComponentType } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
+import { cLog } from "../../utils/cLog.js";
 
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
@@ -54,9 +55,9 @@ const command: SlashCommand = {
 
       await confirmation.update({ embeds: [embed], content: null, components: [] });
     }
-    catch (error) {
-      await interaction.reply({ content: "『 Acaba de ocurrir un error al ejecutar el comando 』", flags: MessageFlags.Ephemeral });
-      console.error(error);
+    catch (e) {
+      await interaction.followUp({ content: "Acaba de ocurrir un error al intentar ejecutar este comando.", flags: MessageFlags.Ephemeral });
+      cLog("ERROR", "Error en el comando purge", e);
     }
   }
 };

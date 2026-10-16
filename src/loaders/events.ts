@@ -3,6 +3,7 @@ import path from "path";
 import { pathToFileURL, fileURLToPath } from "url";
 import { LeafyClient } from "../types/Client.js";
 import { Event } from "../types/Events.js";
+import { cLog } from "../utils/cLog.js";
 
 const logTable: { Evento: string, Estado: string }[] = [];
 
@@ -22,15 +23,15 @@ export default async (client: LeafyClient) => {
 
       if (eventImport.once) {
         client.once(eventImport.name, (...args) => {
-          eventImport.execute(client, ...args)?.catch((err) => {
-            console.error(`Error en el evento once (${eventImport.name}): `, err);
+          eventImport.execute(client, ...args)?.catch((e) => {
+            cLog("ERROR", `Error al cargar el evento: (${eventImport.name}) en 'once'`, e);
           });
         });
       }
       else {
         client.on(eventImport.name, (...args) => {
-          eventImport.execute(client, ...args)?.catch((err) => {
-            console.error(`Error en el evento on (${eventImport.name}): `, err);
+          eventImport.execute(client, ...args)?.catch((e) => {
+            cLog("ERROR", `Error al cargar el evento: (${eventImport.name}) en 'on'`, e);
           });
         });
       }
@@ -39,8 +40,7 @@ export default async (client: LeafyClient) => {
     }
     console.table(logTable);
   }
-  catch (error) {
-    console.log("\x1b[0;31mbot/loaders/events.js>\x1b[0m Error!");
-    console.error(error);
+  catch (e) {
+    cLog("ERROR", "Error en el loader events!", e);
   }
 };

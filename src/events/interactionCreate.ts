@@ -2,6 +2,7 @@ import { PermissionResolvable, GuildMember } from "discord.js";
 import { getUserOrCreate } from "../db/user.js";
 import { getServerOrCreate } from "../db/server.js";
 import { Event } from "../types/Events.js";
+import { cLog } from "../utils/cLog.js";
 
 const event: Event<"interactionCreate"> = {
   name: "interactionCreate",
@@ -45,8 +46,8 @@ const event: Event<"interactionCreate"> = {
 
       await slashCommand.run(client, interaction, userDB, serverDB);
     }
-    catch (error) {
-      console.error("Error al ejecutar el comando:", error);
+    catch (e) {
+      cLog("ERROR", "Error al intentar ejecutar un comando!", e);
 
       const errorMsg = { content: "⚠️ | Ha ocurrido un error inesperado al ejecutar el comando." };
 

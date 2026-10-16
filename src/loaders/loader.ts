@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { pathToFileURL, fileURLToPath } from "url";
 import { LeafyClient } from "../types/Client.js";
+import { cLog } from "../utils/cLog.js";
 
 type LoaderModule = { default: (client: LeafyClient) => Promise<void> };
 
@@ -14,10 +15,10 @@ export default async (client: LeafyClient) => {
 
   for (const loader of loadersFiltered) {
     const loaderPath = path.join(folderPath, loader);
-    console.log(`\x1b[0;92mbot/loaders/loader.js>\x1b[0m Ejecutando loader: ${loader}`);
+    cLog("INFO", `Ejecutando: ${loader}`);
 
     const imported = await import(pathToFileURL(loaderPath).href) as LoaderModule;
     await imported.default(client);
   }
-  console.log("\x1b[0;92mbot/loaders/loader.js>\x1b[0m Listo!");
+  cLog("INFO", "Listo!");
 };

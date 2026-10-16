@@ -3,10 +3,11 @@ import { LeafyClient } from "./types/Client.js";
 import emojis from "./utils/emojis.js";
 import loader from "./loaders/loader.js";
 import config from "./config.json" with { type: "json" };
+import { cLog } from "./utils/cLog.js";
 
 async function initializeBot() {
-  console.log("\x1b[0;92mbot/index.js>\x1b[0m Iniciando...");
-  // Creamos el cliente Discord
+  cLog("INFO", "Inicializando el bot...");
+
   const client = new LeafyClient(
     {
       intents: [
@@ -27,12 +28,10 @@ async function initializeBot() {
     }
   );
 
-  console.log("\x1b[0;92mbot/index.js>\x1b[0m Ejecutando: loader.js");
   await loader(client);
 
-  client.login(config.TOKEN).catch((err) => {
-    console.log("\x1b[0;31mbot/index.js>\x1b[0m Error!");
-    console.error(err);
+  client.login(config.TOKEN).catch((e) => {
+    cLog("ERROR", "Error critico al intentar hacer login!", e);
   });
 }
 

@@ -4,6 +4,7 @@ import { LeafyClient } from "../types/Client.js";
 import { fileURLToPath, pathToFileURL } from "url";
 import { Collection } from "discord.js";
 import { SlashCommand } from "../types/Commands.js";
+import { cLog } from "../utils/cLog.js";
 
 const logTable: { Comando: string, Estado: string }[] = [];
 
@@ -35,8 +36,7 @@ export default async (client: LeafyClient) => {
 
     console.table(logTable);
   }
-  catch (error) {
-    console.log("\x1b[0;31mbot/loaders/slash.js>\x1b[0m Error!");
-    console.error(error);
+  catch (e) {
+    cLog("ERROR", "Error en el loader slash!", e);
   }
 };

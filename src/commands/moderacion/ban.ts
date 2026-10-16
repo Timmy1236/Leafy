@@ -1,5 +1,6 @@
-import { SlashCommandBuilder, EmbedBuilder, InteractionContextType, PermissionFlagsBits } from "discord.js";
+import { SlashCommandBuilder, EmbedBuilder, InteractionContextType, PermissionFlagsBits, MessageFlags } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
+import { cLog } from "../../utils/cLog.js";
 
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
@@ -70,9 +71,9 @@ const command: SlashCommand = {
 
       await interaction.editReply({ embeds: [banEmbed] });
     }
-    catch (error) {
-      await interaction.editReply({ content: `${client.botEmojis.warning} 『 Acaba de ocurrir un error al intentar banear a este usuario 』` });
-      console.error(error);
+    catch (e) {
+      await interaction.followUp({ content: "Acaba de ocurrir un error al intentar ejecutar este comando.", flags: MessageFlags.Ephemeral });
+      cLog("ERROR", "Error en el comando ban", e);
     }
   }
 };
