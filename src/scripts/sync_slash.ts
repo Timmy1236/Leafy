@@ -71,9 +71,10 @@ async function leerComandos() {
 async function updateGuild() {
   try {
     const rest = new REST({ version: "10" }).setToken(TOKEN);
-    const commands = leerComandos();
+    const commands = await leerComandos();
 
     console.log(`Actualizando los slash commands al servidor: ${GUILD_ID} ...`);
+    console.log(commands);
     await rest.put(
       Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
       { body: commands }
@@ -90,9 +91,10 @@ async function updateGuild() {
 async function updateGlobal() {
   try {
     const rest = new REST({ version: "10" }).setToken(TOKEN);
-    const commands = leerComandos();
+    const commands = await leerComandos();
 
     console.log("\nActualizando comandos globales...");
+    console.log(commands);
     await rest.put(
       Routes.applicationCommands(CLIENT_ID),
       { body: commands }
