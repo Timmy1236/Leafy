@@ -1,6 +1,7 @@
 import { ActivityType } from "discord.js";
 import { Event } from "../types/Events.js";
 import { cLog } from "../utils/cLog.js";
+import startTerminal from "../utils/terminal.js";
 
 const event: Event<"clientReady"> = {
   name: "clientReady",
@@ -27,6 +28,8 @@ const event: Event<"clientReady"> = {
 
       client.user!.setPresence({ activities: [{ name: newActivity, type: ActivityType.Custom }], status: "online" });
     }, 60_000);
+
+    startTerminal(client);
   }
 };
 
