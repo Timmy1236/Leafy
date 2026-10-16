@@ -22,12 +22,13 @@ const event: Event<"clientReady"> = {
       "🌿"
     ];
 
-    setInterval(() => {
+    const presenceInterval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * activities.length);
       const newActivity = activities[randomIndex];
 
       client.user!.setPresence({ activities: [{ name: newActivity, type: ActivityType.Custom }], status: "online" });
     }, 60_000);
+    presenceInterval.unref();
 
     startTerminal(client);
   }
