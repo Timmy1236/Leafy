@@ -43,7 +43,7 @@
     "@types/color-thief-node": "^1.0.4",
     "@types/node": "^26.6.3",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "eslint": "^10.11.0",
+    "eslint": "^10.13.0",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "typescript-eslint": "^8.71.0"
   }
