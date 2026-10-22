@@ -7,15 +7,18 @@ type image = "webp" | "png" | "jpg" | "jpeg" | "gif";
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("avatar")
-    .setDescription("Obtén el avatar de un usuario que menciones"),
+    .setDescription("Obtén tú avatar o el de otro usuario.")
+  .addUserOption(option =>
+      option
+        .setName("usuario")
+        .setDescription("Usuario del que quieres obtener su avatar.")
+        .setRequired(false)
+    ) as SlashCommandBuilder,
   categoria: "🌐 Discord",
   run: async (client, interaction): Promise<void> => {
-    const user = interaction.options.getUser("usuario");
-    if (!user) return;
-
+    const user = interaction.options.getUser("usuario") || interaction.user;
     const avatar = user.displayAvatarURL({ size: 1024 });
 
-    // Función para obtener el avatar con una extensión específica
     function _getAvatarWithExtension(extension: image) {
       return user!.displayAvatarURL({ extension: extension, size: 512 });
     }
