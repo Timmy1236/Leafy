@@ -16,35 +16,36 @@ mostrarMenu();
 
 function mostrarMenu() {
   // Esto me hace recordar a los menús que hacia en clases de programación xD
-  console.log("--------------- [ Menú ] ---------------");
-  console.log("1) Actualizar slash al servidor de test");
-  console.log("2) Actualizar slash a todos los servidores");
-  console.log("3) Información");
-  console.log("4) Cancelar");
-  console.log("----------------------------------------");
+  console.log("------------------ [ Menú ] ------------------");
+  console.log("1) Actualizar comandos en el servidor de test.");
+  console.log("2) Eliminar comandos en el servidor de test.");
+  console.log("3) Actualizar comandos en todos los servidores.");
+  console.log("4) Eliminar comandos en todos los servidores.");
+  console.log("5) Cancelar.");
+  console.log("----------------------------------------------");
 
   rl.question("Opción: ", async (op: string) => {
     switch (op) {
       case "1":
-        await updateGuild();
+        await updateTestGuild();
         break;
       case "2":
-        await updateGlobal();
+        await clearTestGuild();
         break;
       case "3":
-        console.log("\nInfo:");
-        console.log("- Los slash commands son unos comandos especiales que se integran en la interfaz de Discord, para que esto funcione, tendremos que enviarles una lista de comandos a la API de discord, para esto, tendremos 2 opciones...");
-        console.log("- Opción 1: Enviamos la lista a Discord para que solo lo aplique a un servidor, esto es perfecto para testear un nuevo comando sin modificar los demás servidores.");
-        console.log("- Opción 2: Enviamos la lista a Discord para que lo aplique a TODOS los servidores que se encuentre el bot, esto puede tardar muchísimo, ya que se tiene que actualizar para cada servidor.");
-        mostrarMenu();
+        await updateGlobal();
         break;
+      case "4":
+        await clearGlobal();
+        break;
+      case "5":
       default:
         console.log("Cancelado.");
+        break;
     }
     rl.close();
   });
 }
-
 
 async function leerComandos() {
   let commandsArray: any[] = [];
@@ -68,13 +69,12 @@ async function leerComandos() {
   return commandsArray;
 }
 
-async function updateGuild() {
+async function updateTestGuild() {
   try {
     const rest = new REST({ version: "10" }).setToken(TOKEN);
     const commands = await leerComandos();
 
-    console.log(`Actualizando los slash commands al servidor: ${GUILD_ID} ...`);
-    console.log(commands);
+    console.log(`Actualizando comandos en el servidor de test: ${GUILD_ID} ...`);
     await rest.put(
       Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
       { body: commands }
@@ -87,22 +87,53 @@ async function updateGuild() {
   }
 }
 
-
 async function updateGlobal() {
   try {
     const rest = new REST({ version: "10" }).setToken(TOKEN);
     const commands = await leerComandos();
 
-    console.log("\nActualizando comandos globales...");
-    console.log(commands);
+    console.log("\nActualizando comandos en todos los servidores...");
     await rest.put(
       Routes.applicationCommands(CLIENT_ID),
       { body: commands }
     );
 
     console.log("Comandos globales actualizados.");
-    console.log("Nota: Puede tardar un tiempo en ver los comandos actualizados en los servidores.");
+    console.log("Nota: Puede tardar un tiempo en ver los comandos actualizados en los servidores. Si no sigues viendolos, reiniciar Discord en tu pc.");
   } catch (err) {
     console.error("Error:", err);
+  }
+}
+
+async function clearTestGuild() {
+  try {
+    const rest = new REST({ version: "10" }).setToken(TOKEN);
+    console.log(`Limpiando los slash commands del servidor: ${GUILD_ID} ...`);
+    
+    await rest.put(
+      Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
+      { body: [] }
+    );
+
+    console.log("Comandos del servidor de test eliminados.");
+  } catch (err) {
+    console.error("Error al limpiar el servidor:", err);
+  }
+}
+
+async function clearGlobal() {
+  try {
+    const rest = new REST({ version: "10" }).setToken(TOKEN);
+    console.log("Limpiando los slash commands globales...");
+    
+    await rest.put(
+      Routes.applicationCommands(CLIENT_ID),
+      { body: [] }
+    );
+
+    console.log("Comandos globales eliminados.");
+    console.log("Nota: Puede tardar un tiempo en ver los comandos actualizados en los servidores. Si no sigues viendolos, reiniciar Discord en tu pc.");
+  } catch (err) {
+    console.error("Error al limpiar globalmente:", err);
   }
 }
