@@ -6,6 +6,7 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("welcome")
     .setDescription("Establece o gestiona el canal de bienvenida del servidor.")
+    .addSubcommand(subcommand => subcommand.setName("help").setDescription("Muestra información importante que hace este comando."))
     .addSubcommand(subcommand => subcommand.setName("status").setDescription("Ver el canal de bienvenida actual."))
     .addSubcommand(subcommand => subcommand.setName("clear").setDescription("Eliminar el canal de bienvenida configurado."))
     .addSubcommand(subcommand => subcommand.setName("set").setDescription("Establecer un canal de bienvenida.").addChannelOption(option => option.setName("canal").setDescription("Canal donde se enviarán las bienvenidas.").setRequired(true))
@@ -28,7 +29,8 @@ const command: SlashCommand = {
         + "`/welcome clear` → Eliminar canal configurado."
       );
 
-    if (!subcommand) {
+    // HELP
+    if (subcommand === "help") {
       await interaction.reply({ embeds: [embed], ephemeral: true });
       return;
     }
