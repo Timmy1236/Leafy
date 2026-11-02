@@ -9,11 +9,10 @@ const event: Event<"interactionCreate"> = {
   once: false,
   execute: async (client, interaction) => {
     if (!interaction.isChatInputCommand()) return;
+    if (!interaction.inCachedGuild()) return;
 
     const slashCommand = client.slashCommands.get(interaction.commandName);
     if (!slashCommand) return;
-
-    if (!interaction.guild || !interaction.member) return;
 
     try {
       const userDB = getUserOrCreate(interaction.user.id);
@@ -26,7 +25,7 @@ const event: Event<"interactionCreate"> = {
         const required = new PermissionsBitField(BigInt(rawPermissions));
         const permisosString = required.toArray().map(p => `\`${p}\``).join(", ");
 
-        if (!(interaction.member as GuildMember).permissions.has(required)) {
+        if (!interaction.member.permissions.has(required)) {
           await interaction.reply({ content: `No tienes los permisos: ${permisosString}`, ephemeral: true });
           return;
         }
