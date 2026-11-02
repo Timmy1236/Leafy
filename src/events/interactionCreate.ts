@@ -1,4 +1,4 @@
-import { PermissionResolvable, GuildMember } from "discord.js";
+import { GuildMember, PermissionsBitField } from "discord.js";
 import { getUserOrCreate } from "../db/user.js";
 import { getServerOrCreate } from "../db/server.js";
 import { Event } from "../types/Events.js";
@@ -21,26 +21,19 @@ const event: Event<"interactionCreate"> = {
 
       const rawPermissions = slashCommand.data.default_member_permissions;
 
+      // NOTE: Teóricamente, no es necesario hacer este checkeo porque "supuestamente", Discord se encarga de verificar que el usuario tenga los permisos.
       if (rawPermissions) {
-        const permisosArray: PermissionResolvable[] = Array.isArray(rawPermissions)
-          ? (rawPermissions as PermissionResolvable[])
-          : [rawPermissions as PermissionResolvable];
+        const required = new PermissionsBitField(BigInt(rawPermissions));
+        const permisosString = required.toArray().map(p => `\`${p}\``).join(", ");
 
-        const permisosString = permisosArray.map(p => `\`${String(p)}\``).join(", ");
-
-        const member = interaction.member as GuildMember;
-        if (!member.permissions.has(permisosArray)) {
-          await interaction.reply({
-            content: `No tienes los permisos: ${permisosString}`,
-            ephemeral: true
-          });
+        if (!(interaction.member as GuildMember).permissions.has(required)) {
+          await interaction.reply({ content: `No tienes los permisos: ${permisosString}`, ephemeral: true });
+          return;
         }
 
-        if (!interaction.guild.members.me?.permissions.has(permisosArray)) {
-          await interaction.reply({
-            content: `No tengo los permisos necesarios: ${permisosString}`,
-            ephemeral: true
-          });
+        if (!interaction.guild.members.me?.permissions.has(required)) {
+          await interaction.reply({ content: `No tengo los permisos necesarios: ${permisosString}`, ephemeral: true });
+          return;
         }
       }
 
@@ -49,13 +42,11 @@ const event: Event<"interactionCreate"> = {
     catch (e) {
       cLog("ERROR", "Error al intentar ejecutar un comando!", e);
 
-      const errorMsg = { content: "⚠️ | Ha ocurrido un error inesperado al ejecutar el comando." };
-
       if (!interaction.replied && !interaction.deferred) {
-        await interaction.reply({ ...errorMsg, ephemeral: true });
+        await interaction.reply({ content: "⚠️ | Ha ocurrido un error inesperado al ejecutar el comando.", ephemeral: true });
       }
       else {
-        await interaction.editReply(errorMsg);
+        await interaction.editReply("⚠️ | Ha ocurrido un error inesperado al ejecutar el comando.");
       }
     }
   }
