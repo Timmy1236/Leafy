@@ -41,22 +41,14 @@ const command: SlashCommand = {
       return;
     }
 
-    // Si el usuario que desea banear tiene un rol superior al del bot.
+    // Si se intenta banear a un usuario con un rol superior o igual al bot (O incluso al mismo bot)
     if (targetMember.roles.highest.position >= interaction.guild.members.me!.roles.highest.position) {
       errorEmbed.setDescription("No puedo banear a ese usuario porque tiene el mismo o un rol superior al mio.");
       await interaction.editReply({ embeds: [errorEmbed] });
       return;
     }
 
-    // Si el usuario que desea banear sea el propio bot.
-    if (user.id === client.user!.id) {
-      errorEmbed.setDescription("No me puedo banearme.");
-      await interaction.editReply({ embeds: [errorEmbed] });
-      return;
-    }
-
     try {
-      // Baneamos al usuario
       await targetMember.ban({ reason });
 
       const banEmbed = new EmbedBuilder()

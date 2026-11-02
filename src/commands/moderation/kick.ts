@@ -41,16 +41,9 @@ const command: SlashCommand = {
       return;
     }
 
-    // Si el usuario que desea kickear tiene un rol superior al del bot.
+    // Si se intenta kickear a un usuario con un rol superior o igual al bot (O incluso al mismo bot)
     if (targetMember.roles.highest.position >= interaction.guild.members.me!.roles.highest.position) {
       errorEmbed.setDescription("No puedo kickear a ese usuario porque tiene el mismo o un rol superior al mio.");
-      await interaction.editReply({ embeds: [errorEmbed] });
-      return;
-    }
-
-    // Si el usuario que desea kickear sea el propio bot.
-    if (user.id === client.user!.id) {
-      errorEmbed.setDescription("No me puedo kickear a mi mismo.");
       await interaction.editReply({ embeds: [errorEmbed] });
       return;
     }
