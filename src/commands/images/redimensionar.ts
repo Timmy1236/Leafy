@@ -9,7 +9,7 @@ const command: SlashCommand = {
     .addAttachmentOption(option => option.setName("imagen").setDescription("Sube una imagen (.png, .jpg, .webp)").setRequired(true))
     .addIntegerOption(option => option.setName("ancho").setDescription("Nuevo ancho").setRequired(false))
     .addIntegerOption(option => option.setName("altura").setDescription("Nueva altura").setRequired(false)) as SlashCommandBuilder,
-  categoria: "Imagenes",
+  categoria: "Imágenes",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();
 

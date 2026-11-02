@@ -8,7 +8,7 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("info")
     .setDescription("Información sobre el bot."),
-  categoria: "⚙️ Configuración",
+  categoria: "Bot",
   run: async (client, interaction): Promise<void> => {
     try {
       const uptime = client.uptime;

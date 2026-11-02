@@ -14,7 +14,7 @@ const command: SlashCommand = {
         .setDescription("Usuario del que quieres obtener su avatar.")
         .setRequired(false)
     ) as SlashCommandBuilder,
-  categoria: "🌐 Discord",
+  categoria: "Discord",
   run: async (client, interaction): Promise<void> => {
     const user = interaction.options.getUser("usuario") || interaction.user;
     const avatar = user.displayAvatarURL({ size: 1024 });

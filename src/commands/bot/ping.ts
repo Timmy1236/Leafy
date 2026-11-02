@@ -5,7 +5,7 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("ping")
     .setDescription("Devuelve la latencia de Leafy"),
-  categoria: "🤖 Bot",
+  categoria: "Bot",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();
 

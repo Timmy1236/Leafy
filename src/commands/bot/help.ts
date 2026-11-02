@@ -5,7 +5,7 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("help")
     .setDescription("Obtén los comandos de Leafy."),
-  categoria: "🤖 Bot",
+  categoria: "Bot",
   run: async (client, interaction): Promise<void> => {
     const commandsFetched = await client.application!.commands.fetch();
     const commands = client.slashCommands;

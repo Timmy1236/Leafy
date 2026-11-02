@@ -13,7 +13,7 @@ const command: SlashCommand = {
         .setDescription("Usuario del que quieres obtener información.")
         .setRequired(false)
     ) as SlashCommandBuilder,
-  categoria: "🌐 Discord",
+  categoria: "Discord",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();
 

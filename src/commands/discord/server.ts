@@ -7,7 +7,7 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("server")
     .setDescription("Muestra información detallada del servidor."),
-  categoria: "🌐 Discord",
+  categoria: "Discord",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();
     const server = interaction.guild;

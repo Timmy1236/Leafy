@@ -10,7 +10,7 @@ const command: SlashCommand = {
     .setContexts(InteractionContextType.Guild)
     .addUserOption(option => option.setName("usuario").setDescription("El usuario que deseas kickear.").setRequired(true))
     .addStringOption(option => option.setName("motivo").setDescription("¿Cual es la razón del kick?")) as SlashCommandBuilder,
-  categoria: "🛡️ Moderación",
+  categoria: "Moderación",
   permisos: ["KICK_MEMBERS"],
   run: async (client, interaction): Promise<void> => {
     const { options, guild } = interaction;

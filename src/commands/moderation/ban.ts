@@ -10,7 +10,7 @@ const command: SlashCommand = {
     .setContexts(InteractionContextType.Guild)
     .addUserOption(option => option.setName("usuario").setDescription("El usuario que deseas banear.").setRequired(true))
     .addStringOption(option => option.setName("motivo").setDescription("¿Cual es la razón del ban?")) as SlashCommandBuilder,
-  categoria: "🛡️ Moderación",
+  categoria: "Moderación",
   permisos: ["BAN_MEMBERS"],
   run: async (client, interaction): Promise<void> => {
     const { options, guild } = interaction;

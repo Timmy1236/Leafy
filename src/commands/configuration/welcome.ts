@@ -10,7 +10,7 @@ const command: SlashCommand = {
     .addSubcommand(subcommand => subcommand.setName("clear").setDescription("Eliminar el canal de bienvenida configurado."))
     .addSubcommand(subcommand => subcommand.setName("set").setDescription("Establecer un canal de bienvenida.").addChannelOption(option => option.setName("canal").setDescription("Canal donde se enviarán las bienvenidas.").setRequired(true))
     ) as SlashCommandBuilder,
-  categoria: "⚙️ Configuración",
+  categoria: "Configuración",
   run: async (client, interaction, _userDB, _serverDB): Promise<void> => {
     const subcommand = interaction.options.getSubcommand();
     const guild = interaction.guild;

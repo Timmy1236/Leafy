@@ -9,7 +9,7 @@ const command: SlashCommand = {
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
     .setContexts(InteractionContextType.Guild)
     .addStringOption(option => option.setName("usuarioid").setDescription("El usuario que deseas desbanear.").setRequired(true)) as SlashCommandBuilder,
-  categoria: "🛡️ Moderación",
+  categoria: "Moderación",
   permisos: ["BAN_MEMBERS"],
   run: async (client, interaction): Promise<void> => {
     const { options } = interaction;
