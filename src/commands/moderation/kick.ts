@@ -16,6 +16,10 @@ const command: SlashCommand = {
     const user = options.getUser("usuario", true);
     const reason = options.getString("motivo") || "Ningún motivo dado.";
 
+    const errorEmbed = new EmbedBuilder()
+      .setTitle("❌ | Error")
+      .setColor(client.color);
+
     if (!interaction.inCachedGuild()) {
       await interaction.reply({ content: "Este comando solo funciona en servidores.", ephemeral: true });
       return;
@@ -23,16 +27,13 @@ const command: SlashCommand = {
 
     const targetMember = await guild!.members.fetch(user.id).catch(() => null);
 
-    if (!targetMember) { // NOTE: ALERTBOX
+     if (!targetMember) {
+      errorEmbed.setDescription("Hubo un error al intentar obtener el usuario que me marcaste.");
+      await interaction.editReply({ embeds: [errorEmbed] });
       return;
     }
 
     await interaction.deferReply();
-
-    // Creamos un embed por si ocurre un error.
-    const errorEmbed = new EmbedBuilder()
-      .setTitle("❌ | Error")
-      .setColor(client.color);
 
     // Si el usuario que desea kickear tiene un rol superior al del usuario que ejecuto el comando.
     if (targetMember.roles.highest.position >= interaction.member.roles.highest.position) {
