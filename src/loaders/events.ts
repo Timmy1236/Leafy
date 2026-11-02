@@ -16,11 +16,13 @@ export default async (client: LeafyClient) => {
     const eventsPath = path.join(__dirname, "..", "events");
     const events = fs.readdirSync(eventsPath).filter((file: string) => file.endsWith(".js"));
 
+    cLog("DEBUG", "Cargando eventos...");
     for (const event of events) {
       const eventPath = path.join(eventsPath, event);
       const eventLoaded = await import(pathToFileURL(eventPath).href) as EventModule;
       const eventImport = eventLoaded.default;
 
+      // Si el evento tiene marcado 'once' (Solo se dispara una vez)
       if (eventImport.once) {
         client.once(eventImport.name, (...args) => {
           eventImport.execute(client, ...args)?.catch((e) => {
@@ -28,7 +30,7 @@ export default async (client: LeafyClient) => {
           });
         });
       }
-      else {
+      else { // O el evento se dispara multiples veces.
         client.on(eventImport.name, (...args) => {
           eventImport.execute(client, ...args)?.catch((e) => {
             cLog("ERROR", `Error al cargar el evento: (${eventImport.name}) en 'on'`, e);
@@ -38,6 +40,8 @@ export default async (client: LeafyClient) => {
 
       logTable.push({ Evento: eventImport.name, Estado: "CARGADO" });
     }
+
+    cLog("DEBUG", "Cargando terminada!");
     console.table(logTable);
   }
   catch (e) {

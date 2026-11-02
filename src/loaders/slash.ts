@@ -17,9 +17,9 @@ export default async (client: LeafyClient) => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     const folderPath = path.join(__dirname, "..", "commands");
-
     const folders = fs.readdirSync(folderPath);
 
+    cLog("DEBUG", "Cargando comandos...");
     for (const folder of folders) {
       const categorysPath = path.join(folderPath, folder);
       const slashs = fs.readdirSync(categorysPath).filter(file => file.endsWith(".js"));
@@ -34,6 +34,7 @@ export default async (client: LeafyClient) => {
       }
     }
 
+    cLog("DEBUG", "Cargando terminada!");
     console.table(logTable);
   }
   catch (e) {
