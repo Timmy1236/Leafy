@@ -10,7 +10,6 @@ const command: SlashCommand = {
     .setContexts(InteractionContextType.Guild)
     .addIntegerOption(option => option.setName("cantidad").setDescription("La cantidad de mensajes que quieras borrar").setMinValue(1).setMaxValue(100).setRequired(true)) as SlashCommandBuilder,
   categoria: "Moderación",
-  permisos: ["MANAGE_MESSAGES"],
   run: async (client, interaction): Promise<void> => {
     try {
       const { options } = interaction;

@@ -5,7 +5,6 @@ import { UserAttributes, ServerAttributes } from "../types/Database.js";
 export interface SlashCommand {
   data: SlashCommandBuilder
   categoria: string
-  permisos?: string[]
   run: (
     client: LeafyClient,
     interaction: ChatInputCommandInteraction,
