@@ -7,18 +7,12 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("user")
     .setDescription("Obtén información de un usuario o del tuyo.")
-    .addUserOption(option =>
-      option
-        .setName("usuario")
-        .setDescription("Usuario del que quieres obtener información.")
-        .setRequired(false)
-    ) as SlashCommandBuilder,
+    .addUserOption(option => option.setName("usuario").setDescription("Usuario del que quieres obtener información.").setRequired(false)) as SlashCommandBuilder,
   categoria: "Discord",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();
 
     const user = interaction.options.getUser("usuario") || interaction.user;
-
     const guild = interaction.guild;
 
     const status = {
@@ -31,31 +25,24 @@ const command: SlashCommand = {
 
     if (!user || !guild) return;
 
-    // Intentamos obtener el miembro del servidor
+    const everyoneRoleId = guild!.roles.everyone.id;
     const member = guild.members.cache.get(user.id);
 
     // Si el usuario está en el servidor
     if (member) {
-      // Color dominante
-      const { dominantColor } = await extractColorFromImage(
-        member.user.displayAvatarURL({ extension: "png", size: 512 })
-      );
+      const { dominantColor } = await extractColorFromImage(member.user.displayAvatarURL({ extension: "png", size: 512 }));
 
-      // Roles
       const roles = member.roles.cache
+        .filter(r => r.id != everyoneRoleId)
         .sort((a, b) => b.position - a.position)
         .map(r => r.toString());
 
       const rolesList
         = roles.length > 10
-          ? `${roles.slice(0, 10).join(" | ")} y **${roles.length - 11}** roles más...`
+          ? `${roles.slice(0, 10).join(" | ")} y **${roles.length - 10}** roles más...`
           : roles.join(" | ");
 
-      // Status
-      const statusMember
-        = member.presence?.status ? member.presence.status : "offline";
-
-      // Banner (force fetch)
+      const statusMember = member.presence?.status ? member.presence.status : "offline";
       const fetchedUser = await client.users.fetch(member.id, { force: true });
       const banner = fetchedUser.bannerURL({ size: 1024 });
 
@@ -88,15 +75,10 @@ const command: SlashCommand = {
 
       await interaction.editReply({ embeds: [embed] });
     }
-
     // Usuario fuera del servidor
     else {
       const fetchedUser = await client.users.fetch(user.id, { force: true });
-
-      const { dominantColor } = await extractColorFromImage(
-        fetchedUser.displayAvatarURL({ extension: "png", size: 512 })
-      );
-
+      const { dominantColor } = await extractColorFromImage(fetchedUser.displayAvatarURL({ extension: "png", size: 512 }));
       const banner = fetchedUser.bannerURL({ size: 1024 });
 
       const embed = new EmbedBuilder()

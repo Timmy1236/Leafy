@@ -34,14 +34,12 @@
   "dependencies": {
     "@napi-rs/canvas": "^1.0.13",
     "better-sqlite3": "^13.0.3",
-    "color-thief-node": "github:TheMonDon/color-thief-node",
     "discord.js": "^14.27.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/better-sqlite3": "^9.6.0",
-    "@types/color-thief-node": "^1.0.4",
     "@types/node": "^26.6.3",
     "@typescript/native": "npm:typescript@^7.0.2",
     "eslint": "^10.11.0",

@@ -4,25 +4,20 @@ import { SlashCommandBuilder, EmbedBuilder, ChannelType } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
 
 const command: SlashCommand = {
-  data: new SlashCommandBuilder()
-    .setName("server")
-    .setDescription("Muestra información detallada del servidor."),
+  data: new SlashCommandBuilder().setName("server").setDescription("Muestra información detallada del servidor."),
   categoria: "Discord",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();
     const server = interaction.guild;
     if (!server) return;
 
-    // Miembros
     const memberCount = server.members.cache.filter(m => !m.user.bot).size;
     const totalMembers = server.members.cache.size;
     const botCount = totalMembers - memberCount;
+    
     const getMemberCountByStatus = (status: string) => server.members.cache.filter(m => m.presence?.status === status).size;
-
-    // Canales
     const getChannelCountByType = (type: ChannelType) => server.channels.cache.filter(c => c.type === type).size;
 
-    // Emojis
     const emojis: string[] = [];
     const emojisAnimated: string[] = [];
     server.emojis.cache.filter(e => !e.animated).forEach(e => emojis.push(`<:${e.name}:${e.id}>`));
@@ -38,10 +33,8 @@ const command: SlashCommand = {
         ? `${emojisAnimated.slice(0, 10).join(" | ")} y **${emojisAnimated.length - 10}** más...`
         : emojisAnimated.join(" | ");
 
-    // Owner
     const Owner = await server.fetchOwner();
 
-    // Roles
     const roles = server.roles.cache
       .filter(r => r.id !== server.id && !r.managed)
       .sort((a, b) => b.position - a.position)
@@ -49,19 +42,17 @@ const command: SlashCommand = {
 
     const roleList
       = roles.length > 7
-        ? `${roles.slice(0, 7).join(" | ")} y **${roles.length - 7 + 1}** más...`
+        ? `${roles.slice(0, 7).join(" | ")} y **${roles.length - 7}** más...`
         : roles.join(" | ");
 
-    // Color del icono
     const { dominantColor } = await extractColorFromImage(server.iconURL({ size: 1024, extension: "png" })!);
 
-    // Nivel de verificación del servidor
     const verificationLevels = {
       0: "Ninguno - *Todos pueden entrar.*",
       1: "Bajo - *Debe tener una dirección de correo electrónico verificada en su cuenta.*",
       2: "Medio - *Su cuenta debe de estar registrado en Discord por más de 5 minutos.*",
       3: "Alto - *Su cuenta debe ser mas antiguo de 5 minutos registrados y estar en el servidor por mas de 10 minutos.*",
-      4: "Muy *alto - Debes de tener un numero de teléfono verificado en su cuenta.*"
+      4: "Muy alto - *Debes de tener un numero de teléfono verificado en su cuenta.*"
     };
     const guildVerification = verificationLevels[server.verificationLevel] ?? "Desconocido";
 
