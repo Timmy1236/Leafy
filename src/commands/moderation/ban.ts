@@ -29,7 +29,7 @@ const command: SlashCommand = {
 
     if (!targetMember) {
       errorEmbed.setDescription("Hubo un error al intentar obtener el usuario que me marcaste.");
-      await interaction.editReply({ embeds: [errorEmbed] });
+      await interaction.reply({ embeds: [errorEmbed] });
       return;
     }
 
