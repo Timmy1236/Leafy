@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder, ChannelType, MessageFlags } from "discord.js";
+import { SlashCommandBuilder, EmbedBuilder, ChannelType, MessageFlags, InteractionContextType, PermissionFlagsBits } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
 import { saveServer } from "../../db/server.js";
 
@@ -6,6 +6,8 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("welcome")
     .setDescription("Establece o gestiona el canal de bienvenida del servidor.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+    .setContexts(InteractionContextType.Guild)
     .addSubcommand(subcommand => subcommand.setName("help").setDescription("Muestra información importante que hace este comando."))
     .addSubcommand(subcommand => subcommand.setName("status").setDescription("Ver el canal de bienvenida actual."))
     .addSubcommand(subcommand => subcommand.setName("clear").setDescription("Eliminar el canal de bienvenida configurado."))
