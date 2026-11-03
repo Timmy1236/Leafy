@@ -14,11 +14,6 @@ const command: SlashCommand = {
     const { options } = interaction;
     const userID = options.getString("usuarioid");
 
-    if (!interaction.inCachedGuild()) {
-      await interaction.reply({ content: "Este comando solo funciona en servidores.", flags: MessageFlags.Ephemeral });
-      return;
-    }
-
     if (!userID) {
       await interaction.reply({ content: `${client.botEmojis.error} 『 Debes proporcionar la ID del usuario que deseas desbanear. 』`, flags: MessageFlags.Ephemeral });
       return;

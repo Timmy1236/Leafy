@@ -7,7 +7,7 @@ export interface SlashCommand {
   categoria: string
   run: (
     client: LeafyClient,
-    interaction: ChatInputCommandInteraction,
+    interaction: ChatInputCommandInteraction<"cached">,
     userDB?: UserAttributes,
     serverDB?: ServerAttributes
   ) => Promise<void>

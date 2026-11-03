@@ -20,11 +20,6 @@ const command: SlashCommand = {
       .setTitle("❌ Error")
       .setColor("#ff0000");
 
-    if (!interaction.inCachedGuild()) {
-      await interaction.reply({ content: "Este comando solo funciona en servidores.", flags: MessageFlags.Ephemeral });
-      return;
-    }
-
     const targetMember = await guild!.members.fetch(user.id).catch(() => null);
 
     if (!targetMember) {
