@@ -7,7 +7,7 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("user")
     .setDescription("Obtén información de un usuario o del tuyo.")
-    .addUserOption(option => option.setName("usuario").setDescription("Usuario del que quieres obtener información.").setRequired(false)) as SlashCommandBuilder,
+    .addUserOption(option => option.setName("usuario").setDescription("Usuario del que quieres obtener información.").setRequired(false)),
   categoria: "Discord",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();

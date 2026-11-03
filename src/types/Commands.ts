@@ -1,9 +1,9 @@
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import { ChatInputCommandInteraction, SlashCommandBuilder, SlashCommandOptionsOnlyBuilder, SlashCommandSubcommandsOnlyBuilder } from "discord.js";
 import { LeafyClient } from "./Client.js";
 import { UserAttributes, ServerAttributes } from "../types/Database.js";
 
 export interface SlashCommand {
-  data: SlashCommandBuilder
+  data: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | SlashCommandOptionsOnlyBuilder
   categoria: string
   run: (
     client: LeafyClient,

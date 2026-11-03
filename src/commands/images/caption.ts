@@ -13,7 +13,7 @@ const command: SlashCommand = {
     .setName("caption")
     .setDescription("Añade texto a una imagen")
     .addAttachmentOption(option => option.setName("imagen").setDescription("Sube una imagen (.png, .jpg, .webp)").setRequired(true))
-    .addStringOption(option => option.setName("text").setDescription("Texto del caption").setRequired(true)) as SlashCommandBuilder,
+    .addStringOption(option => option.setName("text").setDescription("Texto del caption").setRequired(true)),
   categoria: "Imágenes",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();

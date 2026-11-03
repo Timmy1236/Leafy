@@ -8,7 +8,7 @@ const command: SlashCommand = {
     .setDescription("Cambia el tamaño de una imagen")
     .addAttachmentOption(option => option.setName("imagen").setDescription("Sube una imagen (.png, .jpg, .webp)").setRequired(true))
     .addIntegerOption(option => option.setName("ancho").setDescription("Nuevo ancho").setRequired(false).setMinValue(1).setMaxValue(4096))
-    .addIntegerOption(option => option.setName("altura").setDescription("Nueva altura").setRequired(false).setMinValue(1).setMaxValue(4096)) as SlashCommandBuilder,
+    .addIntegerOption(option => option.setName("altura").setDescription("Nueva altura").setRequired(false).setMinValue(1).setMaxValue(4096)),
   categoria: "Imágenes",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();

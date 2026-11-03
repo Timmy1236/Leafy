@@ -8,7 +8,7 @@ const command: SlashCommand = {
     .setDescription("Elimina una cantidad de mensajes del canal actual")
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
     .setContexts(InteractionContextType.Guild)
-    .addIntegerOption(option => option.setName("cantidad").setDescription("La cantidad de mensajes que quieras borrar").setMinValue(1).setMaxValue(100).setRequired(true)) as SlashCommandBuilder,
+    .addIntegerOption(option => option.setName("cantidad").setDescription("La cantidad de mensajes que quieras borrar").setMinValue(1).setMaxValue(100).setRequired(true)),
   categoria: "Moderación",
   run: async (client, interaction): Promise<void> => {
     try {

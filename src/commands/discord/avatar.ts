@@ -8,7 +8,7 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("avatar")
     .setDescription("Obtén tú avatar o el de otro usuario.")
-    .addUserOption(option => option.setName("usuario").setDescription("Usuario del que quieres obtener su avatar.").setRequired(false)) as SlashCommandBuilder,
+    .addUserOption(option => option.setName("usuario").setDescription("Usuario del que quieres obtener su avatar.").setRequired(false)),
   categoria: "Discord",
   run: async (client, interaction): Promise<void> => {
     const user = interaction.options.getUser("usuario") || interaction.user;

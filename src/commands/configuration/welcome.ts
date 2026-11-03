@@ -11,8 +11,7 @@ const command: SlashCommand = {
     .addSubcommand(subcommand => subcommand.setName("help").setDescription("Muestra información importante que hace este comando."))
     .addSubcommand(subcommand => subcommand.setName("status").setDescription("Ver el canal de bienvenida actual."))
     .addSubcommand(subcommand => subcommand.setName("clear").setDescription("Eliminar el canal de bienvenida configurado."))
-    .addSubcommand(subcommand => subcommand.setName("set").setDescription("Establecer un canal de bienvenida.").addChannelOption(option => option.setName("canal").setDescription("Canal donde se enviarán las bienvenidas.").setRequired(true))
-    ) as SlashCommandBuilder,
+    .addSubcommand(subcommand => subcommand.setName("set").setDescription("Establecer un canal de bienvenida.").addChannelOption(option => option.setName("canal").setDescription("Canal donde se enviarán las bienvenidas.").setRequired(true))),
   categoria: "Configuración",
   run: async (client, interaction, _userDB, _serverDB): Promise<void> => {
     const subcommand = interaction.options.getSubcommand();
