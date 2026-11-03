@@ -7,8 +7,8 @@ const command: SlashCommand = {
     .setName("redimensionar")
     .setDescription("Cambia el tamaño de una imagen")
     .addAttachmentOption(option => option.setName("imagen").setDescription("Sube una imagen (.png, .jpg, .webp)").setRequired(true))
-    .addIntegerOption(option => option.setName("ancho").setDescription("Nuevo ancho").setRequired(false))
-    .addIntegerOption(option => option.setName("altura").setDescription("Nueva altura").setRequired(false)) as SlashCommandBuilder,
+    .addIntegerOption(option => option.setName("ancho").setDescription("Nuevo ancho").setRequired(false).setMinValue(1).setMaxValue(4096))
+    .addIntegerOption(option => option.setName("altura").setDescription("Nueva altura").setRequired(false).setMinValue(1).setMaxValue(4096)) as SlashCommandBuilder,
   categoria: "Imágenes",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();
@@ -21,6 +21,11 @@ const command: SlashCommand = {
       await interaction.editReply({ content: "❌ **Error:** El archivo adjunto debe ser una imagen válida (.png, .jpg, .jpeg, .webp)." });
       return;
     }
+
+    if ((attachment.width ?? 0) > 4096 || (attachment.height ?? 0) > 4096) {
+     await interaction.editReply({ content: "❌ La imagen es demasiado grande (máx. 4096 px)." });
+     return;
+   }
 
     try {
       const image = await loadImage(attachment.url);

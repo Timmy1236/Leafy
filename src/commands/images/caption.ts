@@ -1,8 +1,8 @@
 import { SlashCommandBuilder, AttachmentBuilder } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
 import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 import path from "path";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -12,8 +12,8 @@ const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("caption")
     .setDescription("Añade texto a una imagen")
-    .addAttachmentOption((option) => option.setName("imagen").setDescription("Sube una imagen (.png, .jpg, .webp)").setRequired(true))
-    .addStringOption((option) => option.setName("text").setDescription("Texto del caption").setRequired(true)) as SlashCommandBuilder,
+    .addAttachmentOption(option => option.setName("imagen").setDescription("Sube una imagen (.png, .jpg, .webp)").setRequired(true))
+    .addStringOption(option => option.setName("text").setDescription("Texto del caption").setRequired(true)) as SlashCommandBuilder,
   categoria: "Imágenes",
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();
@@ -26,6 +26,11 @@ const command: SlashCommand = {
       return;
     }
 
+    if ((attachment.width ?? 0) > 4096 || (attachment.height ?? 0) > 4096) {
+     await interaction.editReply({ content: "❌ La imagen es demasiado grande (máx. 4096 px)." });
+     return;
+   }
+
     try {
       const image = await loadImage(attachment.url);
 
@@ -35,7 +40,7 @@ const command: SlashCommand = {
 
       const canvas = createCanvas(width, height + captionHeight);
       const context = canvas.getContext("2d");
-      
+
       context.fillStyle = "#ffffff";
       context.fillRect(0, 0, width, captionHeight);
 
@@ -47,13 +52,13 @@ const command: SlashCommand = {
       let lines: string[] = [];
       let lineHeight = 0;
 
-      GlobalFonts.registerFromPath(path.join(__dirname, '../../../assets/fonts/impact.ttf'), 'impact');
+      GlobalFonts.registerFromPath(path.join(__dirname, "../../../assets/fonts/impact.ttf"), "impact");
 
       // Bucle para reducir la fuente si el texto es muy largo
       while (fontSize >= minFontSize) {
         context.font = `bold ${fontSize}px impact`;
         lineHeight = fontSize * 1.2;
-        
+
         lines = [];
         const words = rawText.split(" ");
         let currentLine = "";
@@ -65,7 +70,8 @@ const command: SlashCommand = {
           if (metrics.width > maxLineWidth && currentLine) {
             lines.push(currentLine);
             currentLine = word;
-          } else {
+          }
+          else {
             currentLine = testLine;
           }
         }
@@ -83,9 +89,9 @@ const command: SlashCommand = {
         fontSize -= 4;
       }
 
-      context.fillStyle = '#000000';
-      context.textAlign = 'center';
-      context.textBaseline = 'middle';
+      context.fillStyle = "#000000";
+      context.textAlign = "center";
+      context.textBaseline = "middle";
 
       const totalBlockHeight = lines.length * lineHeight;
       let startY = (captionHeight - totalBlockHeight) / 2 + (lineHeight / 2);
@@ -99,8 +105,8 @@ const command: SlashCommand = {
       const file = new AttachmentBuilder(buffer, { name: "caption.png" });
 
       await interaction.editReply({ files: [file] });
-
-    } catch (error) {
+    }
+    catch (error) {
       console.error("Error al procesar la imagen con Canvas:", error);
       await interaction.editReply({ content: "⚠️ Ocurrió un error inesperado al procesar tu imagen." });
     }
