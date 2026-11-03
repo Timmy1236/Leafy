@@ -15,7 +15,11 @@ const command: SlashCommand = {
       const { options } = interaction;
       const cantidad = options.getInteger("cantidad", true);
 
-      // Botón de confirmación
+      if (!interaction.channel) {
+        await interaction.reply({ content: "No tengo acceso a ese canal?", flags: MessageFlags.Ephemeral });
+        return;
+      }
+
       const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
         new ButtonBuilder()
           .setCustomId("purge_confirm")
@@ -23,34 +27,22 @@ const command: SlashCommand = {
           .setStyle(ButtonStyle.Success)
       );
 
-      // Mensaje de confirmación
-      await interaction.reply({
-        content: `¿Estás seguro de que quieres eliminar **${cantidad}** mensajes de este canal?`,
-        components: [row],
-        flags: MessageFlags.Ephemeral
-      });
+      await interaction.reply({ content: `¿Estás seguro de que quieres eliminar **${cantidad}** mensajes de este canal? Nota: No puedo borrar comandos que sean mas antiguos de 14 días. Los ignorare.`, components: [row], flags: MessageFlags.Ephemeral });
 
-      if (!interaction.inGuild() || !interaction.channel) {
-        await interaction.reply({ content: "Este comando solo funciona en servidores.", flags: MessageFlags.Ephemeral });
-        return;
-      }
-
-      // Esperar la interacción del botón
+      // Esperar la interacción del botón. Tiempo máximo: 15 segundos.
       const filter = (i: ButtonInteraction) => i.customId === "purge_confirm" && i.user.id === interaction.user.id;
       const confirmation = await interaction.channel.awaitMessageComponent({ filter, componentType: ComponentType.Button, time: 15000 }).catch(() => null);
 
       if (!confirmation) {
-        await interaction.editReply({ content: "⏰ | No se recibió confirmación. Operación cancelada.", components: [] });
+        await interaction.editReply({ content: "⏰ Tiempo de espera acabado, comando cancelado.", components: [] });
         return;
       }
 
-      // Borrar mensajes
-      await interaction.channel.bulkDelete(cantidad);
+      const deleted = await interaction.channel.bulkDelete(cantidad, true);
 
-      // Notificar éxito
       const embed = new EmbedBuilder()
         .setColor(client.color)
-        .setDescription(`🗑️ | ${cantidad} mensajes han sido eliminados de este canal.`);
+        .setDescription(`🗑️ | ${deleted.size} mensajes han sido eliminados de este canal.`);
 
       await confirmation.update({ embeds: [embed], content: null, components: [] });
     }
