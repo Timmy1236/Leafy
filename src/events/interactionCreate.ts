@@ -1,4 +1,4 @@
-import { GuildMember, PermissionsBitField } from "discord.js";
+import { MessageFlags, PermissionsBitField } from "discord.js";
 import { getUserOrCreate } from "../db/user.js";
 import { getServerOrCreate } from "../db/server.js";
 import { Event } from "../types/Events.js";
@@ -26,12 +26,12 @@ const event: Event<"interactionCreate"> = {
         const permisosString = required.toArray().map(p => `\`${p}\``).join(", ");
 
         if (!interaction.member.permissions.has(required)) {
-          await interaction.reply({ content: `No tienes los permisos: ${permisosString}`, ephemeral: true });
+          await interaction.reply({ content: `No tienes los permisos: ${permisosString}`, flags: MessageFlags.Ephemeral });
           return;
         }
 
         if (!interaction.guild.members.me?.permissions.has(required)) {
-          await interaction.reply({ content: `No tengo los permisos necesarios: ${permisosString}`, ephemeral: true });
+          await interaction.reply({ content: `No tengo los permisos necesarios: ${permisosString}`, flags: MessageFlags.Ephemeral });
           return;
         }
       }
@@ -42,7 +42,7 @@ const event: Event<"interactionCreate"> = {
       cLog("ERROR", "Error al intentar ejecutar un comando!", e);
 
       if (!interaction.replied && !interaction.deferred) {
-        await interaction.reply({ content: "⚠️ | Ha ocurrido un error inesperado al ejecutar el comando.", ephemeral: true });
+        await interaction.reply({ content: "⚠️ | Ha ocurrido un error inesperado al ejecutar el comando.", flags: MessageFlags.Ephemeral });
       }
       else {
         await interaction.editReply("⚠️ | Ha ocurrido un error inesperado al ejecutar el comando.");

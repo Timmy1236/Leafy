@@ -21,13 +21,13 @@ const command: SlashCommand = {
       .setColor(client.color);
 
     if (!interaction.inCachedGuild()) {
-      await interaction.reply({ content: "Este comando solo funciona en servidores.", ephemeral: true });
+      await interaction.reply({ content: "Este comando solo funciona en servidores.", flags: MessageFlags.Ephemeral });
       return;
     }
 
     const targetMember = await guild!.members.fetch(user.id).catch(() => null);
 
-     if (!targetMember) {
+    if (!targetMember) {
       errorEmbed.setDescription("Hubo un error al intentar obtener el usuario que me marcaste.");
       await interaction.editReply({ embeds: [errorEmbed] });
       return;

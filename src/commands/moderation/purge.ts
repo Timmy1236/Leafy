@@ -27,11 +27,11 @@ const command: SlashCommand = {
       await interaction.reply({
         content: `¿Estás seguro de que quieres eliminar **${cantidad}** mensajes de este canal?`,
         components: [row],
-        ephemeral: true
+        flags: MessageFlags.Ephemeral
       });
 
       if (!interaction.inGuild() || !interaction.channel) {
-        await interaction.reply({ content: "Este comando solo funciona en servidores.", ephemeral: true });
+        await interaction.reply({ content: "Este comando solo funciona en servidores.", flags: MessageFlags.Ephemeral });
         return;
       }
 

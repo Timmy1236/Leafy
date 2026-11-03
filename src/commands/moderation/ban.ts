@@ -21,7 +21,7 @@ const command: SlashCommand = {
       .setColor("#ff0000");
 
     if (!interaction.inCachedGuild()) {
-      await interaction.reply({ content: "Este comando solo funciona en servidores.", ephemeral: true });
+      await interaction.reply({ content: "Este comando solo funciona en servidores.", flags: MessageFlags.Ephemeral });
       return;
     }
 

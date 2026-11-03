@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder, ChannelType } from "discord.js";
+import { SlashCommandBuilder, EmbedBuilder, ChannelType, MessageFlags } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
 import { saveServer } from "../../db/server.js";
 
@@ -31,20 +31,20 @@ const command: SlashCommand = {
 
     // HELP
     if (subcommand === "help") {
-      await interaction.reply({ embeds: [embed], ephemeral: true });
+      await interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
       return;
     }
 
     // STATUS
     if (subcommand === "status") {
       if (!_serverDB.welcomeChannel) {
-        await interaction.reply({ content: "El servidor no cuenta con ningún canal de bienvenida configurado. Configura uno ahora con: /welcome set", ephemeral: true });
+        await interaction.reply({ content: "El servidor no cuenta con ningún canal de bienvenida configurado. Configura uno ahora con: /welcome set", flags: MessageFlags.Ephemeral });
         return;
       }
 
       const channel = guild.channels.cache.get(_serverDB.welcomeChannel);
       if (!channel) {
-        await interaction.reply({ content: "⚠️ ¿Huh? Este servidor ya cuenta con un canal de bienvenidas, pero no tengo acceso a ella actualmente. Verifica que no haya sido borrado o perdí acceso a ella.", ephemeral: true });
+        await interaction.reply({ content: "⚠️ ¿Huh? Este servidor ya cuenta con un canal de bienvenidas, pero no tengo acceso a ella actualmente. Verifica que no haya sido borrado o perdí acceso a ella.", flags: MessageFlags.Ephemeral });
         return;
       }
 
@@ -55,7 +55,7 @@ const command: SlashCommand = {
     // CLEAR
     if (subcommand === "clear") {
       if (!_serverDB.welcomeChannel) {
-        await interaction.reply({ content: "❔ No hay un canal de bienvenida configurado actualmente.", ephemeral: true });
+        await interaction.reply({ content: "❔ No hay un canal de bienvenida configurado actualmente.", flags: MessageFlags.Ephemeral });
         return;
       }
 
@@ -73,12 +73,12 @@ const command: SlashCommand = {
       const channel = interaction.options.getChannel("canal");
 
       if (!channel) {
-        await interaction.reply({ content: "Canal no encontrado. Asegúrate de seleccionar un canal válido.", ephemeral: true });
+        await interaction.reply({ content: "Canal no encontrado. Asegúrate de seleccionar un canal válido.", flags: MessageFlags.Ephemeral });
         return;
       }
 
       if (channel.type !== ChannelType.GuildText) {
-        await interaction.reply({ content: "Por favor, selecciona un canal de texto.", ephemeral: true });
+        await interaction.reply({ content: "Por favor, selecciona un canal de texto.", flags: MessageFlags.Ephemeral });
         return;
       }
 
