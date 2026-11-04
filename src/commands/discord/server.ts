@@ -44,8 +44,9 @@ const command: SlashCommand = {
       = roles.length > 7
         ? `${roles.slice(0, 7).join(" | ")} y **${roles.length - 7}** más...`
         : roles.join(" | ");
-
-    const { dominantColor } = await extractColorFromImage(server.iconURL({ size: 1024, extension: "png" })!);
+    
+    const serverIcon = server.iconURL({ size: 1024, extension: "png" });
+    const dominantColor = serverIcon ? ((await extractColorFromImage(serverIcon)).dominantColor) : client.color;
 
     const verificationLevels = {
       0: "Ninguno - *Todos pueden entrar.*",
