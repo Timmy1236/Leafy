@@ -2,7 +2,7 @@ import { GatewayIntentBits, Partials } from "discord.js";
 import { LeafyClient } from "./types/Client.js";
 import emojis from "./utils/emojis.js";
 import loader from "./loaders/loader.js";
-import config from "./config.json" with { type: "json" };
+import config from "../config.json" with { type: "json" };
 import { cLog } from "./utils/cLog.js";
 
 async function initializeBot() {

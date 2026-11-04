@@ -2,7 +2,7 @@ import fs from "fs";
 import { REST, Routes } from "discord.js";
 import * as readline from "readline";
 
-import config from "../config.json" with { type: "json" };;
+import config from "../../config.json" with { type: "json" };
 const CLIENT_ID = config.CLIENT_ID;
 const TOKEN = config.TOKEN;
 const GUILD_ID = config.GUILD_TEST_ID;
@@ -49,7 +49,6 @@ function mostrarMenu() {
 
 async function leerComandos() {
   let commandsArray: any[] = [];
-
   const folders = fs.readdirSync("./dist/commands");
 
   for (const folder of folders) {
@@ -62,7 +61,10 @@ async function leerComandos() {
       );
 
       const slash = slashModule.default;
-      commandsArray.push(slash.data.toJSON());
+      const jsonCommand = slash.data.toJSON();
+
+      console.log(`[Índice ${commandsArray.length}] Comando: "${jsonCommand.name}" -> (${folder}/${file})`);
+      commandsArray.push(jsonCommand);
     }
   }
 
@@ -72,6 +74,7 @@ async function leerComandos() {
 async function updateTestGuild() {
   try {
     const rest = new REST({ version: "10" }).setToken(TOKEN);
+    console.log("\nLeyendo comandos...");
     const commands = await leerComandos();
 
     console.log(`Actualizando comandos en el servidor de test: ${GUILD_ID} ...`);
@@ -90,6 +93,7 @@ async function updateTestGuild() {
 async function updateGlobal() {
   try {
     const rest = new REST({ version: "10" }).setToken(TOKEN);
+    console.log("\nLeyendo comandos...");
     const commands = await leerComandos();
 
     console.log("\nActualizando comandos en todos los servidores...");
