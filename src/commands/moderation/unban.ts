@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder, InteractionContextType, PermissionFlagsBits, MessageFlags } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
 import { cLog } from "../../utils/cLog.js";
+import { isValidSnowflake } from "../../utils/utils.js";
 
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
@@ -19,10 +20,6 @@ const command: SlashCommand = {
       return;
     }
 
-    function isValidSnowflake(id: string): boolean {
-      const snowflakeRegex = /^[0-9]{17,19}$/;
-      return snowflakeRegex.test(id);
-    }
 
     try {
       await interaction.deferReply();

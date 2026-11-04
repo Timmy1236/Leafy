@@ -1,5 +1,5 @@
 import extractColorFromImage from "../../utils/extractColor.js";
-import { boolToSpanish, formatDateLong } from "../../utils/general.js";
+import { boolToSpanish, formatDateLong } from "../../utils/utils.js";
 import { SlashCommandBuilder, EmbedBuilder, ChannelType } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
 
