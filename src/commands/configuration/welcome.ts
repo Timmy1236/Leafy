@@ -17,7 +17,7 @@ const command: SlashCommand = {
     const subcommand = interaction.options.getSubcommand();
     const guild = interaction.guild;
 
-    if (!_userDB || !_serverDB || !guild) return;
+    if (!_userDB || !_serverDB) return;
 
     const embed = new EmbedBuilder()
       .setColor(client.color)
@@ -71,12 +71,7 @@ const command: SlashCommand = {
 
     // SET
     if (subcommand === "set") {
-      const channel = interaction.options.getChannel("canal");
-
-      if (!channel) {
-        await interaction.reply({ content: "Canal no encontrado. Asegúrate de seleccionar un canal válido.", flags: MessageFlags.Ephemeral });
-        return;
-      }
+      const channel = interaction.options.getChannel("canal", true);
 
       if (channel.type !== ChannelType.GuildText) {
         await interaction.reply({ content: "Por favor, selecciona un canal de texto.", flags: MessageFlags.Ephemeral });

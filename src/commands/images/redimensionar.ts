@@ -13,11 +13,11 @@ const command: SlashCommand = {
   run: async (client, interaction): Promise<void> => {
     await interaction.deferReply();
 
-    const attachment = interaction.options.getAttachment("imagen");
+    const attachment = interaction.options.getAttachment("imagen", true);
     const customWidth = interaction.options.getInteger("ancho");
     const customHeight = interaction.options.getInteger("altura");
 
-    if (!attachment || !attachment.contentType?.startsWith("image/")) {
+    if (!attachment.contentType?.startsWith("image/")) {
       await interaction.editReply({ content: "❌ **Error:** El archivo adjunto debe ser una imagen válida (.png, .jpg, .jpeg, .webp)." });
       return;
     }

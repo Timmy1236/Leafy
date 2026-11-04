@@ -15,7 +15,7 @@ const command: SlashCommand = {
     const avatar = user.displayAvatarURL({ size: 1024 });
 
     function _getAvatarWithExtension(extension: image) {
-      return user!.displayAvatarURL({ extension: extension, size: 512 });
+      return user.displayAvatarURL({ extension: extension, size: 512 });
     }
 
     const { dominantColor, stringRgb, hex } = await extractColorFromImage(_getAvatarWithExtension("png"));

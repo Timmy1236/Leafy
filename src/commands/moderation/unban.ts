@@ -6,20 +6,14 @@ import { isValidSnowflake } from "../../utils/utils.js";
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("unban")
-    .setDescription("Quita el baneo a un usuario del servidor.")
+    .setDescription("Quita el ban a un usuario de este servidor.")
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
     .setContexts(InteractionContextType.Guild)
-    .addStringOption(option => option.setName("usuarioid").setDescription("El usuario que deseas desbanear.").setRequired(true)),
+    .addStringOption(option => option.setName("usuario_id").setDescription("El ID del usuario que deseas quitar el ban.").setRequired(true)),
   categoria: "Moderación",
   run: async (client, interaction): Promise<void> => {
     const { options } = interaction;
-    const userID = options.getString("usuarioid");
-
-    if (!userID) {
-      await interaction.reply({ content: `${client.botEmojis.error} 『 Debes proporcionar la ID del usuario que deseas desbanear. 』`, flags: MessageFlags.Ephemeral });
-      return;
-    }
-
+    const userID = options.getString("usuario_id", true);
 
     try {
       await interaction.deferReply();
