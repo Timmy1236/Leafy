@@ -8,6 +8,8 @@ import path from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+GlobalFonts.registerFromPath(path.join(__dirname, "../../../assets/fonts/impact.ttf"), "impact");
+
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("caption")
@@ -52,7 +54,6 @@ const command: SlashCommand = {
       let lines: string[] = [];
       let lineHeight = 0;
 
-      GlobalFonts.registerFromPath(path.join(__dirname, "../../../assets/fonts/impact.ttf"), "impact");
 
       // Bucle para reducir la fuente si el texto es muy largo
       while (fontSize >= minFontSize) {
@@ -79,7 +80,7 @@ const command: SlashCommand = {
           lines.push(currentLine);
         }
 
-        // Comprobamos si el bloque total de texto entra en la altura de los 250px (con márgenes de 20px arriba/abajo)
+        // Comprobamos si el bloque total de texto entra en la altura de los 100px (con márgenes de 20px arriba/abajo)
         const totalTextHeight = lines.length * lineHeight;
         if (totalTextHeight <= captionHeight - 40) {
           break;
