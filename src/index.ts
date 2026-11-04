@@ -11,12 +11,9 @@ async function initializeBot() {
   const client = new LeafyClient(
     {
       intents: [
-        GatewayIntentBits.MessageContent,
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildPresences,
-        GatewayIntentBits.GuildMessageReactions
       ],
       partials: [Partials.Channel]
     },
