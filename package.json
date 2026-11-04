@@ -13,7 +13,7 @@
     "build": "pnpm clean && tsc",
     "start": "node dist/index.js",
     "dev": "pnpm build && pnpm start",
-    "sync": "node dist/scripts/sync_slash.js",
+    "sync": "pnpm build && node dist/scripts/sync_slash.js",
     "lint": "npx --node-options=--experimental-strip-types eslint --flag unstable_native_nodejs_ts_config"
   },
   "repository": {
