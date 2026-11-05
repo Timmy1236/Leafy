@@ -17,8 +17,6 @@ const command: SlashCommand = {
     const subcommand = interaction.options.getSubcommand();
     const guild = interaction.guild;
 
-    if (!_userDB || !_serverDB) return;
-
     const embed = new EmbedBuilder()
       .setColor(client.color)
       .setTitle("⚙️ | Configuración del Canal de Bienvenida")

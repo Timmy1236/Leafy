@@ -1,29 +1,26 @@
-import { getServer } from "../db/server.js";
+import { getServerOrCreate } from "../db/server.js";
 import { Event } from "../types/Events.js";
+import { cLog } from "../utils/cLog.js";
 
 const event: Event<"guildMemberAdd"> = {
   name: "guildMemberAdd",
   once: false,
-  execute: async (client, interaction) => {
-    const serverDB = getServer(interaction.guild.id);
+  execute: async (client, member) => {
+    const serverDB = getServerOrCreate(member.guild.id);
+    if (!serverDB.welcomeChannel) return;
 
-    if (!serverDB || !serverDB.welcomeChannel) {
-      console.log(`No se encontró un canal de bienvenida configurado para el servidor: ${interaction.guild.id}`);
-      return;
-    }
-
-    const welcomeChannel = interaction.guild.channels.cache.get(serverDB.welcomeChannel);
+    const welcomeChannel = member.guild.channels.cache.get(serverDB.welcomeChannel);
     if (!welcomeChannel) {
-      console.log(`El canal de bienvenida configurado no existe: ${serverDB.welcomeChannel}`);
+      cLog("ADVERTENCIA", `El canal de bienvenida configurado: ${serverDB.welcomeChannel} dejo de existir?`);
       return;
     }
 
     if (!welcomeChannel.isTextBased()) {
-      console.warn(`El canal de bienvenida configurado no es un canal de texto: ${serverDB.welcomeChannel}`);
+      cLog("ADVERTENCIA", `Alguien configuro un canal de bienvenida: ${serverDB.welcomeChannel} y resulta que no es un canal de texto!?`);
       return;
     }
 
-    await welcomeChannel.send(`¡Bienvenido al servidor, <@${interaction.user.id}>!`);
+    await welcomeChannel.send(`¡Bienvenido al servidor, <@${member.user.id}>!`);
   }
 };
 
