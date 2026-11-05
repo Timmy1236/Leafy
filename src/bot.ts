@@ -13,7 +13,7 @@ async function initializeBot() {
       intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.GuildPresences
       ],
       partials: [Partials.Channel]
     },
