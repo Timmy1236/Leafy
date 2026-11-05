@@ -14,7 +14,7 @@ const command: SlashCommand = {
     const memberCount = server.members.cache.filter(m => !m.user.bot).size;
     const totalMembers = server.members.cache.size;
     const botCount = totalMembers - memberCount;
-    
+
     const getMemberCountByStatus = (status: string) => server.members.cache.filter(m => m.presence?.status === status).size;
     const getChannelCountByType = (type: ChannelType) => server.channels.cache.filter(c => c.type === type).size;
 
@@ -44,7 +44,7 @@ const command: SlashCommand = {
       = roles.length > 7
         ? `${roles.slice(0, 7).join(" | ")} y **${roles.length - 7}** más...`
         : roles.join(" | ");
-    
+
     const serverIcon = server.iconURL({ size: 1024, extension: "png" });
     const dominantColor = serverIcon ? ((await extractColorFromImage(serverIcon)).dominantColor) : client.color;
 

@@ -20,7 +20,7 @@ const command: SlashCommand = {
       .setTitle("❌ Error")
       .setColor("#ff0000");
 
-    const targetMember = await guild!.members.fetch(user.id).catch(() => null);
+    const targetMember = await guild.members.fetch(user.id).catch(() => null);
 
     if (!targetMember) {
       errorEmbed.setDescription("Hubo un error al intentar obtener el usuario que me marcaste.");

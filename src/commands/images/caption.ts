@@ -29,9 +29,9 @@ const command: SlashCommand = {
     }
 
     if ((attachment.width ?? 0) > 4096 || (attachment.height ?? 0) > 4096) {
-     await interaction.editReply({ content: "❌ La imagen es demasiado grande (máx. 4096 px)." });
-     return;
-   }
+      await interaction.editReply({ content: "❌ La imagen es demasiado grande (máx. 4096 px)." });
+      return;
+    }
 
     try {
       const image = await loadImage(attachment.url);
@@ -53,7 +53,6 @@ const command: SlashCommand = {
       let fontSize = 60;
       let lines: string[] = [];
       let lineHeight = 0;
-
 
       // Bucle para reducir la fuente si el texto es muy largo
       while (fontSize >= minFontSize) {

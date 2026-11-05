@@ -23,7 +23,7 @@ const command: SlashCommand = {
       invisible: "⚫️ Desconectado"
     };
 
-    const everyoneRoleId = guild!.roles.everyone.id;
+    const everyoneRoleId = guild.roles.everyone.id;
     const member = guild.members.cache.get(user.id);
 
     // Si el usuario está en el servidor

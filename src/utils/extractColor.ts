@@ -8,7 +8,7 @@ async function extractColorFromImage(imageURL: string) {
 
   // Lee los píxeles de la imagen. El resultado contiene cuatro valores por píxel: rojo, verde, azul y transparencia.
   const { data } = context.getImageData(0, 0, canvas.width, canvas.height);
-  const colorGroups = new Map<string, { count: number; rgb: [number, number, number] }>();
+  const colorGroups = new Map<string, { count: number, rgb: [number, number, number] }>();
 
   for (let i = 0; i < data.length; i += 4) {
     // Ignora píxeles casi transparentes para que no alteren el color visible de la imagen.
@@ -25,8 +25,8 @@ async function extractColorFromImage(imageURL: string) {
   }
 
   // El grupo con más píxeles representa el color más frecuente; usa negro si la imagen no tiene píxeles visibles.
-  const dominantColor: [number, number, number] =
-    [...colorGroups.values()].sort((a, b) => b.count - a.count)[0]?.rgb ?? [0, 0, 0];
+  const dominantColor: [number, number, number]
+    = [...colorGroups.values()].sort((a, b) => b.count - a.count)[0]?.rgb ?? [0, 0, 0];
   const [r, g, b] = dominantColor;
 
   return {

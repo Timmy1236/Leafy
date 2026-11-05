@@ -23,9 +23,9 @@ const command: SlashCommand = {
     }
 
     if ((attachment.width ?? 0) > 4096 || (attachment.height ?? 0) > 4096) {
-     await interaction.editReply({ content: "❌ La imagen es demasiado grande (máx. 4096 px)." });
-     return;
-   }
+      await interaction.editReply({ content: "❌ La imagen es demasiado grande (máx. 4096 px)." });
+      return;
+    }
 
     try {
       const image = await loadImage(attachment.url);
