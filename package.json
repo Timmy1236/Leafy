@@ -2,7 +2,7 @@
   "name": "leafy",
   "type": "module",
   "version": "1.0.0",
-  "description": "Un simple bot para discord, nada más, simple como eso.",
+  "description": "Un simple bot de código abierto para discord en español, cuento con varios comandos multinacionales como edición de imágenes, administración y moderación del servidor.",
   "main": "dist/index.js",
   "engines": {
     "node": ">=24"

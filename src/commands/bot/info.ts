@@ -1,4 +1,3 @@
-import { execSync } from "node:child_process";
 import packagejson from "../../../package.json" with { type: "json" };
 import { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, version, MessageFlags } from "discord.js";
 import { SlashCommand } from "../../types/Commands.js";
@@ -7,50 +6,80 @@ import { cLog } from "../../utils/cLog.js";
 const command: SlashCommand = {
   data: new SlashCommandBuilder()
     .setName("info")
-    .setDescription("Información sobre el bot."),
+    .setDescription("Información sobre el bot.")
+    .addSubcommand(subcommand => subcommand.setName("general").setDescription("Muestra información general del bot."))
+    .addSubcommand(subcommand => subcommand.setName("entorno").setDescription("Muestra información del entorno de ejecución."))
+    .addSubcommand(subcommand => subcommand.setName("estadisticas").setDescription("Muestra las estadísticas del bot.")),
   categoria: "Bot",
   run: async (client, interaction): Promise<void> => {
-    try {
-      const uptime = client.uptime;
+    const uptime = client.uptime;
+    const user = client.user;
 
-      if (!uptime) return; // NOTE: what?
-
-      // Formateamos el tiempo de actividad del bot
-      const days = Math.floor(uptime / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((uptime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((uptime % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((uptime % (1000 * 60)) / 1000);
-      const activity = `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
-
-      // Obtenemos la version del NPM
-      const npmVersion = execSync("npm -v").toString().trim();
-
-      const userSize = client.guilds.cache.map(g => g.memberCount).reduce((a, b) => a + b).toLocaleString();
-      const serverSize = client.guilds.cache.size.toLocaleString();
-      const channelSize = client.channels.cache.size.toLocaleString();
-
-      const githubButton = new ButtonBuilder()
-        .setLabel("GitHub")
-        .setURL("https://github.com/Timmy1236/Leafy")
-        .setStyle(ButtonStyle.Link);
-
-      const row = new ActionRowBuilder<ButtonBuilder>()
-        .addComponents(githubButton);
-
-      if (!client.user) return;
-
-      const botEmbed = new EmbedBuilder()
-        .setAuthor({ name: client.user.username || "Bot", iconURL: client.user.avatarURL() || undefined })
-        .setDescription(packagejson.description)
-        .setColor(client.color)
-        .addFields({ name: "▸ 💻 Info", value: `>>> **Lenguaje:** JavaScript\n**Discord.js:** v${version}\n**Node.js:** ${process.version}\n**NPM:** ${npmVersion}`, inline: true })
-        .addFields({ name: "▸ 📈 Stats", value: `>>> **Uptime:** ${activity}\n**Usuarios:** ${userSize}\n**Servers:** ${serverSize}\n**Canales:** ${channelSize}`, inline: true });
-      await interaction.reply({ embeds: [botEmbed], components: [row] });
+    if (!user) {
+      await interaction.reply({ content: "El bot todavía está iniciando.", flags: MessageFlags.Ephemeral });
+      return;
     }
-    catch (e) {
-      await interaction.followUp({ content: "Acaba de ocurrir un error al intentar ejecutar este comando.", flags: MessageFlags.Ephemeral });
-      cLog("ERROR", "Error en el comando info", e);
+
+    // Uptime
+    const uptimeSeconds = Math.floor((uptime ?? 0) / 1000);
+    const days = Math.floor(uptimeSeconds / 86_400);
+    const hours = Math.floor((uptimeSeconds % 86_400) / 3_600);
+    const minutes = Math.floor((uptimeSeconds % 3_600) / 60);
+    const seconds = uptimeSeconds % 60;
+    const activity = `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+
+    // Stats discord
+    const guilds = client.guilds.cache;
+    const totalMembers = guilds.reduce((total, guild) => total + guild.memberCount, 0).toLocaleString();
+    const serverCount = guilds.size.toLocaleString();
+    const channelCount = client.channels.cache.size.toLocaleString();
+
+    // System
+    const memory = process.memoryUsage();
+    const mb = (bytes: number): string => `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+    const language = packagejson.devDependencies?.typescript ? "TypeScript" : "JavaScript";
+    const packageManager = packagejson.packageManager?.split("@")[0] ?? "No definido";
+    const npmVersion = process.env.npm_config_user_agent?.match(/npm\/(\S+)/)?.[1];
+
+    const githubButton = new ButtonBuilder()
+      .setLabel("GitHub")
+      .setURL("https://github.com/Timmy1236/Leafy")
+      .setStyle(ButtonStyle.Link);
+
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(githubButton);
+    const subcommand = interaction.options.getSubcommand();
+    const embed = new EmbedBuilder()
+      .setAuthor({ name: user.username, iconURL: user.avatarURL() ?? undefined })
+      .setColor(client.color);
+
+    if (subcommand === "general") {
+      embed.setDescription(packagejson.description);
     }
+    else if (subcommand === "entorno") {
+      embed.setDescription("Información de la maquina y de mi proceso, el consumo de recursos e información adicional.");
+      embed.addFields(
+        { name: "Lenguaje", value: language, inline: true },
+        { name: "Discord.js", value: `v${version}`, inline: true },
+        { name: "Node.js", value: process.version, inline: true },
+        { name: "V8", value: process.versions.v8, inline: true },
+        { name: "Gestor", value: `${packageManager}${npmVersion ? ` ${npmVersion}` : ""}`, inline: true },
+        { name: "Sistema", value: `${process.platform} (${process.arch})`, inline: true },
+        { name: "RAM del proceso (RSS)", value: mb(memory.rss), inline: true },
+        { name: "Heap usado / total", value: `${mb(memory.heapUsed)} / ${mb(memory.heapTotal)}`, inline: true }
+      );
+    }
+    else {
+      embed.setDescription("Varias estadísticas de servidores y canales que estoy conectado ahora mismo, incluyendo cuanto tiempo llevo encendido.");
+      embed.addFields(
+        { name: "Uptime", value: activity, inline: false },
+        { name: "Usuarios", value: totalMembers, inline: true },
+        { name: "Servidores", value: serverCount, inline: true },
+        { name: "Canales en caché", value: channelCount, inline: true },
+        { name: "Latencia a la API", value: `${Math.round(client.ws.ping)} ms`, inline: true }
+      );
+    }
+
+    await interaction.reply({ embeds: [embed], components: [row] });
   }
 };
 
